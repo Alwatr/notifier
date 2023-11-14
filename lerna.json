@@ -1,9 +1,9 @@
 {
   "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
-  "version": "4.0.0-rc.0",
+  "version": "independent",
   "npmClient": "yarn",
   "packages": [
-    "services/*"
+    "packages/*"
   ],
   "loglevel": "verbose",
   "command": {
