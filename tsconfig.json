@@ -9,7 +9,5 @@
   },
   "files": [],
   "exclude": [],
-  "references": [
-    {"path": "./packages/telegram"},
-  ]
+  "references": [{"path": "./packages/telegram"}]
 }
