@@ -46,17 +46,3 @@ updates:
         patterns:
           - '@alwatr/*'
           - 'fract'
-
-  - package-ecosystem: npm
-    directory: /
-    versioning-strategy: lockfile-only
-    open-pull-requests-limit: 20
-    reviewers:
-      - AliMD
-    schedule:
-      interval: daily
-    labels:
-      - dependencies
-      - ci
-      - priority-low
-      - maintenance
