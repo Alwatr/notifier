@@ -22,6 +22,79 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/logger@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "@alwatr/logger@npm:2.1.3"
+  dependencies:
+    tslib: "npm:^2.6.2"
+  checksum: 7f2e43eb2a324a63b7603e205900c66f922cf81668d692368bb63cb6070a21a52fafc6d82e553c3ebc43f340feeac3ef1dd13871f989e317b61c6951786e294a
+  languageName: node
+  linkType: hard
+
+"@alwatr/math@npm:^1.1.12":
+  version: 1.1.12
+  resolution: "@alwatr/math@npm:1.1.12"
+  dependencies:
+    "@alwatr/logger": "npm:^2.1.3"
+    tslib: "npm:^2.6.2"
+  checksum: 10b8016dc63241edbe1b2ab4a9cc02d5a5d9c0cf373f5ecb3f4f17484dfaff422c901ef6b8bbda07db6819753b75740d9129afdb34df11c031d922aa06c3ab30
+  languageName: node
+  linkType: hard
+
+"@alwatr/nano-server@npm:^1.1.12":
+  version: 1.1.12
+  resolution: "@alwatr/nano-server@npm:1.1.12"
+  dependencies:
+    "@alwatr/logger": "npm:^2.1.3"
+    "@alwatr/math": "npm:^1.1.12"
+    tslib: "npm:^2.6.2"
+  checksum: aa1850ad58f5b2b8ba26e1a06060ca3e24b5cd9805fe7a26bc3fa4954271b80b54f97c615b98976ef43e58f2bcbded80ac8eab3cb103f7367407e39fe0ff4c3e
+  languageName: node
+  linkType: hard
+
+"@alwatr/storage-engine@npm:^4.0.0-rc.0":
+  version: 4.0.0-rc.0
+  resolution: "@alwatr/storage-engine@npm:4.0.0-rc.0"
+  dependencies:
+    "@alwatr/logger": "npm:^2.1.3"
+    "@alwatr/util": "npm:^1.2.10"
+    exit-hook: "npm:^4.0.0"
+    tslib: "npm:^2.6.2"
+  checksum: 796a04065ac15fedcf050f62ceb5c6d7aa5225d7a4d457b54b5f583cfdea78e9ca1bd2dc16976db106d177f947d3050ea23883ac01b5b827e5b147aedb602437
+  languageName: node
+  linkType: hard
+
+"@alwatr/telegram-notifier-api@workspace:packages/telegram":
+  version: 0.0.0-use.local
+  resolution: "@alwatr/telegram-notifier-api@workspace:packages/telegram"
+  dependencies:
+    "@alwatr/logger": "npm:^2.1.3"
+    "@alwatr/nano-server": "npm:^1.1.12"
+    "@alwatr/storage-engine": "npm:^4.0.0-rc.0"
+    "@alwatr/type": "npm:^1.1.5"
+    "@types/node": "npm:^20.9.0"
+    telegraf: "npm:^4.13.1"
+  languageName: unknown
+  linkType: soft
+
+"@alwatr/type@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "@alwatr/type@npm:1.1.5"
+  checksum: d87587dfd9dff8ceb42dbe187f3db4313877930da802c269596ebcdb1e3541ae0264e91f708882ddbc43a0cff5003583ab543593e080fcd051408e5998f3cdf6
+  languageName: node
+  linkType: hard
+
+"@alwatr/util@npm:^1.2.10":
+  version: 1.2.10
+  resolution: "@alwatr/util@npm:1.2.10"
+  dependencies:
+    "@alwatr/math": "npm:^1.1.12"
+    "@alwatr/type": "npm:^1.1.5"
+    tslib: "npm:^2.6.2"
+  checksum: c7f345ad11634aba9900fd59da1eb69998a2b7484b08ed672a081b012965380f4b7075ec0f99a5e917eb455312942db15c4c0416829808b532d38e303f0972f6
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.12.11, @babel/code-frame@npm:^7.21.4":
   version: 7.22.13
   resolution: "@babel/code-frame@npm:7.22.13"
@@ -924,6 +997,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@telegraf/types@npm:^6.9.1":
+  version: 6.9.1
+  resolution: "@telegraf/types@npm:6.9.1"
+  checksum: ad018e4f6c46fa952b0d0d45a20a055555f995231922740b3d2961af5c7d94c75df4ef48f24354ab5bc47bd3e3f3e0b791d316db5ca83b40422ae9d9d66333b6
+  languageName: node
+  linkType: hard
+
 "@tufjs/canonical-json@npm:2.0.0":
   version: 2.0.0
   resolution: "@tufjs/canonical-json@npm:2.0.0"
@@ -1822,6 +1902,30 @@ __metadata:
   dependencies:
     fill-range: "npm:^7.0.1"
   checksum: 321b4d675791479293264019156ca322163f02dc06e3c4cab33bb15cd43d80b51efef69b0930cfde3acd63d126ebca24cd0544fa6f261e093a0fb41ab9dda381
+  languageName: node
+  linkType: hard
+
+"buffer-alloc-unsafe@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "buffer-alloc-unsafe@npm:1.1.0"
+  checksum: 06b9298c9369621a830227c3797ceb3ff5535e323946d7b39a7398fed8b3243798259b3c85e287608c5aad35ccc551cec1a0a5190cc8f39652e8eee25697fc9c
+  languageName: node
+  linkType: hard
+
+"buffer-alloc@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "buffer-alloc@npm:1.2.0"
+  dependencies:
+    buffer-alloc-unsafe: "npm:^1.1.0"
+    buffer-fill: "npm:^1.0.0"
+  checksum: 09d87dd53996342ccfbeb2871257d8cdb25ce9ee2259adc95c6490200cd6e528c5fbae8f30bcc323fe8d8efb0fe541e4ac3bbe9ee3f81c6b7c4b27434cc02ab4
+  languageName: node
+  linkType: hard
+
+"buffer-fill@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "buffer-fill@npm:1.0.0"
+  checksum: 55b5654fbbf2d7ceb4991bb537f5e5b5b5b9debca583fee416a74fcec47c16d9e7a90c15acd27577da7bd750b7fa6396e77e7c221e7af138b6d26242381c6e4d
   languageName: node
   linkType: hard
 
@@ -3092,6 +3196,13 @@ __metadata:
     signal-exit: "npm:^4.1.0"
     strip-final-newline: "npm:^3.0.0"
   checksum: 2c52d8775f5bf103ce8eec9c7ab3059909ba350a5164744e9947ed14a53f51687c040a250bda833f906d1283aa8803975b84e6c8f7a7c42f99dc8ef80250d1af
+  languageName: node
+  linkType: hard
+
+"exit-hook@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "exit-hook@npm:4.0.0"
+  checksum: 7fb33eaeb9050aee9479da9c93d42b796fb409c40e1d2b6ea2f40786ae7d7db6dc6a0f6ecc7bc24e479f957b7844bcb880044ded73320334743c64e3ecef48d7
   languageName: node
   linkType: hard
 
@@ -5069,6 +5180,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mri@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "mri@npm:1.2.0"
+  checksum: a3d32379c2554cf7351db6237ddc18dc9e54e4214953f3da105b97dc3babe0deb3ffe99cf409b38ea47cc29f9430561ba6b53b24ab8f9ce97a4b50409e4a50e7
+  languageName: node
+  linkType: hard
+
 "ms@npm:2.1.2":
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
@@ -5153,7 +5271,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.7":
+"node-fetch@npm:^2.6.7, node-fetch@npm:^2.6.8":
   version: 2.7.0
   resolution: "node-fetch@npm:2.7.0"
   dependencies:
@@ -5610,6 +5728,13 @@ __metadata:
   version: 3.0.0
   resolution: "p-reduce@npm:3.0.0"
   checksum: 794cd6c98ad246f6f41fa4b925e56c7d8759b92f67712f5f735418dc7b47cd9aadaecbbbedaea2df879fd9c5d7622ed0b22a2c090d2ec349cf0578485a660196
+  languageName: node
+  linkType: hard
+
+"p-timeout@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "p-timeout@npm:4.1.0"
+  checksum: 25aaf13ae9ebfff4ab45591f6647f3bee1ecede073c367175fb0157c27efb170cfb51259a4d2e9118d2ca595453bc885f086ad0ca7476d1c26cee3d13a7c9f6d
   languageName: node
   linkType: hard
 
@@ -6357,6 +6482,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"safe-compare@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "safe-compare@npm:1.1.4"
+  dependencies:
+    buffer-alloc: "npm:^1.2.0"
+  checksum: ada2ef3b6c3a216d82be7b749b4b3a247bcf28b028e1786e636ec83c0a0f918779c30158473e13b30120a6c5bfe3262eb39e95b42dae1dee191565442629f71e
+  languageName: node
+  linkType: hard
+
 "safe-regex-test@npm:^1.0.0":
   version: 1.0.0
   resolution: "safe-regex-test@npm:1.0.0"
@@ -6372,6 +6506,13 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: 7e3c8b2e88a1841c9671094bbaeebd94448111dd90a81a1f606f3f67708a6ec57763b3b47f06da09fc6054193e0e6709e77325415dc8422b04497a8070fa02d4
+  languageName: node
+  linkType: hard
+
+"sandwich-stream@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "sandwich-stream@npm:2.0.2"
+  checksum: 30c779dd32b63cf489cb0a1f28828977db51fe7ca1673ae143649ab583645f6ddb61acb28e770abe52f9006c230cbcc026e56d214964c7bfd788ae05d684643a
   languageName: node
   linkType: hard
 
@@ -6888,6 +7029,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"telegraf@npm:^4.13.1":
+  version: 4.15.0
+  resolution: "telegraf@npm:4.15.0"
+  dependencies:
+    "@telegraf/types": "npm:^6.9.1"
+    abort-controller: "npm:^3.0.0"
+    debug: "npm:^4.3.4"
+    mri: "npm:^1.2.0"
+    node-fetch: "npm:^2.6.8"
+    p-timeout: "npm:^4.1.0"
+    safe-compare: "npm:^1.1.4"
+    sandwich-stream: "npm:^2.0.2"
+  bin:
+    telegraf: lib/cli.mjs
+  checksum: c91d13cf8986713544677d28e320d6be9e30fd064c6981e726c2daf3ca5f9b569fe353497e41c210c242dc09fec3c1bddd4cde1679f5c2fda6f0fad94bdbed42
+  languageName: node
+  linkType: hard
+
 "temp-dir@npm:^3.0.0":
   version: 3.0.0
   resolution: "temp-dir@npm:3.0.0"
@@ -7009,7 +7168,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.1.0":
+"tslib@npm:^2.1.0, tslib@npm:^2.6.2":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: e03a8a4271152c8b26604ed45535954c0a45296e32445b4b87f8a5abdb2421f40b59b4ca437c4346af0f28179780d604094eb64546bee2019d903d01c6c19bdb

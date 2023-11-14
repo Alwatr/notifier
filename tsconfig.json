@@ -10,6 +10,6 @@
   "files": [],
   "exclude": [],
   "references": [
-    {"path": "./packages/telegram-notifier"},
+    {"path": "./packages/telegram"},
   ]
 }
