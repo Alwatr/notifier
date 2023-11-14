@@ -74,6 +74,8 @@ __metadata:
     "@alwatr/type": "npm:^1.1.5"
     "@types/node": "npm:^20.9.0"
     telegraf: "npm:^4.13.1"
+    tslib: "npm:^2.6.2"
+    typescript: "npm:^5.2.2"
   languageName: unknown
   linkType: soft
 
