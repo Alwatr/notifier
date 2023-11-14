@@ -1,5 +1,5 @@
 {
-  "name": "@alwatr/telegram-notify",
+  "name": "@alwatr/telegram-notifier-api",
   "version": "1.0.0",
   "description": "Alwatr Telegram Notify Microservice, Distributed simple and fast telegram notify nanoservice.",
   "type": "module",

@@ -1,1 +1,3 @@
-![Alwatr](./docs/image/logo.svg#gh-dark-mode-only)
+# Alwatr Notifier
+
+Alwatr Notifier Microservice
