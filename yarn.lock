@@ -93,7 +93,7 @@ __metadata:
     "@alwatr/storage-engine": "npm:^4.0.0-rc.0"
     "@alwatr/type": "npm:^1.2.1"
     "@types/node": "npm:^20.10.0"
-    telegraf: "npm:^4.15.0"
+    telegraf: "npm:^4.15.1"
     tslib: "npm:^2.6.2"
     typescript: "npm:^5.3.2"
   languageName: unknown
@@ -7066,9 +7066,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"telegraf@npm:^4.15.0":
-  version: 4.15.0
-  resolution: "telegraf@npm:4.15.0"
+"telegraf@npm:^4.15.1":
+  version: 4.15.1
+  resolution: "telegraf@npm:4.15.1"
   dependencies:
     "@telegraf/types": "npm:^6.9.1"
     abort-controller: "npm:^3.0.0"
@@ -7080,7 +7080,7 @@ __metadata:
     sandwich-stream: "npm:^2.0.2"
   bin:
     telegraf: lib/cli.mjs
-  checksum: c91d13cf8986713544677d28e320d6be9e30fd064c6981e726c2daf3ca5f9b569fe353497e41c210c242dc09fec3c1bddd4cde1679f5c2fda6f0fad94bdbed42
+  checksum: bfe104261c110591d91616c21e95c096aea4fd0cc56f0a6f8e1eaf381216c5a078c8f866cce77788e59777b6aea3431792cddb62d65a69e6ce200dab89568251
   languageName: node
   linkType: hard
 
