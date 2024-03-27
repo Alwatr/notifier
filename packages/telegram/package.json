@@ -47,7 +47,7 @@
     "watch:es": "yarn run build:es --watch"
   },
   "dependencies": {
-    "telegraf": "^4.15.0"
+    "telegraf": "^4.16.3"
   },
   "devDependencies": {
     "@alwatr/logger": "^2.3.0",

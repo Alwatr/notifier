@@ -93,7 +93,7 @@ __metadata:
     "@alwatr/storage-engine": "npm:^4.0.0-rc.0"
     "@alwatr/type": "npm:^1.2.1"
     "@types/node": "npm:^20.10.0"
-    telegraf: "npm:^4.15.0"
+    telegraf: "npm:^4.16.3"
     tslib: "npm:^2.6.2"
     typescript: "npm:^5.3.2"
   languageName: unknown
@@ -1026,10 +1026,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@telegraf/types@npm:^6.9.1":
-  version: 6.9.1
-  resolution: "@telegraf/types@npm:6.9.1"
-  checksum: ad018e4f6c46fa952b0d0d45a20a055555f995231922740b3d2961af5c7d94c75df4ef48f24354ab5bc47bd3e3f3e0b791d316db5ca83b40422ae9d9d66333b6
+"@telegraf/types@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "@telegraf/types@npm:7.1.0"
+  checksum: 643febc20cb8e3600a3d1f8468758a58247311347f60f2bb94235c54f0546825db7a64bf12c59d484b3d26ac983c0b34a2b13ceb91c751d18d570fd6324757cd
   languageName: node
   linkType: hard
 
@@ -5308,7 +5308,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.8":
+"node-fetch@npm:^2.7.0":
   version: 2.7.0
   resolution: "node-fetch@npm:2.7.0"
   dependencies:
@@ -7066,21 +7066,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"telegraf@npm:^4.15.0":
-  version: 4.15.0
-  resolution: "telegraf@npm:4.15.0"
+"telegraf@npm:^4.16.3":
+  version: 4.16.3
+  resolution: "telegraf@npm:4.16.3"
   dependencies:
-    "@telegraf/types": "npm:^6.9.1"
+    "@telegraf/types": "npm:^7.1.0"
     abort-controller: "npm:^3.0.0"
     debug: "npm:^4.3.4"
     mri: "npm:^1.2.0"
-    node-fetch: "npm:^2.6.8"
+    node-fetch: "npm:^2.7.0"
     p-timeout: "npm:^4.1.0"
     safe-compare: "npm:^1.1.4"
     sandwich-stream: "npm:^2.0.2"
   bin:
     telegraf: lib/cli.mjs
-  checksum: c91d13cf8986713544677d28e320d6be9e30fd064c6981e726c2daf3ca5f9b569fe353497e41c210c242dc09fec3c1bddd4cde1679f5c2fda6f0fad94bdbed42
+  checksum: 58931c0cfb00481a99faf757cff3421f9ffb25a4f26c6d34150bc3a0a6e30a98860d7ff824f785f0155c9772fff478fc4a8d22ed975e48014f5037e727f2c995
   languageName: node
   linkType: hard
 
