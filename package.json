@@ -3,7 +3,7 @@
   "description": "Alwatr Notifier Microservice",
   "repository": "https://github.com/Alwatr/notifier",
   "author": "S. Ali Mihandoost <ali.mihandoost@gmail.com> (https://ali.mihandoost.com)",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "type": "module",
   "private": true,
   "engines": {
