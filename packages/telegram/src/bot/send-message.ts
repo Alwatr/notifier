@@ -1,5 +1,6 @@
 import {bot} from '../lib/bot.js';
 import {config, logger} from '../lib/config.js';
+import {cryptoFactory} from '../lib/crypto.js';
 import {message} from '../lib/i18n.js';
 import {alwatrNitrobase} from '../lib/nitrobase.js';
 import {escapeMessage} from '../lib/util.js';
@@ -19,7 +20,10 @@ sendMessageToGroup(groupId: string, message_: string): Promise<void> {
 
   const groupsCollection = await alwatrNitrobase.openCollection<GroupItem>(config.nitrobase.groupsCollection);
 
-  if (groupsCollection.hasItem(groupId) === false) {
+  if (
+    cryptoFactory.verifyUserId(groupId) === false ||
+    groupsCollection.hasItem(groupId) === false
+  ) {
     return;
   }
 
