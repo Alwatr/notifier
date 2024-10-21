@@ -3,14 +3,14 @@ import type {Chat} from 'grammy/types';
 declare global {
   type GroupItem = {
     categoryName: string;
-    memberList: Member[];
+    memberList: MemberItem[];
   }
 
-  type Member = {
+  type MemberItem = {
     id: string;
     type: Chat['type'],
-    username?: string;
-    first_name?: string;
-    last_name?: string;
+    username?: Chat['username'];
+    first_name?: Chat['first_name'];
+    last_name?: Chat['last_name'];
   }
 }
