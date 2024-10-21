@@ -3,13 +3,11 @@ import {config} from '../lib/config.js';
 import {message} from '../lib/i18n.js';
 import {alwatrNitrobase} from '../lib/nitrobase.js';
 
-import type {Group} from '../type.js';
-
 bot.callbackQuery(/^unsubscribe:.*$/, async (ctx) => {
   const groupId = ctx.callbackQuery.data.split(':')[1];
-  const userId = ctx.from.id;
+  const userId = ctx.from.id + '';
 
-  const groupsCollection = await alwatrNitrobase.openCollection<Group>(config.nitrobase.groupsCollection);
+  const groupsCollection = await alwatrNitrobase.openCollection<GroupItem>(config.nitrobase.groupsCollection);
 
   if (groupsCollection.hasItem(groupId) === false) {
     await ctx.reply(message('you_not_subscribed_before'));
@@ -17,13 +15,13 @@ bot.callbackQuery(/^unsubscribe:.*$/, async (ctx) => {
   }
 
   const groupData = groupsCollection.getItemData(groupId);
-
-  if (groupData.members.includes(userId) === false) {
+  const targetIndex = groupData.memberList.findIndex(member => member.id === userId);
+  if (targetIndex === -1) {
     await ctx.reply(message('you_not_subscribed_before'));
     return;
   }
 
-  groupData.members = groupData.members.filter((id) => id !== userId);
+  groupData.memberList.splice(targetIndex, 1);
   groupsCollection.mergeItemData(groupId, groupData);
   groupsCollection.save();
 
