@@ -45,20 +45,21 @@
     ]
   },
   "scripts": {
+    "s": "yarn run start",
     "b": "yarn run build",
-    "t": "yarn run test",
     "w": "yarn run watch",
     "c": "yarn run clean",
     "cb": "yarn run clean && yarn run build",
-    "d": "yarn run build:es && yarn node --enable-source-maps --trace-warnings",
+    "cw": "yarn run clean && yarn run watch",
+    "d": "yarn run build:es && DEBUG=1 yarn node",
+    "start": "yarn build && yarn serve",
     "build": "yarn run build:ts && yarn run build:es",
-    "build:es": "nano-build --preset=module",
+    "build:es": "nano-build --preset=microservice",
     "build:ts": "tsc --build",
-    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --enable-source-maps --experimental-vm-modules\" jest",
-    "watch": "yarn run watch:ts & yarn run watch:es",
-    "watch:es": "yarn run build:es --watch",
-    "watch:ts": "yarn run build:ts --watch --preserveWatchOutput",
-    "clean": "rm -rfv dist *.tsbuildinfo"
+    "watch": "yarn run build --watch",
+    "clean": "rm -rfv dist *.tsbuildinfo",
+    "serve": "yarn node --enable-source-maps dist/main.mjs",
+    "serve:debug": "yarn node --inspect --enable-source-maps dist/main.mjs"
   },
   "dependencies": {
     "grammy": "^1.30.0"
