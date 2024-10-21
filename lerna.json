@@ -1,6 +1,6 @@
 {
-  "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
-  "version": "1.0.0",
+  "$schema": "https://raw.githubusercontent.com/lerna-lite/lerna-lite/main/packages/cli/schemas/lerna-schema.json",
+  "version": "independent",
   "npmClient": "yarn",
   "packages": ["packages/*"],
   "loglevel": "verbose",
@@ -8,16 +8,36 @@
     "version": {
       "conventionalCommits": true,
       "changelog": true,
-      "changelogPreset": "conventional-changelog-angular",
+      "changelogPreset": {
+        "name": "conventionalcommits",
+        "types": [
+          {"type": "feat", "section": "Features"},
+          {"type": "feature", "section": "Features"},
+          {"type": "fix", "section": "Bug Fixes"},
+          {"type": "perf", "section": "Performance Improvements"},
+          {"type": "revert", "section": "Reverts"},
+          {"type": "refactor", "section": "Code Refactoring"},
+          {"type": "chore", "section": "Miscellaneous Chores"},
+          {"type": "docs", "section": "Documentation", "hidden": true},
+          {"type": "doc", "section": "Documentation", "hidden": true},
+          {"type": "deps", "section": "Dependencies update", "hidden": false},
+          {"type": "style", "section": "Styles", "hidden": true},
+          {"type": "test", "section": "Tests", "hidden": true},
+          {"type": "build", "section": "Build System", "hidden": true},
+          {"type": "ci", "section": "Continuous Integration", "hidden": true}
+        ]
+      },
       "changelogIncludeCommitsClientLogin": " by @%l",
       "ignoreChanges": ["*.md"],
+      "skipBumpOnlyReleases": true,
       "message": "release:",
-      "private": true,
+      "private": false,
       "forceGitTag": true,
       "signGitTag": true,
       "signGitCommit": true,
       "push": true,
-      "createRelease": "github"
+      "createRelease": "github",
+      "conventionalGraduate": true
     },
     "run": {
       "stream": true

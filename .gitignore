@@ -27,16 +27,14 @@ package-lock.json
 
 # Build
 dist
-build
-.tsbuildinfo
+*.tsbuildinfo
 *.map
 *.d.ts
-*.js
-!*.config.js
-!**/res/*.js
 
 # Output of 'npm pack'
 *.tgz
 
 # dotenv environment variables file
 .env
+
+.tmp

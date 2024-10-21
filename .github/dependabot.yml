@@ -5,10 +5,14 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     open-pull-requests-limit: 20
+    commit-message:
+      prefix: 'deps'
     reviewers:
       - AliMD
     schedule:
-      interval: daily
+      interval: weekly
+      time: '00:30'
+      day: 'thursday'
     labels:
       - ci
       - priority-low
@@ -22,10 +26,14 @@ updates:
     directory: /
     versioning-strategy: increase
     open-pull-requests-limit: 20
+    commit-message:
+      prefix: 'deps'
     reviewers:
       - AliMD
     schedule:
-      interval: daily
+      interval: weekly
+      time: '00:30'
+      day: 'thursday'
     labels:
       - dependencies
       - ci
