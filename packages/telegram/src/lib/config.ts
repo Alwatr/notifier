@@ -63,7 +63,7 @@ export const config = {
     // adminChatId: +env.botAdminChatId!,
     // adminThreadId: +env.botAdminThreadId!,
 
-    dropPendingUpdates: process.env.dropPendingUpdates === '1',
+    dropPendingUpdates: env.dropPendingUpdates === '1',
 
     info: {
       username: env.botUsername,
