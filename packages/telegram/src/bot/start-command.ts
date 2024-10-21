@@ -38,27 +38,6 @@ bot.command('start', async (ctx) => {
     username: ctx.chat.username
   }
 
-  if (groupsCollection.hasItem(groupId) === false) {
-    groupsCollection.addItem(groupId, {
-      memberList: [newMember]
-    });
-    groupsCollection.save();
-
-
-    await ctx.reply(message('added_message'), {
-      reply_parameters: {message_id: ctx.message!.message_id},
-      reply_markup: {
-        inline_keyboard: [
-          [
-            unsubscribeInlineKeyboardData,
-          ],
-        ],
-      },
-    });
-
-    return;
-  }
-
   const groupData = groupsCollection.getItemData(groupId);
   const targetIndex = groupData.memberList.findIndex(member => member.id === chatId);
   if (targetIndex === -1) {
