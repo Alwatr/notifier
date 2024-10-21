@@ -1,29 +1,56 @@
-import {bot} from './bot.js';
-import {logger} from '../config.js';
-import {storage} from '../lib/storage.js';
+import {bot} from '../lib/bot.js';
+import {config, logger} from '../lib/config.js';
+import {message} from '../lib/i18n.js';
+import {alwatrNitrobase} from '../lib/nitrobase.js';
+import {escapeMessage} from '../lib/util.js';
 
-const escapeCharacter = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!'];
+import type {Group} from '../type.js';
+import type {GrammyError} from 'grammy';
 
-export async function sendMessage(to: string, message: string): Promise<void> {
-  logger.logMethodArgs?.('sendMessage', {to, message});
+/**
+ * Send a message to member of groupId.
+ *
+ * @param groupId - Group ID.
+ * @param message_ - Message to send.
+ */
+export async function sendMessageToGroup(groupId: string, message_: string): Promise<void> {
+  logger.logMethodArgs?.('sendMessageToGroup', {groupId});
+  message_ = escapeMessage(message_);
 
-  for (const character of escapeCharacter) {
-    message = message.replaceAll(character, `\\${character}`);
-  }
+  const groupsCollection = await alwatrNitrobase.openCollection<Group>(config.nitrobase.groupsCollection);
 
-  const target = storage.get(to);
-  if (target === null) {
-    logger.incident?.('sendMessage', 'target_not_found', 'no one registered to this toke', {to});
+  if (groupsCollection.hasItem(groupId) === false) {
     return;
   }
 
-  for (const chatId of target.memberList) {
+  const groupData = groupsCollection.getItemData(groupId);
+
+  for (const chatId of groupData.members) {
     try {
-      await bot.telegram.sendMessage(chatId, message, {parse_mode: 'MarkdownV2'});
+      await bot.api.sendMessage(chatId, message_, {
+        parse_mode: 'MarkdownV2',
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                callback_data: `unsubscribe:${groupId}`,
+                text: message('unsubscribe_me_button'),
+              },
+            ],
+          ],
+        },
+      });
     }
     catch (err) {
-      // TODO: handle blocked user
-      logger.error('sendMessage', 'error_send_message', err, {chatId});
+      const err_ = err as GrammyError;
+      logger.error('sendMessage', 'error_send_message', err_, {chatId});
+
+      // remove if blocked
+      if (err_.error_code === 403) {
+        groupData.members = groupData.members.filter((id) => id !== chatId);
+        groupsCollection.mergeItemData(groupId, groupData);
+        groupsCollection.save();
+      }
     }
   }
 }

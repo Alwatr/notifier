@@ -1,23 +1,20 @@
-import {sendMessage} from '../bot/send-message.js';
-import {config, logger} from '../config.js';
-import {nanoServer} from '../lib/nano-server.js';
+import {sendMessageToGroup} from '../bot/send-message.js';
+import {logger} from '../lib/config.js';
+import {parseBodyAsJson} from '../lib/parse-request-body.js';
+import {nanotronApiServer} from '../lib/server.js';
 
-import type {AlwatrConnection, AlwatrServiceResponse} from '@alwatr/nano-server';
+nanotronApiServer.defineRoute<{body: { groupId: string; message: string }}>({
+  method: 'POST',
+  url: '/telegram/notify',
+  preHandlers: [parseBodyAsJson],
+  async handler() {
+    logger.logMethodArgs?.('defineRoute(/telegram/notify)', {body: this.sharedMeta.body});
 
-// Send message to admin
-nanoServer.route('POST', '/', notify);
+    await sendMessageToGroup(this.sharedMeta.body.groupId, this.sharedMeta.body.message);
 
-async function notify(connection: AlwatrConnection): Promise<AlwatrServiceResponse<Record<string, never>, never>> {
-  logger.logMethod?.('notify');
-
-  connection.requireToken(config.nanoServer.accessToken);
-
-  const bodyJson = await connection.requireJsonBody<{to: string; message: string}>();
-
-  await sendMessage(bodyJson.to, bodyJson.message);
-
-  return {
-    ok: true,
-    data: {},
-  };
-}
+    this.serverResponse.replyJson({
+      ok: true,
+      data: {},
+    });
+  },
+});

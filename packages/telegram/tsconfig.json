@@ -1,15 +1,12 @@
 {
-  "extends": "../../tsconfig.base",
+  "extends": "@alwatr/tsconfig-base/tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "composite": true,
-    "tsBuildInfoFile": ".tsbuildinfo",
     "rootDir": "src",
-    "outDir": "build"
-    // "noEmit": true
+    "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "composite": true,
+    "types": ["node", "@alwatr/nano-build", "@alwatr/type-helper"]
   },
-
   "include": ["src/**/*.ts"],
-  "exclude": [],
   "references": []
 }
