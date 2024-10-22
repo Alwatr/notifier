@@ -323,6 +323,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/notifier-api@workspace:packages/notifier-api":
+  version: 0.0.0-use.local
+  resolution: "@alwatr/notifier-api@workspace:packages/notifier-api"
+  dependencies:
+    "@alwatr/nano-build": "npm:^2.0.2"
+    "@alwatr/prettier-config": "npm:^1.0.6"
+    "@alwatr/tsconfig-base": "npm:^1.3.2"
+    "@alwatr/type-helper": "npm:^2.0.2"
+    "@types/node": "npm:^22.7.7"
+    alwatr: "npm:^2.0.3"
+    grammy: "npm:^1.30.0"
+    typescript: "npm:^5.6.3"
+  languageName: unknown
+  linkType: soft
+
 "@alwatr/observable@npm:^3.2.0":
   version: 3.2.0
   resolution: "@alwatr/observable@npm:3.2.0"
@@ -412,21 +427,6 @@ __metadata:
   checksum: 10c0/7eb3536cf57052699a5e57db1551162980c024706421939d681bd94aeee14b0cf0bb2da36b615298a343fc0d05d5a7a3fe45a16d709ced01544fe045a4c3a4c8
   languageName: node
   linkType: hard
-
-"@alwatr/telegram-notifier-api@workspace:packages/telegram":
-  version: 0.0.0-use.local
-  resolution: "@alwatr/telegram-notifier-api@workspace:packages/telegram"
-  dependencies:
-    "@alwatr/nano-build": "npm:^2.0.2"
-    "@alwatr/prettier-config": "npm:^1.0.6"
-    "@alwatr/tsconfig-base": "npm:^1.3.2"
-    "@alwatr/type-helper": "npm:^2.0.2"
-    "@types/node": "npm:^22.7.7"
-    alwatr: "npm:^2.0.3"
-    grammy: "npm:^1.30.0"
-    typescript: "npm:^5.6.3"
-  languageName: unknown
-  linkType: soft
 
 "@alwatr/tsconfig-base@npm:^1.3.2":
   version: 1.3.2
