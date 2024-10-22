@@ -1,9 +1,8 @@
 import {bot} from '../lib/bot.js';
 import {config, logger} from '../lib/config.js';
-import { cryptoFactory } from '../lib/crypto.js';
-import { alwatrNitrobase } from '../lib/nitrobase.js';
-// import {message} from '../lib/i18n.js';
-// import {alwatrNitrobase} from '../lib/nitrobase.js';
+import {cryptoFactory} from '../lib/crypto.js';
+import {message} from '../lib/i18n.js';
+import {alwatrNitrobase} from '../lib/nitrobase.js';
 
 /**
  * `new_group` command.
@@ -11,15 +10,18 @@ import { alwatrNitrobase } from '../lib/nitrobase.js';
  * This command creates a new group.
  */
 bot.command('new_group', async (ctx) => {
-  // FIXME: Check admin access
-
-  const chatId = ctx.chat.id + '';
+  const chatId = ctx.chat.id;
   const groupNameQueryParam = ctx.match;
   logger.logMethodArgs?.('new_group', {chatId, groupNameQueryParam});
 
+  if (chatId !== config.bot.adminChatId) {
+    ctx.reply(message('commandAccessDenied'));
+    return;
+  }
+
   const groupName = groupNameQueryParam.split('?name=')[1];
   if (!groupName) {
-    ctx.reply('لطفا نام گروه را مشخص کنید.');
+    ctx.reply(message('enterGroupName'));
     return;
   }
 
@@ -30,5 +32,5 @@ bot.command('new_group', async (ctx) => {
     memberList: []
   });
 
-  ctx.reply('https://t.me/MHF_DEV_BOT?start=' + newGroupId);
+  ctx.reply(`https://t.me/${config.bot.info.username}?start=${newGroupId}`);
 });
