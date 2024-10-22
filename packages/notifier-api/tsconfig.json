@@ -2,9 +2,8 @@
   "extends": "@alwatr/tsconfig-base/tsconfig.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist",
-    "emitDeclarationOnly": true,
-    "composite": true,
+    // "outDir": "dist",
+    "noEmit": true,
     "types": ["node", "@alwatr/nano-build", "@alwatr/type-helper"]
   },
   "include": ["src/**/*.ts"],

@@ -1,7 +1,9 @@
 {
-  "name": "@alwatr/telegram-notifier-api",
+  "name": "@alwatr/notifier-api",
   "version": "1.0.0",
   "description": "Alwatr Telegram Notify Microservice, Distributed simple and fast telegram notify nanoservice.",
+  "author": "S. Ali Mihandoost <ali.mihandoost@gmail.com>",
+  "private": true,
   "type": "module",
   "keywords": [
     "telegram",
@@ -26,17 +28,18 @@
     "**/*.{js,mjs,cjs,map,d.ts,html,md}",
     "!demo/**/*"
   ],
-  "publishConfig": {
-    "access": "public"
+  "engines": {
+    "node": ">=18.16.0",
+    "yarn": ">=4.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Alwatr/notifier",
-    "directory": "packages/telegram"
+    "directory": "packages/notifier-api"
   },
-  "homepage": "https://github.com/Alwatr/telegram#readme",
+  "homepage": "https://github.com/Alwatr/notifier#readme",
   "bugs": {
-    "url": "https://github.com/Alwatr/telegram/issues"
+    "url": "https://github.com/Alwatr/notifier/issues"
   },
   "prettier": "@alwatr/prettier-config",
   "nano-build": {

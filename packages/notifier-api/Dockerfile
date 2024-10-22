@@ -4,6 +4,9 @@ RUN set -ex; \
   apk add --no-cache git; \
   corepack enable;
 
+COPY package.json yarn.lock ./
+COPY packages/telegram/package.json packages/telegram/
+
 RUN yarn install;
 
 COPY . .
@@ -18,6 +21,9 @@ RUN set -eux; \
 
 FROM ghcr.io/alwatr/node:22.9.0
 LABEL org.opencontainers.image.base.name="ghcr.io/alwatr/node:22.9.0"
+
+RUN apk add --no-cache curl
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --start-interval=1s --retries=3 CMD curl -fso /dev/null http://localhost/health || exit 1
 
 COPY --from=builder /app/packages/api/dist/ .
 # RUN set -ex; \
