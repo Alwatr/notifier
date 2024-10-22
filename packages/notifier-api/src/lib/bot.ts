@@ -2,9 +2,9 @@ import {Bot} from 'grammy';
 
 import {config, logger} from './config.js';
 
-export const bot = new Bot(config.bot.token, {botInfo: config.bot.info});
+export const bot = new Bot(config.bot.token);
 
-bot.start({drop_pending_updates: config.bot.dropPendingUpdates});
+bot.start();
 
 bot.catch(async (err: { message: unknown; }) => {
   logger.error('catch', 'catch_error', err);

@@ -14,8 +14,8 @@ const env = /* #__PURE__ */ (() => {
     tokenSecret: 'DEV_SECRET',
     host: '0.0.0.0',
     port: 8000,
-    botToken: '1568040550:AAG_j2b4LGtGtX_cXslejibBFIaY_ywRMFM',
-    botUsername: 'MHF_DEV_BOT',
+    botToken: 'BOT_TOKEN',
+    botUsername: 'BOT_USERNAME',
     botFirstName: 'BOT_FIRST_NAME',
     dropPendingUpdates: '1',
     botAdminChatId: 'ADMIN_CHAT_ID',
@@ -37,8 +37,9 @@ const env = /* #__PURE__ */ (() => {
 export const config = {
   hash: {
     algorithm: 'sha1',
-    encoding: 'binary',
-    crcLength: 5
+    encoding: 'hex',
+    crcLength: 5,
+    prefix: 'ca'
   } as HashGeneratorConfig,
 
   nanotronApiServer: {
@@ -63,6 +64,11 @@ export const config = {
     token: env.botToken!,
     adminChatId: +env.botAdminChatId!,
 
+    /**
+     * The Telegram API now supports clearing the pending messages via a
+     * drop_pending_updates parameter in both setWebhook and deleteWebhook
+     * e.g. clear all old unread messages.
+     */
     dropPendingUpdates: env.dropPendingUpdates === '1',
 
     info: {

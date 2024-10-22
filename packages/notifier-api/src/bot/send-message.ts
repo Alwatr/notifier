@@ -1,7 +1,5 @@
-import {getUnsubscribeInlineKeyboardData} from './unsubscribe-callback.js';
 import {bot} from '../lib/bot.js';
 import {config, logger} from '../lib/config.js';
-import {hashGenerator} from '../lib/hash.js';
 import {alwatrNitrobase} from '../lib/nitrobase.js';
 import {escapeMessage} from '../lib/util.js';
 
@@ -19,34 +17,17 @@ sendMessageToCategory(categoryId: string, message_: string): Promise<void> {
   message_ = escapeMessage(message_);
 
   const categoriesCollection = await alwatrNitrobase.openCollection<CategoryItem>(config.nitrobase.categoriesCollection);
-
-  if (
-    hashGenerator.verifySelfValidate(categoryId) === false ||
-    categoriesCollection.hasItem(categoryId) === false
-  ) {
-    return;
-  }
-
   const categoryData = categoriesCollection.getItemData(categoryId);
 
   for (const member of categoryData.memberList) {
     try {
-      await bot.api.sendMessage(member.id, message_, {
-        parse_mode: 'MarkdownV2',
-        reply_markup: {
-          inline_keyboard: [
-            [
-              getUnsubscribeInlineKeyboardData(categoryId),
-            ],
-          ],
-        },
-      });
+      await bot.api.sendMessage(member.id, message_);
     }
     catch (err) {
       const err_ = err as GrammyError;
       logger.error('sendMessage', 'error_send_message', err_, {chatId: member.id});
 
-      // remove if blocked
+      // Remove if blocked
       if (err_.error_code === 403) {
         categoryData.memberList = categoryData.memberList.filter((member_) => member_.id !== member.id);
         categoriesCollection.mergeItemData(categoryId, categoryData);

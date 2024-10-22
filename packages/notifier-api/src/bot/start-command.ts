@@ -1,4 +1,3 @@
-import {getUnsubscribeInlineKeyboardData} from './unsubscribe-callback.js';
 import {bot} from '../lib/bot.js';
 import {config, logger} from '../lib/config.js';
 import {message} from '../lib/i18n.js';
@@ -15,9 +14,7 @@ bot.command('start', async (ctx) => {
   const categoryId = ctx.match;
   logger.logMethodArgs?.('start-command', {chatId, categoryId});
 
-  const unsubscribeInlineKeyboardData = getUnsubscribeInlineKeyboardData(categoryId);
-
-  if (categoryId === undefined) {
+  if (!categoryId) {
     await ctx.reply(message('itIsPrivateBot'), {
       reply_parameters: {message_id: ctx.message!.message_id},
     });
@@ -35,35 +32,16 @@ bot.command('start', async (ctx) => {
     username: ctx.chat.username
   }
 
-  const groupData = categoriesCollection.getItemData(categoryId);
-  const targetIndex = groupData.memberList.findIndex(member => member.id === chatId);
+  const categoryData = categoriesCollection.getItemData(categoryId);
+  const targetIndex = categoryData.memberList.findIndex(member => member.id === chatId);
   if (targetIndex === -1) {
-    groupData.memberList.push(newMember);
-    categoriesCollection.mergeItemData(categoryId, groupData);
+    categoryData.memberList.push(newMember);
+    categoriesCollection.mergeItemData(categoryId, categoryData);
     categoriesCollection.save();
 
-    await ctx.reply(message('addedToList'), {
-      reply_parameters: {message_id: ctx.message!.message_id},
-      reply_markup: {
-        inline_keyboard: [
-          [
-            unsubscribeInlineKeyboardData
-          ],
-        ],
-      },
-    });
-
+    await ctx.reply(message('addedToList'));
     return;
   }
 
-  await ctx.reply(message('hasBeenAddedAlready'), {
-    reply_parameters: {message_id: ctx.message!.message_id},
-    reply_markup: {
-      inline_keyboard: [
-        [
-          unsubscribeInlineKeyboardData
-        ],
-      ],
-    },
-  });
+  await ctx.reply(message('hasBeenAddedAlready'));
 });

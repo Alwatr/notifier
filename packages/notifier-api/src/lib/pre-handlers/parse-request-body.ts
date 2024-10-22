@@ -1,4 +1,4 @@
-import {logger} from './config.js';
+import {logger} from '../config.js';
 
 import type {NanotronClientRequest} from 'alwatr/nanotron';
 

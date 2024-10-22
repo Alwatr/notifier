@@ -14,10 +14,10 @@ bot.command('new_category', async (ctx) => {
   const categoryNameQueryParam = ctx.match;
   logger.logMethodArgs?.('new_category', {chatId, categoryNameQueryParam});
 
-  // if (chatId !== config.bot.adminChatId) {
-  //   ctx.reply(message('commandAccessDenied'));
-  //   return;
-  // }
+  if (chatId !== config.bot.adminChatId) {
+    ctx.reply(message('commandAccessDenied'));
+    return;
+  }
 
   const categoryName = categoryNameQueryParam.split('?name=')[1];
   if (!categoryName) {
