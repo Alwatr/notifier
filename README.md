@@ -1,3 +1,3 @@
-# Alwatr Notifier
+# Telegram Notify Nanoservice
 
-Alwatr Notifier Microservice
+Distributed simple and fast telegram notify nanoservice.
