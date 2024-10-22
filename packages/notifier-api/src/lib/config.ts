@@ -1,7 +1,7 @@
 import {createLogger, packageTracer} from 'alwatr/nanolib';
 import {Region, StoreFileType, type AlwatrNitrobaseConfig, type StoreFileStat} from 'alwatr/nitrobase';
 
-import type {CryptoFactoryConfig, NanotronApiServerConfig} from 'alwatr/nanotron';
+import type {HashGeneratorConfig, NanotronApiServerConfig} from 'alwatr/nanotron';
 import type {UserFromGetMe} from 'grammy/types';
 
 __dev_mode__: packageTracer.add(__package_name__, __package_version__);
@@ -35,16 +35,16 @@ const env = /* #__PURE__ */ (() => {
 })();
 
 export const config = {
-  token: {
-    secret: env.tokenSecret!,
-    duration: '1y',
-  } as CryptoFactoryConfig,
+  hash: {
+    algorithm: 'sha1',
+    encoding: 'binary',
+    crcLength: 5
+  } as HashGeneratorConfig,
 
   nanotronApiServer: {
     host: env.host!,
     port: +env.port!,
     prefix: '/api/',
-    // allowAllOrigin: true,
   } as NanotronApiServerConfig,
 
   nitrobase: {
@@ -62,7 +62,6 @@ export const config = {
   bot: {
     token: env.botToken!,
     adminChatId: +env.botAdminChatId!,
-    // adminThreadId: +env.botAdminThreadId!,
 
     dropPendingUpdates: env.dropPendingUpdates === '1',
 
