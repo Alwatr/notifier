@@ -17,7 +17,8 @@ const env = /* #__PURE__ */ (() => {
     botToken: 'BOT_TOKEN',
     botUsername: 'BOT_USERNAME',
     botFirstName: 'BOT_FIRST_NAME',
-    dropPendingUpdates: '1'
+    dropPendingUpdates: '1',
+    botAdminChatId: 'ADMIN_CHAT_ID',
   } as const;
 
   const env_ = {
@@ -60,7 +61,7 @@ export const config = {
 
   bot: {
     token: env.botToken!,
-    // adminChatId: +env.botAdminChatId!,
+    adminChatId: +env.botAdminChatId!,
     // adminThreadId: +env.botAdminThreadId!,
 
     dropPendingUpdates: env.dropPendingUpdates === '1',
