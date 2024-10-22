@@ -1,12 +1,9 @@
+import {getUnsubscribeInlineKeyboardData} from './unsubscribe-callback.js';
 import {bot} from '../lib/bot.js';
 import {config, logger} from '../lib/config.js';
 import {message} from '../lib/i18n.js';
 import {alwatrNitrobase} from '../lib/nitrobase.js';
 
-const getUnsubscribeInlineKeyboardData = (groupId: string) => ({
-  callback_data: `unsubscribe:${groupId}`,
-  text: message('unsubscribe_me_button'),
-});
 
 /**
  * `start` command.
@@ -21,7 +18,7 @@ bot.command('start', async (ctx) => {
   const unsubscribeInlineKeyboardData = getUnsubscribeInlineKeyboardData(groupId);
 
   if (groupId === undefined) {
-    await ctx.reply(message('private_bot_message'), {
+    await ctx.reply(message('itIsPrivateBot'), {
       reply_parameters: {message_id: ctx.message!.message_id},
     });
 
@@ -45,7 +42,7 @@ bot.command('start', async (ctx) => {
     groupsCollection.mergeItemData(groupId, groupData);
     groupsCollection.save();
 
-    await ctx.reply(message('added_message'), {
+    await ctx.reply(message('addedToList'), {
       reply_parameters: {message_id: ctx.message!.message_id},
       reply_markup: {
         inline_keyboard: [
@@ -59,7 +56,7 @@ bot.command('start', async (ctx) => {
     return;
   }
 
-  await ctx.reply(message('added_already_message'), {
+  await ctx.reply(message('hasBeenAddedAlready'), {
     reply_parameters: {message_id: ctx.message!.message_id},
     reply_markup: {
       inline_keyboard: [

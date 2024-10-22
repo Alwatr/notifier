@@ -5,12 +5,14 @@ export function message(key: keyof typeof i18nResources): string {
 }
 
 const i18nResources = {
-  added_message: 'شما با موفقیت به لیست اضافه شدید',
-  added_already_message: 'شما قبلا به این لیست اضافه شده اید.',
-  unsubscribe_me_button: 'لغو عضویت از این لیست 🔕',
-  unsubscribe_message: 'شما از لیست {groupId} حذف شدید 🚫',
-  you_not_subscribed_before: 'شما قبلا عضو این لیست نبوده اید!',
+  addedToList: 'شما با موفقیت به لیست اضافه شدید',
+  hasBeenAddedAlready: 'شما قبلا به این لیست اضافه شده اید.',
+  unsubscribeMeButtonLabel: 'لغو عضویت از این لیست 🔕',
+  hasBeenUnsubscribed: 'شما از لیست {groupId} حذف شدید 🚫',
+  haveNotSubscribedBefore: 'شما قبلا عضو این لیست نبوده اید!',
+  enterGroupName: 'لطفا نام گروه را مشخص کنید.',
+  commandAccessDenied: 'شما نمیتوانید این دستور رو اجرا کنید.',
 
-  startup_message: `Bot started \n\nv${__package_version__}`,
-  private_bot_message: 'این یک بات خصوصی هست! لطفا مزاحم نشوید',
+  startupMessage: `Bot started \n\nv${__package_version__}`,
+  itIsPrivateBot: 'این یک بات خصوصی هست! لطفا مزاحم نشوید',
 } as const;

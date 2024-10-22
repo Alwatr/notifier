@@ -1,7 +1,7 @@
+import {getUnsubscribeInlineKeyboardData} from './unsubscribe-callback.js';
 import {bot} from '../lib/bot.js';
 import {config, logger} from '../lib/config.js';
 import {cryptoFactory} from '../lib/crypto.js';
-import {message} from '../lib/i18n.js';
 import {alwatrNitrobase} from '../lib/nitrobase.js';
 import {escapeMessage} from '../lib/util.js';
 
@@ -36,10 +36,7 @@ sendMessageToGroup(groupId: string, message_: string): Promise<void> {
         reply_markup: {
           inline_keyboard: [
             [
-              {
-                callback_data: `unsubscribe:${groupId}`,
-                text: message('unsubscribe_me_button'),
-              },
+              getUnsubscribeInlineKeyboardData(groupId),
             ],
           ],
         },
