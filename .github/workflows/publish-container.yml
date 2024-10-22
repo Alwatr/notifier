@@ -9,9 +9,9 @@ on:
         description: Website URL
         type: string
 
-  # push:
-  #   branches:
-  #     - next
+  push:
+    branches:
+      - next
 
   # pull_request:
 

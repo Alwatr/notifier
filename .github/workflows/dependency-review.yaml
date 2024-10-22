@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
   # disable on private repository
-  # pull_request:
+  pull_request:
 
 jobs:
   dependency-review:
