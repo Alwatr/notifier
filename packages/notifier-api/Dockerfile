@@ -5,7 +5,7 @@ RUN set -ex; \
   corepack enable;
 
 COPY package.json yarn.lock ./
-COPY packages/telegram/package.json packages/telegram/
+COPY packages/notifier-api/package.json packages/notifier-api/
 
 RUN yarn install;
 
