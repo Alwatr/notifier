@@ -7,14 +7,14 @@ bot.callbackQuery(/^unsubscribe:.*$/, async (ctx) => {
   const groupId = ctx.callbackQuery.data.split(':')[1];
   const userId = ctx.from.id + '';
 
-  const groupsCollection = await alwatrNitrobase.openCollection<GroupItem>(config.nitrobase.groupsCollection);
+  const categoriesCollection = await alwatrNitrobase.openCollection<CategoryItem>(config.nitrobase.categoriesCollection);
 
-  if (groupsCollection.hasItem(groupId) === false) {
+  if (categoriesCollection.hasItem(groupId) === false) {
     await ctx.reply(message('haveNotSubscribedBefore'));
     return;
   }
 
-  const groupData = groupsCollection.getItemData(groupId);
+  const groupData = categoriesCollection.getItemData(groupId);
   const targetIndex = groupData.memberList.findIndex(member => member.id === userId);
   if (targetIndex === -1) {
     await ctx.reply(message('haveNotSubscribedBefore'));
@@ -22,8 +22,8 @@ bot.callbackQuery(/^unsubscribe:.*$/, async (ctx) => {
   }
 
   groupData.memberList.splice(targetIndex, 1);
-  groupsCollection.mergeItemData(groupId, groupData);
-  groupsCollection.save();
+  categoriesCollection.mergeItemData(groupId, groupData);
+  categoriesCollection.save();
 
   await ctx.reply(message('hasBeenUnsubscribed').replace('{groupId}', groupId));
 });

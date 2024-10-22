@@ -1,7 +1,7 @@
 // common imports
 // import {notifyDebug, onStart} from './lib/admin.js';
 // bot imports
-import './bot/new-group-command.js';
+import './bot/new-category-command.js';
 import './bot/start-command.js';
 import './bot/unsubscribe-callback.js';
 import {bot} from './lib/bot.js';

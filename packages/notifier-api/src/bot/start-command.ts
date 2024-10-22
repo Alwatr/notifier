@@ -12,12 +12,12 @@ import {alwatrNitrobase} from '../lib/nitrobase.js';
  */
 bot.command('start', async (ctx) => {
   const chatId = ctx.chat.id + '';
-  const groupId = ctx.match;
-  logger.logMethodArgs?.('start-command', {chatId, groupId});
+  const categoryId = ctx.match;
+  logger.logMethodArgs?.('start-command', {chatId, categoryId});
 
-  const unsubscribeInlineKeyboardData = getUnsubscribeInlineKeyboardData(groupId);
+  const unsubscribeInlineKeyboardData = getUnsubscribeInlineKeyboardData(categoryId);
 
-  if (groupId === undefined) {
+  if (categoryId === undefined) {
     await ctx.reply(message('itIsPrivateBot'), {
       reply_parameters: {message_id: ctx.message!.message_id},
     });
@@ -25,7 +25,7 @@ bot.command('start', async (ctx) => {
     return;
   }
 
-  const groupsCollection = await alwatrNitrobase.openCollection<GroupItem>(config.nitrobase.groupsCollection);
+  const categoriesCollection = await alwatrNitrobase.openCollection<CategoryItem>(config.nitrobase.categoriesCollection);
 
   const newMember = {
     id: chatId,
@@ -35,12 +35,12 @@ bot.command('start', async (ctx) => {
     username: ctx.chat.username
   }
 
-  const groupData = groupsCollection.getItemData(groupId);
+  const groupData = categoriesCollection.getItemData(categoryId);
   const targetIndex = groupData.memberList.findIndex(member => member.id === chatId);
   if (targetIndex === -1) {
     groupData.memberList.push(newMember);
-    groupsCollection.mergeItemData(groupId, groupData);
-    groupsCollection.save();
+    categoriesCollection.mergeItemData(categoryId, groupData);
+    categoriesCollection.save();
 
     await ctx.reply(message('addedToList'), {
       reply_parameters: {message_id: ctx.message!.message_id},

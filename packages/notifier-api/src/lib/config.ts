@@ -52,8 +52,8 @@ export const config = {
       rootPath: env.dbPath!,
     } as AlwatrNitrobaseConfig,
 
-    groupsCollection: {
-      name: 'groups',
+    categoriesCollection: {
+      name: 'categories',
       region: Region.Managers,
       type: StoreFileType.Collection,
     } as StoreFileStat,

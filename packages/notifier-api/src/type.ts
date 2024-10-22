@@ -1,7 +1,7 @@
 import type {Chat} from 'grammy/types';
 
 declare global {
-  type GroupItem = {
+  type CategoryItem = {
     categoryName: string;
     memberList: MemberItem[];
   }

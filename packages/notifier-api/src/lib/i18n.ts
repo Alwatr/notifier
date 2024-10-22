@@ -10,7 +10,7 @@ const i18nResources = {
   unsubscribeMeButtonLabel: 'لغو عضویت از این لیست 🔕',
   hasBeenUnsubscribed: 'شما از لیست {groupId} حذف شدید 🚫',
   haveNotSubscribedBefore: 'شما قبلا عضو این لیست نبوده اید!',
-  enterGroupName: 'لطفا نام گروه را مشخص کنید.',
+  enterCategoryName: 'لطفا نام گروه را مشخص کنید.',
   commandAccessDenied: 'شما نمیتوانید این دستور رو اجرا کنید.',
 
   startupMessage: `Bot started \n\nv${__package_version__}`,
