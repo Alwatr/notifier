@@ -4,7 +4,13 @@ import {config, logger} from '../config.js';
 
 export const bot = new Bot(config.telegramBot.token, {client: config.telegramBot.clientOption});
 
-export function startBot() {
+export async function startBot() {
+  await bot.api.setMyCommands([
+    { command: 'start', description: 'Start the bot' },
+    { command: 'help', description: 'Show help text' },
+    { command: 'settings', description: 'Open settings' },
+  ]);
+
   bot.start({
     ...config.telegramBot.startOption,
     onStart(botInfo) {
