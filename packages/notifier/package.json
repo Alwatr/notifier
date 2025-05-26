@@ -25,7 +25,8 @@
   },
   "license": "AGPL-3.0-only",
   "files": [
-    "**/*.{js,mjs,cjs,map,d.ts,html,md}",
+    "**/*.{js,mjs,cjs,map,d.ts,html,md,LEGAL.txt}",
+    "LICENSE",
     "!demo/**/*"
   ],
   "publishConfig": {
@@ -48,7 +49,7 @@
     "c": "yarn run clean",
     "cb": "yarn run clean && yarn run build",
     "d": "yarn run build:es && yarn node --enable-source-maps --trace-warnings",
-    "build": "yarn run build:ts & yarn run build:es",
+    "build": "yarn run build:ts && yarn run build:es",
     "build:es": "nano-build --preset=module",
     "build:ts": "tsc --build",
     "test": "NODE_OPTIONS=\"$NODE_OPTIONS --enable-source-maps --experimental-vm-modules\" jest",
