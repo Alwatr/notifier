@@ -1,4 +1,4 @@
-FROM ghcr.io/alwatr/node:22.9.0 AS builder
+FROM ghcr.io/alwatr/node:22.15.1 AS builder
 
 RUN set -ex; \
   apk add --no-cache git; \
@@ -19,7 +19,7 @@ RUN set -eux; \
 
 # ---
 
-FROM ghcr.io/alwatr/node:22.9.0
+FROM ghcr.io/alwatr/node:22.15.1
 LABEL org.opencontainers.image.base.name="ghcr.io/alwatr/node:22.9.0"
 
 RUN apk add --no-cache curl
