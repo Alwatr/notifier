@@ -65,7 +65,7 @@
     "serve:debug": "yarn node --inspect --enable-source-maps dist/main.mjs"
   },
   "dependencies": {
-    "grammy": "^1.30.0"
+    "grammy": "^1.34.0"
   },
   "devDependencies": {
     "@alwatr/env": "^1.0.0",
