@@ -19,11 +19,15 @@ npm install @alwatr/notifier
 import {AlwatrNotifier} from '@alwatr/notifier';
 
 const notifier = new AlwatrNotifier({
-  categoryId: 'YOUR_CATEGORY_ID',
+  apiUrl: 'https://notifier.alwatr.ir',
   accessToken: 'YOUR_ACCESS_TOKEN',
 });
 
-notifier.notify('Hello world!');
+notifier.notify({
+  target: 'debug',
+  message: 'Hello **world**!',
+  markdown: true,
+})
 ```
 
 ## API
@@ -83,12 +87,6 @@ notifier.notify('## Hello world\!', {
   markdown: true,
 });
 ```
-
-## Sponsors
-
-The following companies, organizations, and individuals support this project ongoing maintenance and development. Become a Sponsor to get your logo on our README and website.
-
-[![Exir Studio](https://avatars.githubusercontent.com/u/181194967?s=200&v=4)](https://exirstudio.com)
 
 ### Contributing
 
