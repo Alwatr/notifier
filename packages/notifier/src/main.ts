@@ -5,45 +5,43 @@ import {
   resolveUrl,
   type FetchOptions,
   type ResponseError,
-  type ResponseSuccess,
 } from '@alwatr/nanolib';
 
 __dev_mode__: packageTracer.add(__package_name__, __package_version__);
 
-const logger = /* #__PURE__ */ createLogger(__package_name__);
+type ApiResponseSuccess = {
+  ok: true;
+}
 
 /**
  * Notify option interface.
  */
 export interface NotifyOption {
   /**
-   * Category ID for the notification.
-   *
-   * @default 'demo'
+   * Target for the notification.
+   * Its not a specific user or group, but its a categoryId that you can use to filter specific targets.
    */
-  categoryId?: string;
+  target: string;
+
+  /**
+   * Message to send.
+   */
+  message: string;
 
   /**
    * Whether to send the message in markdown format.
    */
   markdown?: boolean;
-
-  /**
-   * Fetch options for the API request.
-   */
-  fetchOption?: Partial<FetchOptions>;
 }
 
 /**
  * Alwatr notifier configuration interface.
  */
-export interface AlwatrNotifierConfig extends NotifyOption {
+export interface AlwatrNotifierConfig {
   /**
    * API URL for the notifier service.
-   *
-   * @default 'https//notifier.alwatr.ir'
    */
-  apiUrl?: string;
+  apiUrl: string;
 
   /**
    * Access token for the notifier service.
@@ -51,9 +49,9 @@ export interface AlwatrNotifierConfig extends NotifyOption {
   accessToken: string;
 
   /**
-   * Category ID for the notification.
+   * Fetch options for the API request.
    */
-  categoryId: string;
+  fetchOption: Partial<FetchOptions>;
 }
 
 /**
@@ -61,52 +59,37 @@ export interface AlwatrNotifierConfig extends NotifyOption {
  *
  * @example
  * ```ts
+ * import {AlwatrNotifier} from '@alwatr/notifier';
+ *
  * const notifier = new AlwatrNotifier({
+ *   apiUrl: 'https://notifier.alwatr.ir',
  *   accessToken: 'YOUR_ACCESS_TOKEN',
  * });
  *
- * notifier.notify('Hello world!');
+ * notifier.notify({
+ *   target: 'debug',
+ *   message: 'Hello **world**!',
+ *   markdown: true,
+ * })
  * ```
  */
 export class AlwatrNotifier {
   /**
    * Alwatr notifier configuration.
    */
-  readonly config: Required<AlwatrNotifierConfig>;
+  readonly config: AlwatrNotifierConfig;
 
   /**
    * Internal logger.
    */
   protected readonly logger_ = createLogger('notifier');
 
-  /**
-   * Create a new Alwatr notifier instance.
-   *
-   * @param config - Alwatr notifier configuration.
-   *
-   * @example
-   * ```ts
-   * const notifier = new AlwatrNotifier({
-   *   categoryId: 'YOUR_CATEGORY_ID',
-   *   accessToken: 'YOUR_ACCESS_TOKEN',
-   * });
-   *
-   * notifier.notify('Hello world!');
-   * ```
-   */
   constructor(config: AlwatrNotifierConfig) {
-    this.config = {
-      apiUrl: 'https//notifier.alwatr.ir',
-      markdown: false,
-      ...config,
-
-      fetchOption: {
-        method: 'POST',
-        ...config.fetchOption,
-      },
-    };
-    this.logger_.logMethodArgs?.('new', {config: this.config});
+    this.config = config;
+    this.logger_.logMethodArgs?.('new', {apiUrl: this.config.apiUrl});
   }
+
+  private apiRoute__ = '/api/v2/notify';
 
   /**
    * Send a notification.
@@ -128,32 +111,18 @@ export class AlwatrNotifier {
    * });
    * ```
    */
-  notify(message: string, option?: NotifyOption): Promise<ResponseError | ResponseSuccess<JsonObject>> {
-    logger.logMethodArgs?.('notify', {message, option});
+  notify(option: NotifyOption): Promise<ResponseError | ApiResponseSuccess> {
+    this.logger_.logMethodArgs?.('notify', option);
 
-    const option_: Required<AlwatrNotifierConfig> = {
-      ...this.config,
-      ...option,
-      fetchOption: {
-        ...this.config.fetchOption,
-        ...option?.fetchOption,
-      },
-    };
-
-    if (option_.apiUrl.slice(-1) === '/') {
-      option_.apiUrl = option_.apiUrl.slice(0, -1);
-    }
-
-    return fetchJson({
-      ...option_.fetchOption,
-      url: resolveUrl(option_.apiUrl, '/api/v2/notify'),
-      bearerToken: option_.accessToken,
+     return fetchJson({
+      ...this.config.fetchOption,
+      url: resolveUrl(this.config.apiUrl, this.apiRoute__),
+      bearerToken: this.config.accessToken,
       bodyJson: {
-        message,
-        categoryId: option_.categoryId,
-        markdown: option_.markdown === true,
+        message: option.message,
+        target: option.target,
+        markdown: option.markdown === true,
       },
-    } as FetchOptions);
-
+    })
   }
 }
