@@ -105,7 +105,7 @@ jobs:
       - name: 🚀 Build and push container image
         if: ${{ steps.file_change.outputs.container_folder != 'false' }}
         id: build_and_push
-        uses: docker/build-push-action@v6.17.0
+        uses: docker/build-push-action@v6.18.0
         with:
           context: ${{matrix.context}}
           file: ${{matrix.path}}/Dockerfile
