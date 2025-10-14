@@ -1,14 +1,15 @@
 import {Bot} from 'grammy';
 
-import {config, logger} from '../config.js';
+import {config} from '../config.js';
+import {logger} from './logger.js';
 
 export const bot = new Bot(config.telegramBot.token, {client: config.telegramBot.clientOption});
 
 export async function startBot() {
   await bot.api.setMyCommands([
-    { command: 'start', description: 'Start the bot' },
-    { command: 'help', description: 'Show help text' },
-    { command: 'settings', description: 'Open settings' },
+    {command: 'start', description: 'Start the bot'},
+    {command: 'help', description: 'Show help text'},
+    {command: 'settings', description: 'Open settings'},
   ]);
 
   bot.start({
