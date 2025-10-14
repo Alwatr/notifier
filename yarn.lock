@@ -61,7 +61,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alwatr/env@npm:5.5.20, @alwatr/env@npm:^5.5.20":
+"@alwatr/env@npm:5.5.20":
   version: 5.5.20
   resolution: "@alwatr/env@npm:5.5.20"
   dependencies:
@@ -2940,7 +2940,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:packages/bot"
   dependencies:
-    "@alwatr/env": "npm:^5.5.20"
     "@alwatr/nano-build": "npm:^6.3.5"
     "@alwatr/prettier-config": "npm:^5.0.5"
     "@alwatr/tsconfig-base": "npm:^6.0.3"
@@ -8007,6 +8006,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
     conventional-changelog-conventionalcommits: "npm:^9.1.0"
+    conventional-commits-filter: "npm:^5.0.0"
     eslint: "npm:^8.57.1"
     eslint-import-resolver-typescript: "npm:^4.4.4"
     eslint-plugin-import: "npm:^2.32.0"
