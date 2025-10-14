@@ -20,33 +20,19 @@
     "node": ">=18.16.0",
     "yarn": ">=4.0.0"
   },
-  "exports": {
-    ".": {
-      "types": "./dist/main.d.ts",
-      "import": "./dist/main.mjs",
-      "require": "./dist/main.cjs"
-    }
-  },
-  "files": [
-    "**/*.{js,mjs,cjs,map,d.ts,html,md}",
-    "!demo/**/*"
-  ],
   "homepage": "https://github.com/Alwatr/notifier#readme",
-  "keywords": [
-    "alwatr",
-    "api",
-    "microservice",
-    "nanoservice",
-    "telegram",
-    "typescript"
-  ],
   "license": "AGPL-3.0-only",
-  "main": "./dist/main.cjs",
-  "module": "./dist/main.mjs",
   "nano-build": {
     "external": [
       "grammy"
-    ]
+    ],
+    "entryPoints": [
+      "./src/initialize.ts",
+      "./src/migration.ts",
+      "./src/start.ts"
+    ],
+    "target": "node22",
+    "splitting": true
   },
   "prettier": "@alwatr/prettier-config",
   "private": true,
@@ -65,13 +51,14 @@
     "clean": "rm -rfv dist *.tsbuildinfo",
     "cw": "yarn run clean && yarn run watch",
     "d": "yarn run build:es && DEBUG=1 yarn node",
+    "initialize": "yarn build && initializeMode=1 yarn node --enable-source-maps dist/initialize.mjs",
+    "migration": "yarn build && yarn node --enable-source-maps dist/migration.mjs",
     "s": "yarn run start",
-    "serve": "yarn node --enable-source-maps dist/main.mjs",
-    "serve:debug": "yarn node --inspect --enable-source-maps dist/main.mjs",
+    "serve": "yarn node --enable-source-maps dist/start.mjs",
+    "serve:debug": "yarn node --inspect --enable-source-maps dist/start.mjs",
     "start": "yarn build && yarn serve",
     "w": "yarn run watch",
     "watch": "yarn run build --watch"
   },
-  "type": "module",
-  "types": "./dist/main.d.ts"
+  "type": "module"
 }
