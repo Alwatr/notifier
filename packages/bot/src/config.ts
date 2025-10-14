@@ -1,24 +1,27 @@
-import {getEnv} from '@alwatr/env';
-import {createLogger} from 'alwatr/nanolib';
+import {getEnv} from 'alwatr/nanolib/node';
 import {Region, StoreFileType, type AlwatrNitrobaseConfig, type StoreFileStat} from 'alwatr/nitrobase';
 
-import type {PollingOptions, ApiClientOptions} from 'grammy';
+import {logger} from './lib/logger.js';
 
-export const logger = /* #__PURE__ */ createLogger(__package_name__);
+import type {PollingOptions, ApiClientOptions} from 'grammy';
 
 const initializeMode = getEnv({name: 'initializeMode', defaultValue: ''}) !== '';
 
 export const config = {
+  banner: 'Telegram Referral Bot',
+  initializeMode,
+
   nitrobase: {
     config: {
       rootPath: getEnv({name: 'dbPath', developmentValue: './db'}),
       errorWhenNotInitialized: !initializeMode,
     } as Readonly<AlwatrNitrobaseConfig>,
 
-    userList: {
+    usersCollection: {
       name: 'user-list',
       region: Region.Managers,
       type: StoreFileType.Collection,
+      schemaVer: 1,
     } as StoreFileStat,
   } as const,
 
