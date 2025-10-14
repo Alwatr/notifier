@@ -25,4 +25,10 @@ https://t.me/ali_mihandoost_ml
 
 هر سوال یا مشکلی داشتید، لطفاً با پشتیبانی @wesun_pr در میان بگذارید.
 `,
+
+  referralMessage:`
+درضمن لینک دعوت اختصاصی شما
+  
+{link}
+`
 } as const;

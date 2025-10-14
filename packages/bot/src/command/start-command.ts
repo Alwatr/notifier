@@ -74,6 +74,7 @@ bot.command(
       }
 
       await ctx.reply(message.registerSuccess.replace('{firstName}', from.first_name));
+      await ctx.reply(message.referralMessage.replace('{link}', `https://t.me/wesun_school_bot?start=${from.id}`));
     }
     catch (error) {
       logger.error?.('startCommand', 'unexpected_error', error, {referUserId: referralUserId, chat, from: ctx.from});
