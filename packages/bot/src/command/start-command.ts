@@ -1,7 +1,9 @@
-import {logger} from '../config.js';
+import {toNumber} from 'alwatr/nanolib';
+
 import {bot} from '../lib/bot.js';
+import {logger} from '../lib/logger.js';
 import {message} from '../lib/message.js';
-import {openCategoryCollection} from '../lib/nitrobase.js';
+import {openUserCollection} from '../lib/nitrobase.js';
 
 bot.command(
   'start',
@@ -11,57 +13,58 @@ bot.command(
    * Adds the user to the category members list.
    *
    * @example
-   * `/start categoryId`
-   * `https://t.me/your_bot?start=categoryId`
+   * `/start referId`
+   * `https://t.me/your_bot?start=referId`
+   * `tg://resolve?domain=your_bot&start=referId`
    */
   async function startCommand(ctx) {
-    const categoryId = ctx.match;
+    let referUserId = toNumber(ctx.match);
+    const chat = ctx.chat;
+
     try {
-      logger.logMethodArgs?.('startCommand', {categoryId, chat: ctx.chat});
+      logger.logMethodArgs?.('startCommand', {referUserId, chat});
 
-      if (!categoryId) {
-        logger.incident?.('startCommand', 'category_id_not_provided', {from: ctx.from, chat: ctx.chat});
-        await ctx.reply(message.private_bot_warning, {
-          reply_parameters: {
-            message_id: ctx.msg.message_id,
-          },
-        });
+      if (ctx.chat.type !== 'private') {
+        logger.incident?.('startCommand', 'invalid_chat_type', chat);
+        await ctx.reply(message.command_available_in_private_chat_only);
         return;
       }
 
-      const categoryCollection = await openCategoryCollection();
+      const from = ctx.chat;
 
-      if (categoryCollection.hasItem(categoryId) === false) {
-        logger.incident?.('startCommand', 'category_not_found', {categoryId, from: ctx.from, chat: ctx.chat});
-        await ctx.reply(message.invalid_data_submitted, {
-          reply_parameters: {
-            message_id: ctx.msg.message_id,
-          },
-        });
-        return;
+      const userCollection = await openUserCollection();
+
+      // validate referUserId
+      if (referUserId !== null) {
+        if (userCollection.hasItem(referUserId) === false) {
+          logger.accident?.('startCommand', 'user_not_found', {referUserId, from, chat});
+          referUserId = null;
+        }
       }
 
-      const members = categoryCollection.getItemData(categoryId).members;
-
-      if (members.findIndex((member) => member.id === ctx.chat.id) !== -1) {
-        await ctx.reply(message.already_added_to_list);
-        return;
-      }
-
-      members.push({
-        id: ctx.chat.id,
-        type: ctx.chat.type,
-        title: ctx.chat.title,
-        firstName: ctx.chat.first_name,
-        lastName: ctx.chat.last_name,
-        username: ctx.chat.username,
+      // add or update user data
+      userCollection.replaceItemData(from.id, {
+        id: from.id,
+        username: from.username,
+        firstName: from.first_name!,
+        lastName: from.last_name,
+        referUserId,
       });
-      categoryCollection.save();
 
-      await ctx.reply(message.success_added_to_list);
+      // notify refer user
+      if (referUserId !== null) {
+        const referUser = userCollection.getItemData(referUserId);
+
+        void bot.api.sendMessage(
+          referUser.id,
+          message.new_refer_user.replace('{user}', `${from.first_name} ${from.last_name ?? ''} (@${from.username ?? '---'})`),
+        );
+      }
+
+      await ctx.reply(message.registerSuccess.replace('{firstName}', from.first_name));
     }
     catch (error) {
-      logger.error?.('startCommand', 'unexpected_error', error, {categoryId, from: ctx.from, chat: ctx.chat});
+      logger.error?.('startCommand', 'unexpected_error', error, {referUserId, chat, from: ctx.from});
     }
   },
 );
