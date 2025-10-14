@@ -35,6 +35,7 @@ bot.command(
 
       if (userCollection.hasItem(from.id)) {
         await ctx.reply(message.alreadyRegistered.replace('{firstName}', from.first_name));
+        await ctx.reply(message.referralMessage.replace('{link}', `https://t.me/wesun_school_bot?start=${from.id}`));
         return;
       }
       // else
