@@ -1,6 +1,24 @@
-export const message = {
-  command_available_in_private_chat_only: 'این دستور فقط در چت خصوصی با ربات قابل استفاده است!',
+export type MsgItem =
+  | {
+    type: 'text';
+    text: string;
+  }
+  | {
+    type: 'simple';
+    messageId: number;
+    fromChatId: number;
+  };
 
+export const messages = {
+  command_available_in_private_chat_only: [
+    {
+      type: 'text',
+      text: '⚠️ این دستور فقط در چت خصوصی با ربات قابل استفاده است!',
+    },
+  ] as MsgItem[],
+};
+
+export const message = {
   new_refer_user: `
 کاربر جدیدی به نام {user} با لینک شما وارد ربات شد.
 تعداد دعوت‌های شما به {count} نفر رسید. 🎉
@@ -26,9 +44,9 @@ https://t.me/ali_mihandoost_ml
 هر سوال یا مشکلی داشتید، لطفاً با پشتیبانی @wesun_pr در میان بگذارید.
 `,
 
-  referralMessage:`
+  referralMessage: `
 درضمن لینک دعوت اختصاصی شما
   
 {link}
-`
+`,
 } as const;
