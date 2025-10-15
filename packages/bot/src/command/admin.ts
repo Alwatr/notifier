@@ -49,8 +49,8 @@ bot.on('message', async (ctx, next) => {
     try {
       const vars = {
         name: `${user.data.firstName} ${user.data.lastName ?? ''}`.trim(),
-        referralCount: user.data.referralCount.toString(),
-        inviteLink: `https://t.me/${config.telegramBot.username}?start=ref_${user.data.id}`,
+        referral_count: user.data.referralCount.toString(),
+        invite_link: `https://t.me/${config.telegramBot.username}?start=ref_${user.data.id}`,
       };
       if (message.text) {
         await bot.api.sendMessage(user.data.id, replaceString(message.text, vars));
