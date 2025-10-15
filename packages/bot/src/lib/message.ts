@@ -1,3 +1,5 @@
+import { register } from "module";
+
 export type MsgItem =
   | {
     type: 'text';
@@ -10,13 +12,37 @@ export type MsgItem =
   };
 
 export const messages = {
-  command_available_in_private_chat_only: [
+  private_chat_only: [
     {
       type: 'text',
-      text: '⚠️ این دستور فقط در چت خصوصی با ربات قابل استفاده است!',
+      text: '⚠️ این دستور فقط در چت خصوصی با ربات قابل استفاده است\\!',
     },
   ] as MsgItem[],
-};
+
+  already_registered: [
+    {
+      type: 'text',
+      text: 'task11 already_registered',
+    },
+  ] as MsgItem[],
+
+  request_contact: [
+    {
+      type: 'text',
+      text: 'task2 request_contact',
+    },
+  ] as MsgItem[],
+
+  register_success: [
+    {
+      type: 'text',
+      text: 'task3 register_success',
+    },
+  ] as MsgItem[],
+
+  request_contact_keyboard_text: 'ارسال شماره تماس 📞',
+  invalid_contact_text: '⚠️ لطفا از دکمه زیر برای ارسال شماره تماس خود استفاده کنید\\!',
+} as const;
 
 export const message = {
   new_refer_user: `
