@@ -11,6 +11,8 @@ export const config = {
   banner: 'Telegram Referral Bot',
   initializeMode,
 
+  adminUserName: getEnv({name: 'adminUserName', defaultValue: 'AliMD'}),
+
   nitrobase: {
     config: {
       rootPath: getEnv({name: 'dbPath', developmentValue: './db'}),
@@ -27,6 +29,7 @@ export const config = {
 
   telegramBot: {
     token: getEnv({name: 'botToken'}),
+    username: getEnv({name: 'botUsername', defaultValue: 'wesun_school_bot'}),
     clientOption: {} as ApiClientOptions,
     startOption: {
       drop_pending_updates: true,
