@@ -1,14 +1,17 @@
-import { register } from "module";
-
 export type MsgItem =
   | {
     type: 'text';
     text: string;
   }
   | {
-    type: 'simple';
+    type: 'forward';
     messageId: number;
     fromChatId: number;
+  }
+  | {
+    type: 'photo';
+    fileId: string;
+    caption: string;
   };
 
 export const messages = {
@@ -42,6 +45,25 @@ export const messages = {
 
   request_contact_keyboard_text: 'ارسال شماره تماس 📞',
   invalid_contact_text: '⚠️ لطفا از دکمه زیر برای ارسال شماره تماس خود استفاده کنید\\!',
+
+  referral_templates: [
+    {
+      type: 'text',
+      text: 'task7 referral_templates description',
+    },
+    {
+      type: 'text',
+      text: 'task7 referral_templates 1 \n\n {invite_link}',
+    },
+    {
+      type: 'text',
+      text: 'task7 referral_templates 2 \n\n {invite_link}',
+    },
+    {
+      type: 'text',
+      text: 'task7 referral_templates 3 \n\n {invite_link}',
+    },
+  ] as MsgItem[],
 } as const;
 
 export const message = {
