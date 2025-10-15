@@ -4,22 +4,25 @@ import {mainMenu, menuItems} from '../lib/menu.js';
 import {messages} from '../lib/message.js';
 import {sendMessage} from '../lib/send-message.js';
 
-bot.hears(menuItems.inviteFriends, async (ctx) => {
-  const {chat, from} = ctx;
+for (const menuId in menuItems) {
+  const menuText = menuItems[menuId as keyof typeof menuItems];
+  bot.hears(menuText, async (ctx) => {
+    const {chat, from} = ctx;
 
-  logger.logMethodArgs?.('hears_invite_friends', from);
+    logger.logMethodArgs?.('hears_' + menuId, from);
 
-  if (!from) return;
+    if (!from) return;
 
-  const vars = {
-    name: `${from.first_name} ${from.last_name ?? ''}`.trim(),
-    invite_link: `https://t.me/${config.telegramBot.username}?start=ref_${from.id}`,
-  };
+    const vars = {
+      name: `${from.first_name} ${from.last_name ?? ''}`.trim(),
+      invite_link: `https://t.me/${config.telegramBot.username}?start=ref_${from.id}`,
+    };
 
-  await sendMessage({
-    chatId: chat.id,
-    messages: messages.referral_templates,
-    reply_markup: mainMenu,
-    vars,
+    await sendMessage({
+      chatId: chat.id,
+      messages: messages[menuId as keyof typeof menuItems],
+      reply_markup: mainMenu,
+      vars,
+    });
   });
-});
+}
