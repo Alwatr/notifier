@@ -8,9 +8,10 @@ import type {ForceReply, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboar
 type sendMessageOptions = {
   chatId: number;
   messages: MsgItem[];
-  vars?: DictionaryOpt<string>;
+  vars?: DictionaryReq<string>;
   reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
+
 export async function sendMessage(options: sendMessageOptions) {
   for (const msg of options.messages) {
     try {
@@ -21,11 +22,18 @@ export async function sendMessage(options: sendMessageOptions) {
             parse_mode: 'MarkdownV2',
           });
           break;
-        case 'simple':
+
+        case 'forward':
           await bot.api.copyMessage(options.chatId, msg.fromChatId, msg.messageId, {
             reply_markup: options.reply_markup,
           });
           break;
+
+        case 'photo':
+          await bot.api.sendPhoto(options.chatId, msg.fileId, {
+            caption: replaceString(msg.caption, options.vars),
+            reply_markup: options.reply_markup,
+          });
       }
     }
     catch (error) {
