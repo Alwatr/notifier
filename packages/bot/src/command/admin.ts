@@ -1,6 +1,7 @@
 import {config} from '../config.js';
 import {bot} from '../lib/bot.js';
 import {logger} from '../lib/logger.js';
+import {mainMenu} from '../lib/menu.js';
 import {replaceString} from '../lib/replacer.js';
 import {userCollection} from '../lib/users-collection.js';
 
@@ -53,13 +54,20 @@ bot.on('message', async (ctx, next) => {
         invite_link: `https://t.me/${config.telegramBot.username}?start=ref_${user.data.id}`,
       };
       if (message.text) {
-        await bot.api.sendMessage(user.data.id, replaceString(message.text, vars));
+        await bot.api.sendMessage(user.data.id, replaceString(message.text, vars), {
+          reply_markup: mainMenu,
+        });
       }
       else if (message.caption) {
-        await bot.api.copyMessage(user.data.id, chat.id, message.message_id, {caption: replaceString(message.caption, vars)});
+        await bot.api.copyMessage(user.data.id, chat.id, message.message_id, {
+          caption: replaceString(message.caption, vars),
+          reply_markup: mainMenu,
+        });
       }
       else {
-        await bot.api.copyMessage(user.data.id, chat.id, message.message_id);
+        await bot.api.copyMessage(user.data.id, chat.id, message.message_id, {
+          reply_markup: mainMenu,
+        });
       }
     }
     catch (error) {
