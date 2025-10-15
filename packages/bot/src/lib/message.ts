@@ -46,7 +46,21 @@ export const messages = {
   request_contact_keyboard_text: 'ارسال شماره تماس 📞',
   invalid_contact_text: '⚠️ لطفا از دکمه زیر برای ارسال شماره تماس خود استفاده کنید\\!',
 
-  referral_templates: [
+  enter_group: [
+    {
+      type: 'text',
+      text: 'menu enter_group',
+    },
+  ] as MsgItem[],
+
+  course_info: [
+    {
+      type: 'text',
+      text: 'menu course_info',
+    },
+  ] as MsgItem[],
+
+  invite_friends: [
     {
       type: 'text',
       text: 'task7 referral_templates description',
@@ -64,37 +78,26 @@ export const messages = {
       text: 'task7 referral_templates 3 \n\n {invite_link}',
     },
   ] as MsgItem[],
-} as const;
 
-export const message = {
-  new_refer_user: `
-کاربر جدیدی به نام {user} با لینک شما وارد ربات شد.
-تعداد دعوت‌های شما به {count} نفر رسید. 🎉
-  `,
+  stats: [
+    {
+      type: 'text',
+      text: 'menu stats',
+    },
+  ] as MsgItem[],
 
-  registerSuccess: `
-سلام {firstName} عزیز
-ثبت‌نام شما با موفقیت انجام شد! 🎉
-به دوره خوش آمدید. برای ورود به دوره، لطفاً از لینک زیر استفاده کنید:
+  schedule_meetings: [
+    {
+      type: 'text',
+      text: 'menu schedule_meetings',
+    },
+  ] as MsgItem[],
 
-https://t.me/ali_mihandoost_ml
+  support: [
+    {
+      type: 'text',
+      text: 'menu support',
+    },
+  ] as MsgItem[],
 
-هر سوال یا مشکلی داشتید، لطفاً با پشتیبانی @wesun_pr در میان بگذارید.
-`,
-
-  alreadyRegistered: `
-سلام {firstName} عزیز
-شما قبلاً در ربات ثبت‌نام کرده‌اید! 😊
-برای استفاده از دوره، لطفاً از لینک زیر استفاده کنید:
-
-https://t.me/ali_mihandoost_ml
-
-هر سوال یا مشکلی داشتید، لطفاً با پشتیبانی @wesun_pr در میان بگذارید.
-`,
-
-  referralMessage: `
-درضمن لینک دعوت اختصاصی شما
-  
-{link}
-`,
 } as const;
