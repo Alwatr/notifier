@@ -1,24 +1,24 @@
 import {Keyboard} from 'grammy';
 
 export const menuItems = {
-  enterGroup: 'ورود به سالن اصلی 🎻',
-  courseInfo: 'اطلاعات کامل دوره ℹ️',
+  enter_group: 'ورود به سالن اصلی 🎻',
+  course_info: 'اطلاعات کامل دوره ℹ️',
 
-  inviteFriends: 'دعوت از دوستان 🎁',
+  invite_friends: 'دعوت از دوستان 🎁',
   stats: 'آمار دعوت‌های شما 📊',
 
-  scheduleMeetings: 'زمان‌بندی جلسات 🗓️',
+  schedule_meetings: 'زمان‌بندی جلسات 🗓️',
   support: 'پشتیبانی 💬',
 } as const;
 
 export const mainMenu = new Keyboard()
-  .text(menuItems.enterGroup)
-  .text(menuItems.courseInfo)
+  .text(menuItems.enter_group)
+  .text(menuItems.course_info)
   .row() // line break
-  .text(menuItems.inviteFriends)
+  .text(menuItems.invite_friends)
   .text(menuItems.stats)
   .row() // line break
-  .text(menuItems.scheduleMeetings)
+  .text(menuItems.schedule_meetings)
   .text(menuItems.support)
   .resized()
   .persistent();
