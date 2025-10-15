@@ -100,4 +100,10 @@ export const messages = {
     },
   ] as MsgItem[],
 
+  new_refer_user: [
+    {
+      type: 'text',
+      text: 'new_refer_user',
+    },
+  ] as MsgItem[],
 } as const;
