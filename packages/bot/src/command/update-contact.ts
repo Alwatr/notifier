@@ -1,6 +1,7 @@
 import {Keyboard} from 'grammy';
 
 import {bot} from '../lib/bot.js';
+import {logger} from '../lib/logger.js';
 import {messages} from '../lib/message.js';
 import {sendMessage} from '../lib/send-message.js';
 import {userCollection} from '../lib/users-collection.js';
@@ -10,6 +11,8 @@ bot.on('message:contact', async (ctx) => {
   if (!from || !message.contact) {
     return;
   }
+
+  logger.logMethodArgs?.('message_contact', message);
 
   const contact = message.contact;
   const vars = {
