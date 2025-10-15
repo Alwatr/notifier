@@ -15,11 +15,11 @@ bot.command(
   async (ctx, next) => {
     const {chat, from} = ctx;
 
-    if (ctx.match || !from) {
+    if (!from) {
       return next();
     }
 
-    logger.logMethodArgs?.('command_start_normal', chat);
+    logger.logMethodArgs?.('command_start_normal', from);
 
     const vars = {
       name: `${from.first_name} ${from.last_name ?? ''}`.trim(),
