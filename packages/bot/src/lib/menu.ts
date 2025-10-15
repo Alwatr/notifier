@@ -9,7 +9,7 @@ export const menuItems = {
 
   scheduleMeetings: 'زمان‌بندی جلسات 🗓️',
   support: 'پشتیبانی 💬',
-};
+} as const;
 
 export const mainMenu = new Keyboard()
   .text(menuItems.enterGroup)
