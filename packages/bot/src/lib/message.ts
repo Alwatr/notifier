@@ -1,6 +1,6 @@
-import {InlineKeyboard} from 'grammy';
+import {InlineKeyboard, Keyboard} from 'grammy';
 
-import {mainMenu, menuItems} from './menu.js';
+import {mainMenu} from './menu.js';
 
 import type {Duration} from 'alwatr/nanolib';
 import type {InlineKeyboardMarkup, ParseMode, ReplyKeyboardMarkup} from 'grammy/types';
@@ -66,11 +66,18 @@ export const messages = {
 لطفاً با دکمه‌ی زیر، شماره تماست را به اشتراک بگذار تا لینک ورود برایت ارسال شود.
 `,
       parseMode: 'HTML',
+      keyboard: new Keyboard().requestContact('ارسال شماره تماس 📞').resized().oneTime(),
     },
   ] as MsgItem[],
 
-  request_contact_keyboard_text: 'ارسال شماره تماس 📞',
-  invalid_contact_text: '⚠️ لطفا از دکمه زیر برای ارسال شماره تماس خود استفاده کنید!',
+  invalid_contact: [
+    {
+      type: 'text',
+      text: '⚠️ لطفا فقط از دکمه زیر برای ارسال شماره تماس خود استفاده کنید!',
+      parseMode: 'HTML',
+      keyboard: new Keyboard().requestContact('ارسال شماره تماس 📞').resized().oneTime(),
+    },
+  ] as MsgItem[],
 
   register_success: [
     {
@@ -133,40 +140,33 @@ export const messages = {
 محدودیتی وجود نداره!
 هرچه دوستان بیشتری دعوت کنی، هدیه‌ات هم بزرگ‌تر میشه. 🚀
 
-روی کلید زیر بزن و از پیام‌های آماده دعوت استفاده کن.
+روی کلید 'پیام‌های آماده دعوت' بزن و ازش استفاده کن.
 `,
       parseMode: 'HTML',
-      keyboard: new InlineKeyboard().text('پیام‌های آماده دعوت ✨', 'invite_templates'),
     },
   ] as MsgItem[],
 
   invite_templates: [
     {
-      type: 'text',
-      text: `
-سلام عزیز
+      type: 'photo',
+      fileId: 'AgACAgQAAxkBAAODaPCcq3-_sXUwCBw4uLR1MQEkF9cAAn3LMRtm1YhT4vbKdA5Jf0QBAAMCAAN5AAM2BA',
+      caption: `
+سلام 🌱
 
-یاد تو افتادم چون می‌دونم چقدر نگاه عمیق به روابط برات مهمه.
+دارم ازت برای شرکت رایگان در اولین جلسه دوره سمفونی دونفره دعوت میکنم 🎵
 
-می‌خوام به یک تجربه خیلی خاص دعوتت کنم: کارگاه «سمفونی دونفره». این کارگاه یاد می‌ده چطور مثل یک «مشاهده‌گر» ماهر، واقعیتِ رابطه رو ببینی، نه فقط اون چیزی که در ذهن ما می‌گذره.
 
-مدرسش «محمدصادق نجات» هست که با نگاه کوچینگ، ریزه‌کاری‌های روابط رو فوق‌العاده تحلیل می‌کنه.
+یه دوره‌ با تدریس محمدصادق نجات برای همه‌ی کسانی که می‌خوان یاد بگیرن
+چطور در رابطه‌ها، با حضور، احترام و آگاهی گفت‌وگو کنن.
 
-من یک دعوت‌نامه رایگان برای جلسه اول برات گرفتم که به عنوان هدیه از طرف من شرکت کنی. 🎁
 
-از این لینک می‌تونی دعوتم رو قبول کنی:
+اگر گفت‌وگوهای زندگی‌ت گاهی به دلخوری یا سکوت می‌رسن… دوره سمفونی یه نقطه‌ی تازه‌ست برای بازگشت به گفت‌وگو 🌿
+
+
+کافیه روی لینک زیر بزنی و از تمام مزایای این دوره باخبر بشی.
 
 {invite_link}
 `,
-    },
-    {
-      type: 'delay',
-      duration: '1s',
-    },
-    {
-      type: 'photo',
-      fileId: 'AgACAgQAAxkBAAODaPCcq3-_sXUwCBw4uLR1MQEkF9cAAn3LMRtm1YhT4vbKdA5Jf0QBAAMCAAN5AAM2BA',
-      caption: 'این دوره رو از دست نده! 😍',
     },
   ] as MsgItem[],
 
@@ -207,9 +207,8 @@ export const messages = {
 ایشون، {name} دعوت شما را پذیرفت و اولین قدم را در سفر «سمفونی دونفره» برداشت.
 
 
-از دکمه زیر برای مشاهده آمار دعوتی‌هات استفاده کن 😎
+از دکمه 'مشاهده آمار دعوتی‌ها' برای دیدن آمار استفاده کن 😎
 `,
-      keyboard: new InlineKeyboard().text(menuItems.stats, 'stats'),
     },
   ] as MsgItem[],
 } as const;
