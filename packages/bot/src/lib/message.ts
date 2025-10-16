@@ -66,7 +66,7 @@ export const messages = {
 لطفاً با دکمه‌ی زیر، شماره تماست را به اشتراک بگذار تا لینک ورود برایت ارسال شود.
 `,
       parseMode: 'HTML',
-      keyboard: new Keyboard().requestContact('ارسال شماره تماس 📞').resized().oneTime(),
+      keyboard: new Keyboard().requestContact('ارسال شماره تماس 📞').resized().persistent(),
     },
   ] as MsgItem[],
 
@@ -75,7 +75,7 @@ export const messages = {
       type: 'text',
       text: '⚠️ لطفا فقط از دکمه زیر برای ارسال شماره تماس خود استفاده کنید!',
       parseMode: 'HTML',
-      keyboard: new Keyboard().requestContact('ارسال شماره تماس 📞').resized().oneTime(),
+      keyboard: new Keyboard().requestContact('ارسال شماره تماس 📞').resized().persistent(),
     },
   ] as MsgItem[],
 
@@ -85,9 +85,13 @@ export const messages = {
       text: `
 اولین گام شما برای ورود به «سمفونی دونفره» با موفقیت ثبت شد.
 به این تجربه خوش آمدی! 🎶
-
-
-لطفا از كليد زير برای ورود استفاده کن.
+`,
+      keyboard: mainMenu,
+    },
+    {
+      type: 'text',
+      text: `
+لطفا از کلید زير برای ورود استفاده کن.
 منتظرت هستیم 🤗
 `,
       keyboard: new InlineKeyboard().url('ورود به دوره ⚡️', 'https://t.me/+rBADEEhHYV4wM2I0'),
@@ -110,14 +114,29 @@ export const messages = {
   enter_group: [
     {
       type: 'text',
-      text: '**menu** enter group',
+      text: `لطفا از کلید زير برای ورود به گروه «سمفونی دونفره» استفاده کن.`,
+      keyboard: new InlineKeyboard().url('ورود به دوره ⚡️', 'https://t.me/+rBADEEhHYV4wM2I0'),
     },
   ] as MsgItem[],
 
   course_info: [
     {
       type: 'text',
-      text: '**menu** course info',
+      text: `
+برای دریافت اطلاعات بیشتر در مورد جزییات دوره <b>سمفونی دونفره</b> نظیر:
+
+- سرفصل‌های دوره،
+- اعتبارات و سوابق استاد دوره،
+- نظر مخاطبین قبلی دوره
+- و دستاوردهای شما در پایان دوره
+
+به صفحه سمفونی دونفره در سایت رسمی مدرسه ویسان سر بزنید 🤗
+`,
+      parseMode: 'HTML',
+      keyboard: new InlineKeyboard()
+        .url('صفحه سمفونی دونفره', 'https://wesun.school/coaching/symphony/')
+        .row()
+        .url('وبسایت مدرسه ویسان', 'https://wesun.school/'),
     },
   ] as MsgItem[],
 
@@ -143,6 +162,7 @@ export const messages = {
 روی کلید 'پیام‌های آماده دعوت' بزن و ازش استفاده کن.
 `,
       parseMode: 'HTML',
+      keyboard: mainMenu,
     },
   ] as MsgItem[],
 
@@ -177,27 +197,74 @@ export const messages = {
 تعداد ثبت‌نام اولیه با لینک اختصاصی شما {referral_count} نفر است!
 
 
-ما در تیم ویسان {referral_earn} تومان برای شما کنار گذاشته‌ایم؛
+ما در تیم ویسان <b>{referral_earn} تومان</b> برای شما کنار گذاشته‌ایم؛
 در صورت تکمیل ثبت‌نام افراد بالا، این مبلغ برای شما محاسبه می‌شود! 💰
 `,
+      parseMode: 'HTML',
+      keyboard: mainMenu,
     },
   ] as MsgItem[],
 
   schedule_meetings: [
     {
       type: 'text',
-      text: '**menu** schedule meetings',
+      text: `
+جزییات برگزاری این دوره رو به طور کامل ولی خلاصه این‌جاست 👇🏻
+
+
+<b>جلسه صفر</b>
+یک‌شنبه، ۲۷ مهرماه، ساعت ۱۹ الی ۲۱
+
+شرکت در این جلسه رایگان است!
+
+
+<b>جلسه اول</b>
+یک‌شنبه، ۴ آبان‌ماه، ساعت ۱۹ الی ۲۱
+
+این جلسه هدیه ما به شماست. شرکت در این جلسه نیاز به پرداخت ندارد!
+
+<b>جلسه دوم</b>
+یک‌شنبه، ۱۱ آبان‌ماه، ساعت ۱۹ الی ۲۱
+
+<b>جلسه سوم</b>
+یک‌شنبه، ۱۸ آبان‌ماه، ساعت ۱۹ الی ۲۱
+
+<b>جلسه چهارم</b>
+یک‌شنبه، ۲۵ آبان‌ماه، ساعت ۱۹ الی ۲۱
+`,
+      parseMode: 'HTML',
+      keyboard: mainMenu,
+    },
+
+    {
+      type: 'text',
+      text: `
+مبلغ سرمایه‌گذاری شما برای دوره ۷۸۰ هزار تومان است که مختصری تخفیف برای اهالی ویسان در نظر گرفته‌ایم ☺️
+
+
+جهت تکمیل ثبت‌نام در این دوره و پرداخت نهایی از طریق کلید زیر اقدام کنین
+`,
+      keyboard: new InlineKeyboard().url('تکمیل ثبت‌نام در سمفونی دونفره 🎵', 'https://wesun.school/coaching/symphony/#main-cta'),
     },
   ] as MsgItem[],
 
   support: [
     {
       type: 'text',
-      text: '**menu** support',
+      text: `برای دریافت پشتیبانی و پاسخ به سوالاتت، می‌تونی از طریق راه‌های زیر با ما در ارتباط باشی:`,
+      parseMode: 'HTML',
+      keyboard: new InlineKeyboard()
+        .url('چت با واحد فروش 💬', 'https://t.me/wesun_sales')
+        .row()
+        .url('وبسایت مدرسه ویسان 🌏', 'https://wesun.school/')
+        .row()
+        .url('اینستاگرام مدرسه ویسان 📸', 'https://www.instagram.com/wesun.school/')
+        .row()
+        .url('اینستاگرام محمدصادق نجات 📸', 'https://www.instagram.com/msadeghnejat/'),
     },
   ] as MsgItem[],
 
-  new_refer_user: [
+  new_referral_user: [
     {
       // task8
       type: 'text',
@@ -209,6 +276,7 @@ export const messages = {
 
 از دکمه 'مشاهده آمار دعوتی‌ها' برای دیدن آمار استفاده کن 😎
 `,
+      keyboard: mainMenu,
     },
   ] as MsgItem[],
 } as const;
