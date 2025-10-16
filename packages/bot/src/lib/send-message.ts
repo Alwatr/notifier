@@ -1,3 +1,5 @@
+import {delay} from 'alwatr/nanolib';
+
 import {bot} from './bot.js';
 import {logger} from './logger.js';
 import {replaceString} from './replacer.js';
@@ -16,23 +18,27 @@ export async function sendMessage(options: sendMessageOptions) {
   for (const msg of options.messages) {
     try {
       switch (msg.type) {
+        case 'delay':
+          await delay.by(msg.duration);
+          break;
         case 'text':
           await bot.api.sendMessage(options.chatId, replaceString(msg.text, options.vars), {
-            reply_markup: options.reply_markup,
-            parse_mode: 'MarkdownV2',
+            reply_markup: msg.keyboard ?? options.reply_markup,
+            parse_mode: msg.parseMode,
           });
           break;
 
         case 'forward':
           await bot.api.copyMessage(options.chatId, msg.fromChatId, msg.messageId, {
-            reply_markup: options.reply_markup,
+            reply_markup: msg.keyboard ?? options.reply_markup,
           });
           break;
 
         case 'photo':
           await bot.api.sendPhoto(options.chatId, msg.fileId, {
             caption: replaceString(msg.caption, options.vars),
-            reply_markup: options.reply_markup,
+            parse_mode: msg.parseMode,
+            reply_markup: msg.keyboard ?? options.reply_markup,
           });
       }
     }
