@@ -83,7 +83,6 @@ bot.command(
       await sendMessage({
         chatId: chat.id,
         messages: messages.request_contact,
-        reply_markup: new Keyboard().requestContact(messages.request_contact_keyboard_text).resized().oneTime(),
         vars,
       });
     }
