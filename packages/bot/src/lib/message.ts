@@ -25,21 +25,21 @@ export const messages = {
   already_registered: [
     {
       type: 'text',
-      text: 'task11 already_registered',
+      text: '**task11** already\\_registered',
     },
   ] as MsgItem[],
 
   request_contact: [
     {
       type: 'text',
-      text: 'task2 request_contact',
+      text: '**task2** request contact',
     },
   ] as MsgItem[],
 
   register_success: [
     {
       type: 'text',
-      text: 'task3 register_success',
+      text: '**task3** register success',
     },
   ] as MsgItem[],
 
@@ -49,33 +49,33 @@ export const messages = {
   enter_group: [
     {
       type: 'text',
-      text: 'menu enter_group',
+      text: '**menu** enter group',
     },
   ] as MsgItem[],
 
   course_info: [
     {
       type: 'text',
-      text: 'menu course_info',
+      text: '**menu** course info',
     },
   ] as MsgItem[],
 
   invite_friends: [
     {
       type: 'text',
-      text: 'task7 referral_templates description',
+      text: '**task7** referral templates description',
     },
     {
       type: 'text',
-      text: 'task7 referral_templates 1 \n\n {invite_link}',
+      text: '**task7** referral templates 1 \n\n {invite_link}',
     },
     {
       type: 'text',
-      text: 'task7 referral_templates 2 \n\n {invite_link}',
+      text: '**task7** referral templates 2 \n\n {invite_link}',
     },
     {
       type: 'text',
-      text: 'task7 referral_templates 3 \n\n {invite_link}',
+      text: '**task7** referral templates 3 \n\n {invite_link}',
     },
   ] as MsgItem[],
 
@@ -89,21 +89,21 @@ export const messages = {
   schedule_meetings: [
     {
       type: 'text',
-      text: 'menu schedule_meetings',
+      text: '**menu** schedule meetings',
     },
   ] as MsgItem[],
 
   support: [
     {
       type: 'text',
-      text: 'menu support',
+      text: '**menu** support',
     },
   ] as MsgItem[],
 
   new_refer_user: [
     {
       type: 'text',
-      text: 'new_refer_user',
+      text: 'new refer user',
     },
   ] as MsgItem[],
 } as const;
