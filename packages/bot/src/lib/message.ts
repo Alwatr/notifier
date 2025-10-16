@@ -1,50 +1,104 @@
+import {InlineKeyboard} from 'grammy';
+
+import {mainMenu, menuItems} from './menu.js';
+
+import type {Duration} from 'alwatr/nanolib';
+import type {InlineKeyboardMarkup, ParseMode, ReplyKeyboardMarkup} from 'grammy/types';
+
 export type MsgItem =
   | {
     type: 'text';
     text: string;
+    parseMode?: ParseMode;
+    keyboard?: InlineKeyboardMarkup | ReplyKeyboardMarkup;
   }
   | {
     type: 'forward';
     messageId: number;
     fromChatId: number;
+    keyboard?: InlineKeyboardMarkup;
   }
   | {
     type: 'photo';
     fileId: string;
     caption: string;
+    parseMode?: ParseMode;
+    keyboard?: InlineKeyboardMarkup;
+  }
+  | {
+    type: 'delay';
+    duration: Duration;
   };
 
 export const messages = {
   private_chat_only: [
     {
       type: 'text',
-      text: '⚠️ این دستور فقط در چت خصوصی با ربات قابل استفاده است\\!',
+      text: '⚠️ این دستور فقط در چت خصوصی با ربات قابل استفاده است!',
     },
   ] as MsgItem[],
 
   already_registered: [
     {
       type: 'text',
-      text: '**task11** already\\_registered',
+      // task3
+      text: `
+ما قبلا افتخار آشنایی با شما رو داشتیم 😉
+
+لطفا از منوهای زیر کمک بگیر!
+`,
+      parseMode: 'HTML',
+      keyboard: mainMenu,
     },
   ] as MsgItem[],
 
   request_contact: [
     {
       type: 'text',
-      text: '**task2** request contact',
-    },
-  ] as MsgItem[],
+      text: `
+سلام
+خوش اومدی! 😍
 
-  register_success: [
-    {
-      type: 'text',
-      text: '**task3** register success',
+
+فقط یک قدم تا ورود به گروه دوره <b>سمفونی دونفره</b> با تدريس محمدصادق نجات و شرکت <b>رايگان</b> در جلسه صفر باقی مانده.
+
+
+لطفاً با دکمه‌ی زیر، شماره تماست را به اشتراک بگذار تا لینک ورود برایت ارسال شود.
+`,
+      parseMode: 'HTML',
     },
   ] as MsgItem[],
 
   request_contact_keyboard_text: 'ارسال شماره تماس 📞',
-  invalid_contact_text: '⚠️ لطفا از دکمه زیر برای ارسال شماره تماس خود استفاده کنید\\!',
+  invalid_contact_text: '⚠️ لطفا از دکمه زیر برای ارسال شماره تماس خود استفاده کنید!',
+
+  register_success: [
+    {
+      type: 'text',
+      text: `
+اولین گام شما برای ورود به «سمفونی دونفره» با موفقیت ثبت شد.
+به این تجربه خوش آمدی! 🎶
+
+
+لطفا از كليد زير برای ورود استفاده کن.
+منتظرت هستیم 🤗
+`,
+      keyboard: new InlineKeyboard().url('ورود به دوره ⚡️', 'https://t.me/+rBADEEhHYV4wM2I0'),
+    },
+    {
+      type: 'delay',
+      duration: '30s',
+    },
+    {
+      type: 'text',
+      text: `
+ما در کنارت هستیم ☺️
+
+اگر سوالی داشتی، پشتیبانی پاسخگوست.
+`,
+      keyboard: mainMenu,
+    },
+  ] as MsgItem[],
 
   enter_group: [
     {
@@ -82,7 +136,13 @@ export const messages = {
   stats: [
     {
       type: 'text',
-      text: 'menu stats',
+      text: `
+تعداد ثبت‌نام اولیه با لینک اختصاصی شما {referral_count} نفر است!
+
+
+ما در تیم ویسان {referral_earn} تومان برای شما کنار گذاشته‌ایم؛
+در صورت تکمیل ثبت‌نام افراد بالا، این مبلغ برای شما محاسبه می‌شود! 🧮
+`,
     },
   ] as MsgItem[],
 
@@ -102,8 +162,17 @@ export const messages = {
 
   new_refer_user: [
     {
+      // task8
       type: 'text',
-      text: 'new refer user',
+      text: `
+خبر خوب! 🎉
+
+ایشون، [نام دوست شما] دعوت شما را پذیرفت و اولین قدم را در سفر «سمفونی دونفره» برداشت.
+
+
+از دکمه زیر برای مشاهده آمار دعوتی‌هات استفاده کن 😎
+`,
+      keyboard: new InlineKeyboard().text(menuItems.stats, 'stats'),
     },
   ] as MsgItem[],
 } as const;
