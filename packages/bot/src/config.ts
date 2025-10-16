@@ -12,6 +12,7 @@ export const config = {
   initializeMode,
 
   adminUserName: getEnv({name: 'adminUserName', defaultValue: 'AliMD'}),
+  referralRewardPerUser: 100_000,
 
   nitrobase: {
     config: {
