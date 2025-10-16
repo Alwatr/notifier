@@ -1,5 +1,4 @@
 import {toNumber} from 'alwatr/nanolib';
-import {Keyboard} from 'grammy';
 
 import {bot} from '../lib/bot.js';
 import {logger} from '../lib/logger.js';

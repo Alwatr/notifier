@@ -1,5 +1,3 @@
-import {Keyboard} from 'grammy';
-
 import {bot} from '../lib/bot.js';
 import {logger} from '../lib/logger.js';
 import {mainMenu} from '../lib/menu.js';
