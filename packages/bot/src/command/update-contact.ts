@@ -21,8 +21,10 @@ bot.on('message:contact', async (ctx) => {
 
   // Ensure the contact is from the user themselves
   if (contact.user_id !== from.id || !contact.phone_number) {
-    ctx.reply(messages.invalid_contact_text, {
-      reply_markup: new Keyboard().requestContact(messages.request_contact_keyboard_text).resized().oneTime(),
+    await sendMessage({
+      chatId: chat.id,
+      messages: messages.invalid_contact,
+      vars,
     });
     return;
   }
@@ -34,6 +36,6 @@ bot.on('message:contact', async (ctx) => {
   await sendMessage({
     chatId: chat.id,
     messages: messages.register_success,
-    vars
+    vars,
   });
 });
