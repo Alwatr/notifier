@@ -26,21 +26,21 @@ bot.command(
       return next();
     }
 
-    const referralUserId = toNumber(ctx.match.substring(4));
-
-    logger.logMethodArgs?.('command_start_ref', {referralUserId, from});
-
-    // validate referUserId
-    if (referralUserId === null || !userCollection.hasItem(referralUserId)) {
-      logger.accident?.('command_start_ref', 'user_not_found', {referralUserId, from});
-      return next();
-    }
-
-    const vars = {
-      name: `${from.first_name} ${from.last_name ?? ''}`.trim(),
-    };
-
     try {
+      const referralUserId = toNumber(ctx.match.substring(4));
+
+      logger.logMethodArgs?.('command_start_ref', {referralUserId, from});
+
+      // validate referUserId
+      if (referralUserId === null || !userCollection.hasItem(referralUserId)) {
+        logger.accident?.('command_start_ref', 'user_not_found', {referralUserId, from});
+        return next();
+      }
+
+      const vars = {
+        name: `${from.first_name} ${from.last_name ?? ''}`.trim(),
+      };
+
       if (userCollection.hasItem(from.id) && userCollection.getItemData(from.id).phone) {
         await sendMessage({
           chatId: chat.id,
@@ -74,16 +74,16 @@ bot.command(
         messages: messages.new_refer_user,
         reply_markup: mainMenu,
         vars: {
-          ...vars,
+          name: vars.name,
           referral_count: referralUser.referralCount.toString(),
-        }
+        },
       });
 
       await sendMessage({
         chatId: chat.id,
         messages: messages.request_contact,
         reply_markup: new Keyboard().requestContact(messages.request_contact_keyboard_text).resized().oneTime(),
-        vars
+        vars,
       });
     }
     catch (error) {
