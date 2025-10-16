@@ -1,3 +1,5 @@
+import {InlineKeyboard} from 'grammy';
+
 import {config} from '../config.js';
 import {bot} from '../lib/bot.js';
 import {logger} from '../lib/logger.js';
@@ -60,5 +62,31 @@ bot.callbackQuery('stats', async (ctx) => {
   }
   catch (err) {
     logger.error('callback_stats', 'unexpected_error', err);
+  }
+});
+
+bot.callbackQuery('invite_templates', async (ctx) => {
+  try {
+    const {chat, from} = ctx;
+
+    logger.logMethodArgs?.('invite_templates', from);
+
+    if (!from) return;
+
+    const inviteLink = `https://t.me/${config.telegramBot.username}?start=ref_${from.id}`;
+    const vars = {
+      name: `${from.first_name} ${from.last_name ?? ''}`.trim(),
+      invite_link: inviteLink,
+    };
+
+    await sendMessage({
+      chatId: chat?.id ?? from.id,
+      messages: messages.invite_templates,
+      vars,
+      reply_markup: new InlineKeyboard().url('اطلاعات بیشتر ⚡️', inviteLink),
+    });
+  }
+  catch (err) {
+    logger.error('invite_templates', 'unexpected_error', err);
   }
 });
