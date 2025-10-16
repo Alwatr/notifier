@@ -21,6 +21,7 @@ services:
 
     environment:
       - dbPath=/data/db
+      - botToken=${botToken}
       - DEBUG=${apiDebug:-}
 
     volumes:
