@@ -16,10 +16,12 @@ for (const menuId in menuItems) {
 
       if (!from) return;
 
+      const referralCount = userCollection.getItemData(from.id).referralCount;
       const vars = {
         name: `${from.first_name} ${from.last_name ?? ''}`.trim(),
         invite_link: `https://t.me/${config.telegramBot.username}?start=ref_${from.id}`,
-        referral_count: userCollection.getItemData(from.id).referralCount.toString(),
+        referral_count: referralCount.toString(),
+        referral_earn: (referralCount * config.referralRewardPerUser).toLocaleString('fa-IR'),
       };
 
       await sendMessage({
@@ -34,3 +36,29 @@ for (const menuId in menuItems) {
     }
   });
 }
+
+bot.callbackQuery('stats', async (ctx) => {
+  try {
+    const {chat, from} = ctx;
+
+    logger.logMethodArgs?.('callback_stats', from);
+
+    if (!from) return;
+
+    const referralCount = userCollection.getItemData(from.id).referralCount;
+    const vars = {
+      name: `${from.first_name} ${from.last_name ?? ''}`.trim(),
+      referral_count: referralCount.toString(),
+      referral_earn: (referralCount * config.referralRewardPerUser).toLocaleString('fa-IR'),
+    };
+
+    await sendMessage({
+      chatId: chat?.id ?? from.id,
+      messages: messages.stats,
+      vars,
+    });
+  }
+  catch (err) {
+    logger.error('callback_stats', 'unexpected_error', err);
+  }
+});
