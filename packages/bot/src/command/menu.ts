@@ -39,6 +39,7 @@ for (const menuId in menuItems) {
   });
 }
 
+/*
 bot.callbackQuery('stats', async (ctx) => {
   try {
     const {chat, from} = ctx;
@@ -90,3 +91,4 @@ bot.callbackQuery('invite_templates', async (ctx) => {
     logger.error('invite_templates', 'unexpected_error', err);
   }
 });
+*/
