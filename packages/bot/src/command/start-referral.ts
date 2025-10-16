@@ -71,7 +71,7 @@ bot.command(
 
       void sendMessage({
         chatId: referralUserId,
-        messages: messages.new_refer_user,
+        messages: messages.new_referral_user,
         reply_markup: mainMenu,
         vars: {
           name: vars.name,
