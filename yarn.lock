@@ -2936,21 +2936,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"api@workspace:packages/bot":
-  version: 0.0.0-use.local
-  resolution: "api@workspace:packages/bot"
-  dependencies:
-    "@alwatr/nano-build": "npm:^6.3.5"
-    "@alwatr/prettier-config": "npm:^5.0.5"
-    "@alwatr/tsconfig-base": "npm:^6.0.3"
-    "@alwatr/type-helper": "npm:^6.1.5"
-    "@types/node": "npm:^22.18.10"
-    alwatr: "npm:^5.0.0"
-    grammy: "npm:^1.38.3"
-    typescript: "npm:^5.9.3"
-  languageName: unknown
-  linkType: soft
-
 "aproba@npm:^2.1.0":
   version: 2.1.0
   resolution: "aproba@npm:2.1.0"
@@ -3202,6 +3187,21 @@ __metadata:
   checksum: 10c0/7ef087164b13df1810bf087146880a5d43d7d0beb95c51ec0664224f9371e1ca0de70c813306de6de173fb1a3fd0ca49e636ba80c951a70ce6bd7cbf48daf075
   languageName: node
   linkType: hard
+
+"bot@workspace:packages/bot":
+  version: 0.0.0-use.local
+  resolution: "bot@workspace:packages/bot"
+  dependencies:
+    "@alwatr/nano-build": "npm:^6.3.5"
+    "@alwatr/prettier-config": "npm:^5.0.5"
+    "@alwatr/tsconfig-base": "npm:^6.0.3"
+    "@alwatr/type-helper": "npm:^6.1.5"
+    "@types/node": "npm:^22.18.10"
+    alwatr: "npm:^5.0.0"
+    grammy: "npm:^1.38.3"
+    typescript: "npm:^5.9.3"
+  languageName: unknown
+  linkType: soft
 
 "brace-expansion@npm:^1.1.7":
   version: 1.1.12

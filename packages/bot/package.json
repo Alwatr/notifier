@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "bot",
   "description": "Alwatr Telegram Notify Microservice, Distributed simple and fast telegram notify nanoservice.",
   "version": "0.1.0",
   "author": "S. Ali Mihandoost <ali.mihandoost@gmail.com>",
