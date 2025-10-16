@@ -1,5 +1,3 @@
-import {InlineKeyboard} from 'grammy';
-
 import {config} from '../config.js';
 import {bot} from '../lib/bot.js';
 import {logger} from '../lib/logger.js';
