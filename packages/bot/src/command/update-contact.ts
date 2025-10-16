@@ -2,7 +2,6 @@ import {Keyboard} from 'grammy';
 
 import {bot} from '../lib/bot.js';
 import {logger} from '../lib/logger.js';
-import {mainMenu} from '../lib/menu.js';
 import {messages} from '../lib/message.js';
 import {sendMessage} from '../lib/send-message.js';
 import {userCollection} from '../lib/users-collection.js';
@@ -35,7 +34,6 @@ bot.on('message:contact', async (ctx) => {
   await sendMessage({
     chatId: chat.id,
     messages: messages.register_success,
-    vars,
-    reply_markup: mainMenu,
+    vars
   });
 });
