@@ -34,12 +34,13 @@ bot.command('notify_noref', async (ctx) => {
 // notify_all
 bot.on('message', async (ctx, next) => {
   const {chat, from, message} = ctx;
-  logger.logMethodArgs?.('message_notify_all', message);
-
+  
   if (from?.username !== config.adminUserName || !currentAdminCommand.startsWith('notify_')) {
     return next();
   }
   // else
+
+  logger.logMethodArgs?.('message_notify_all', message);
 
   currentAdminCommand = '';
 
