@@ -46,6 +46,7 @@ bot.command(
           chatId: chat.id,
           messages: messages.already_registered,
           vars,
+          reply_markup: mainMenu,
         });
         return;
       }
