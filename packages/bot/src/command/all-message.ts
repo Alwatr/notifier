@@ -9,11 +9,12 @@ bot.on('message', async (ctx, next) => {
   logger.logMethodArgs?.('message', message);
 
   if (
+    from?.id &&
     userCollection.hasItem(from.id) && // existing user
     userCollection.getItemData(from.id).phone === null && // no contact info
-    !message.contact // no contact info shared in this message
+    !message?.contact // no contact info shared in this message
   ) {
-    if (message.text === userDeclineContactMessage) {
+    if (message?.text === userDeclineContactMessage) {
       userCollection.mergeItemData(chat.id, {
         phone: '',
       });
