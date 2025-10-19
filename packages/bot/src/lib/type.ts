@@ -9,4 +9,5 @@ export type User = {
   phone: string | null;
   invitedBy: number | null;
   referralCount: number;
+  blocked: boolean;
 };
