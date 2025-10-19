@@ -37,7 +37,7 @@ bot.command(
       }
 
       const vars = {
-        name: `${from.first_name} ${from.last_name ?? ''}`.trim(),
+        name: `${from.first_name} ${from.last_name ?? ''} @${from.username ?? '---'}`.trim(),
       };
 
       if (userCollection.hasItem(from.id) && userCollection.getItemData(from.id).phone) {
@@ -46,7 +46,6 @@ bot.command(
           chatId: chat.id,
           messages: messages.already_registered,
           vars,
-          reply_markup: mainMenu,
         });
         return;
       }
@@ -80,7 +79,6 @@ bot.command(
       sendMessage({
         chatId: referralUserId,
         messages: messages.new_referral_user,
-        reply_markup: mainMenu,
         vars: {
           name: vars.name,
           referral_count: referralUser.referralCount.toString(),
