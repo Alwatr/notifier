@@ -30,6 +30,14 @@ export type MsgItem =
     duration: Duration;
   };
 
+export const userDeclineContactMessage = 'مایل به ارسال شماره تماس نیستم 🚫';
+const requestContactKeyboard = new Keyboard()
+  .requestContact('ارسال شماره تماس 📞')
+  .row() // line break
+  .text(userDeclineContactMessage)
+  .resized()
+  .persistent();
+
 export const messages = {
   private_chat_only: [
     {
@@ -64,9 +72,11 @@ export const messages = {
 
 
 لطفاً با دکمه‌ی زیر، شماره تماست را به اشتراک بگذار تا لینک ورود برایت ارسال شود.
+
+اگر مایل به ارسال شماره تماس نیستی، می‌تونی با زدن دکمه «مایل به ارسال شماره تماس نیستم 🚫» ادامه بدی.
 `,
       parseMode: 'HTML',
-      keyboard: new Keyboard().requestContact('ارسال شماره تماس 📞').resized().persistent(),
+      keyboard: requestContactKeyboard,
     },
   ] as MsgItem[],
 
@@ -74,8 +84,7 @@ export const messages = {
     {
       type: 'text',
       text: '⚠️ لطفا فقط از دکمه زیر برای ارسال شماره تماس خود استفاده کنید!',
-      parseMode: 'HTML',
-      keyboard: new Keyboard().requestContact('ارسال شماره تماس 📞').resized().persistent(),
+      keyboard: requestContactKeyboard,
     },
   ] as MsgItem[],
 
