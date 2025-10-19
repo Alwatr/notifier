@@ -200,7 +200,7 @@ bot.command('notify_all', async (ctx) => {
 `,
       {
         reply_parameters: {
-          message_id: targetMessage.message_id,
+          message_id: message.message_id,
         },
       },
     )
