@@ -10,4 +10,9 @@ export type User = {
   invitedBy: number | null;
   referralCount: number;
   blocked: boolean;
+  courses: {
+    symphonyInterest: boolean;
+    symphonyGroup: boolean;
+    symphonyPaid: boolean;
+  }
 };
