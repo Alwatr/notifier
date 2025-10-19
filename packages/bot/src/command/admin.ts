@@ -8,11 +8,16 @@ import {replaceString} from '../lib/replacer.js';
 import {userCollection} from '../lib/users-collection.js';
 
 bot.command('admin_stats', (ctx) => {
-  const {chat, from} = ctx;
+  const {chat, from, message} = ctx;
 
   logger.logMethodArgs?.('command_admin_stats', chat);
 
   if (from?.username !== config.adminUserName) {
+    void ctx.reply('ببخشید شما؟! 🤨', {
+      reply_parameters: {
+        message_id: message!.message_id,
+      },
+    });
     return;
   }
 
@@ -59,6 +64,11 @@ bot.command('admin_stats', (ctx) => {
 بلاک کرده‌اند: ${stats.blocked}    
 هنوز دعوت نکرده‌اند: ${stats.withoutReferrals}
 `,
+      {
+        reply_parameters: {
+          message_id: message!.message_id,
+        },
+      },
     )
     .catch((error) => {
       logger.error('command_admin_stats', 'reply_failed', error, {chat, stats});
@@ -66,11 +76,16 @@ bot.command('admin_stats', (ctx) => {
 });
 
 bot.command('check_all_users', async (ctx) => {
-  const {chat, from} = ctx;
+  const {chat, from, message} = ctx;
 
   logger.logMethodArgs?.('command_check_all_users', chat);
 
   if (from?.username !== config.adminUserName) {
+    void ctx.reply('ببخشید شما؟! 🤨', {
+      reply_parameters: {
+        message_id: message!.message_id,
+      },
+    });
     return;
   }
 
@@ -93,6 +108,12 @@ bot.command('check_all_users', async (ctx) => {
       }
     }
   }
+
+  void ctx.reply('بررسی تمام کاربران به پایان رسید. 😎', {
+    reply_parameters: {
+      message_id: message!.message_id,
+    },
+  });
 });
 
 bot.command('notify_all', async (ctx) => {
@@ -101,15 +122,26 @@ bot.command('notify_all', async (ctx) => {
   logger.logMethodArgs?.('command_notify_all', chat);
 
   if (from?.username !== config.adminUserName) {
+    void ctx.reply('ببخشید شما؟! 🤨', {
+      reply_parameters: {
+        message_id: message!.message_id,
+      },
+    });
     return;
   }
 
   const targetMessage = message?.reply_to_message;
 
   if (!targetMessage) {
-    ctx.reply('Please reply to a message to forward it to all users.').catch((error) => {
-      logger.error('command_notify_all', 'reply_failed', error, {chat});
-    });
+    ctx
+      .reply('چی رو بفرستم خب؟! 🤔', {
+        reply_parameters: {
+          message_id: message!.message_id,
+        },
+      })
+      .catch((error) => {
+        logger.error('command_notify_all', 'reply_failed', error, {chat});
+      });
     return;
   }
 
@@ -158,7 +190,21 @@ bot.command('notify_all', async (ctx) => {
     }
   }
 
-  ctx.reply(`Notification sent.\n\nTotal: ${stats.total}\nSent: ${stats.sent}\nFailed: ${stats.failed}`).catch((error) => {
-    logger.error('command_notify_*', 'reply_failed', error, {chat, stats});
-  });
+  ctx
+    .reply(
+      `ارسال شد 😎
+
+👤 کل کاربران: ${stats.total}
+✅ ارسال موفق: ${stats.sent}
+❌ ارسال ناموفق: ${stats.failed}
+`,
+      {
+        reply_parameters: {
+          message_id: targetMessage.message_id,
+        },
+      },
+    )
+    .catch((error) => {
+      logger.error('command_notify_*', 'reply_failed', error, {chat, stats});
+    });
 });
