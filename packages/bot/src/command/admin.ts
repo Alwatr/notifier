@@ -28,6 +28,8 @@ bot.command('admin_stats', (ctx) => {
     joinedNormally: 0,
     joinedViaReferral: 0,
     blocked: 0,
+    symphonyGroup: 0,
+    symphonyPaid: 0,
   };
 
   for (const user of userCollection.items()) {
@@ -51,6 +53,14 @@ bot.command('admin_stats', (ctx) => {
     if (user.data.referralCount === 0) {
       stats.withoutReferrals++;
     }
+
+    if (user.data.courses.symphonyGroup) {
+      stats.symphonyGroup++;
+    }
+
+    if (user.data.courses.symphonyPaid) {
+      stats.symphonyPaid++;
+    }
   }
 
   ctx
@@ -63,6 +73,8 @@ bot.command('admin_stats', (ctx) => {
 بدون شماره تلفن: ${stats.withoutPhone}
 بلاک کرده‌اند: ${stats.blocked}    
 هنوز دعوت نکرده‌اند: ${stats.withoutReferrals}
+عضو گروه: ${stats.symphonyGroup}
+پرداخت شده: ${stats.symphonyPaid}
 `,
       {
         reply_parameters: {
