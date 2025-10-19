@@ -49,6 +49,11 @@ bot.command(
           invitedBy: null,
           referralCount: 0,
           blocked: false,
+          courses: {
+            symphonyInterest: true,
+            symphonyGroup: false,
+            symphonyPaid: false,
+          },
         });
       }
 
