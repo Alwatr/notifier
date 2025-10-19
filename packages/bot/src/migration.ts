@@ -1,6 +1,26 @@
+import {createLogger} from 'alwatr/nanolib';
+
 import {config} from './config.js';
-import {logger} from './lib/logger.js';
+import {userCollection} from './lib/users-collection.js';
 
-logger.banner(config.banner + ' - 🔄 Migrating');
+async function migrate() {
+  const logger = createLogger(__package_name__, true);
+  logger.banner(config.banner + ' - 🔄 Migrating');
 
-logger.logStep?.('Migrating', 'Done ✅');
+  let effected = 0;
+  for (const user of userCollection.items()) {
+    if (user.data.blocked === undefined) {
+      effected++;
+      user.data.blocked = false;
+      logger.logStep?.('Migrating', `User ${user.meta.id} migrated`);
+    }
+  }
+
+  if (effected > 0) {
+    userCollection.saveImmediate(null);
+  }
+
+  logger.logStep?.('Migrating', 'Done ✅');
+}
+
+migrate();

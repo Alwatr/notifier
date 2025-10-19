@@ -46,6 +46,7 @@ bot.command(
           phone: null,
           invitedBy: null,
           referralCount: 0,
+          blocked: false,
         });
       }
 
