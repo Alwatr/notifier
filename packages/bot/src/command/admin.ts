@@ -93,7 +93,7 @@ bot.command('notify_noref', async (ctx) => {
   ctx.reply('Send the message to notify users without referrals');
 });
 
-// notify_all
+// message_notify_*
 bot.on('message', async (ctx, next) => {
   const {chat, from, message} = ctx;
 
