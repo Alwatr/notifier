@@ -67,5 +67,8 @@
     "Strigifyable",
     "tsbuildinfo",
     "typeof"
+  ],
+  "github-actions.workflows.pinned.workflows": [
+    ".github/workflows/publish-container.yml"
   ]
 }
