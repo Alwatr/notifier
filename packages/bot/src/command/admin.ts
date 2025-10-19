@@ -93,6 +93,32 @@ bot.command('notify_noref', async (ctx) => {
   ctx.reply('Send the message to notify users without referrals');
 });
 
+bot.command('check_all_users', async (ctx) => {
+  const {chat, from} = ctx;
+
+  logger.logMethodArgs?.('command_check_all_users', chat);
+
+  if (from?.username !== config.adminUserName) {
+    return;
+  }
+
+  for (const user of userCollection.items()) {
+    try {
+      const msg = await ctx.reply('👋');
+      await bot.api.deleteMessage(user.data.id, msg.message_id);
+    }
+    catch (error) {
+      if (error instanceof GrammyError && error.error_code === 403) {
+        user.data.blocked = true;
+        userCollection.save(user.meta.id);
+      }
+      else {
+        logger.error('command_check_all_users', 'send_message_failed', error, user);
+      }
+    }
+  }
+});
+
 // message_notify_*
 bot.on('message', async (ctx, next) => {
   const {chat, from, message} = ctx;
