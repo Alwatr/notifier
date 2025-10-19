@@ -104,8 +104,12 @@ bot.command('check_all_users', async (ctx) => {
 
   for (const user of userCollection.items()) {
     try {
-      const msg = await ctx.reply('👋');
-      await bot.api.deleteMessage(user.data.id, msg.message_id);
+      const msg = await ctx.api.sendMessage(user.meta.id, '👋');
+      await bot.api.deleteMessage(msg.chat.id, msg.message_id);
+      if (user.data.blocked) {
+        user.data.blocked = false;
+        userCollection.save(user.meta.id);
+      }
     }
     catch (error) {
       if (error instanceof GrammyError && error.error_code === 403) {
@@ -166,6 +170,10 @@ bot.on('message', async (ctx, next) => {
         });
       }
       stats.sent++;
+      if (user.data.blocked) {
+        user.data.blocked = false;
+        userCollection.save(user.meta.id);
+      }
     }
     catch (error) {
       stats.failed++;
