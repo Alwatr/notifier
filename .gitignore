@@ -36,5 +36,7 @@ dist
 
 # dotenv environment variables file
 .env
+wesun-bot.env
+_data
 
 .tmp
