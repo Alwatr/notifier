@@ -11,7 +11,7 @@ export const config = {
   banner: 'Telegram Referral Bot',
   initializeMode,
 
-  adminUserName: getEnv({name: 'adminUserName', defaultValue: 'AliMD'}),
+  adminUserNames: ['AliMD', 'wesun_sales'] as string[],
   referralRewardPerUser: 100_000,
 
   nitrobase: {
