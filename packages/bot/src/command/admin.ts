@@ -1,25 +1,44 @@
-import {GrammyError} from 'grammy';
+import {randPick} from 'alwatr/nanolib';
+import {Context, GrammyError, type CommandContext} from 'grammy';
 
 import {config} from '../config.js';
 import {bot} from '../lib/bot.js';
 import {logger} from '../lib/logger.js';
 import {mainMenu} from '../lib/menu.js';
+import {messages} from '../lib/message.js';
 import {replaceString} from '../lib/replacer.js';
 import {userCollection} from '../lib/users-collection.js';
 
-bot.command('admin_stats', (ctx) => {
-  const {chat, from, message} = ctx;
+function checkAdminRight(ctx: CommandContext<Context>): boolean {
+  const {from, message} = ctx;
 
-  logger.logMethodArgs?.('command_admin_stats', chat);
+  logger.logMethodArgs?.('checkAdminRight', from?.username);
 
-  if (from?.username !== config.adminUserName) {
-    void ctx.reply('ببخشید شما؟! 🤨', {
+  if (from?.username === 'ftme_sa') {
+    void ctx.reply(randPick(messages.fun), {
       reply_parameters: {
         message_id: message!.message_id,
       },
     });
-    return;
   }
+
+  if (from?.username && !config.adminUserNames.includes(from.username)) {
+    void ctx.reply(messages.noAdminRight, {
+      reply_parameters: {
+        message_id: message!.message_id,
+      },
+    });
+    return false;
+  }
+  return true;
+}
+
+bot.command('admin_stats', (ctx) => {
+  const {chat, message} = ctx;
+
+  logger.logMethodArgs?.('command_admin_stats', chat);
+
+  if (!checkAdminRight(ctx)) return;
 
   const stats = {
     total: 0,
@@ -88,18 +107,11 @@ bot.command('admin_stats', (ctx) => {
 });
 
 bot.command('check_all_users', async (ctx) => {
-  const {chat, from, message} = ctx;
+  const {chat, message} = ctx;
 
   logger.logMethodArgs?.('command_check_all_users', chat);
 
-  if (from?.username !== config.adminUserName) {
-    void ctx.reply('ببخشید شما؟! 🤨', {
-      reply_parameters: {
-        message_id: message!.message_id,
-      },
-    });
-    return;
-  }
+  if (!checkAdminRight(ctx)) return;
 
   for (const user of userCollection.items()) {
     try {
@@ -129,18 +141,11 @@ bot.command('check_all_users', async (ctx) => {
 });
 
 bot.command('notify_all', async (ctx) => {
-  const {chat, from, message} = ctx;
+  const {chat, message} = ctx;
 
   logger.logMethodArgs?.('command_notify_all', chat);
 
-  if (from?.username !== config.adminUserName) {
-    void ctx.reply('ببخشید شما؟! 🤨', {
-      reply_parameters: {
-        message_id: message!.message_id,
-      },
-    });
-    return;
-  }
+  if (!checkAdminRight(ctx)) return;
 
   const targetMessage = message?.reply_to_message;
 
