@@ -40,7 +40,7 @@ bot.command('admin_stats', (ctx) => {
       stats.joinedViaReferral++;
     }
 
-    if (user.data.phone === null) {
+    if (!user.data.phone) {
       stats.withoutPhone++;
     }
 
