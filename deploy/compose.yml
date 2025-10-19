@@ -21,6 +21,7 @@ services:
 
     environment:
       - dbPath=/data/db
+      - initializeMode=${initializeMode:-}
       - botToken=${botToken}
       - DEBUG=${apiDebug:-}
 
@@ -36,10 +37,3 @@ services:
       options:
         max-size: '10m'
         max-file: '2'
-
-    labels:
-      traefik.enable: true
-      traefik.port: 80
-      traefik.frontend.rule: Host:${apiDomains}; PathPrefix:/api/;
-      traefik.frontend.entryPoints: http, https
-      traefik.frontend.redirect.entryPoint: https
