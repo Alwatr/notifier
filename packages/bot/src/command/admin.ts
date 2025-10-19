@@ -22,6 +22,7 @@ function checkAdminRight(ctx: CommandContext<Context>): boolean {
         message_id: message!.message_id,
       },
     });
+    return false;
   }
 
   if (from?.username && !config.adminUserNames.includes(from.username)) {
