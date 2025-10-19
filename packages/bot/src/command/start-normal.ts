@@ -26,6 +26,7 @@ bot.command(
 
     try {
       if (userCollection.hasItem(from.id) && userCollection.getItemData(from.id).phone) {
+        // user already registered
         await sendMessage({
           chatId: chat.id,
           messages: messages.already_registered,
@@ -37,7 +38,8 @@ bot.command(
       // else
 
       if (!userCollection.hasItem(from.id)) {
-        // Save user data
+        // New user, save user data
+
         userCollection.addItem(from.id, {
           id: from.id,
           firstName: from.first_name,
@@ -53,10 +55,11 @@ bot.command(
       await sendMessage({
         chatId: chat.id,
         messages: messages.request_contact,
+        vars,
       });
     }
     catch (error) {
-      logger.error?.('startCommand', 'unexpected_error', error, {chat, from});
+      logger.error?.('command_start_normal', 'unexpected_error', error, {chat, from});
     }
   },
 );

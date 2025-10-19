@@ -41,6 +41,7 @@ bot.command(
       };
 
       if (userCollection.hasItem(from.id) && userCollection.getItemData(from.id).phone) {
+        // user already registered
         await sendMessage({
           chatId: chat.id,
           messages: messages.already_registered,
@@ -52,7 +53,8 @@ bot.command(
       // else
 
       if (!userCollection.hasItem(from.id)) {
-        // Save user data
+        // New user, save user data
+
         userCollection.addItem(from.id, {
           id: from.id,
           firstName: from.first_name,
@@ -70,7 +72,7 @@ bot.command(
       referralUser.referralCount++;
       userCollection.save(referralUser.id);
 
-      void sendMessage({
+      sendMessage({
         chatId: referralUserId,
         messages: messages.new_referral_user,
         reply_markup: mainMenu,
@@ -78,6 +80,8 @@ bot.command(
           name: vars.name,
           referral_count: referralUser.referralCount.toString(),
         },
+      }).catch((error) => {
+        logger.error?.('command_start_ref', 'notify_referral_user_failed', error, {referralUserId, from});
       });
 
       await sendMessage({
@@ -87,7 +91,7 @@ bot.command(
       });
     }
     catch (error) {
-      logger.error?.('startCommand', 'unexpected_error', error, {chat, from});
+      logger.error?.('command_start_ref', 'unexpected_error', error, {chat, from});
     }
   },
 );
