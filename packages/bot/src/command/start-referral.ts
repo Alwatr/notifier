@@ -61,6 +61,7 @@ bot.command(
           phone: null,
           invitedBy: referralUserId,
           referralCount: 0,
+          blocked: false,
         });
       }
 
