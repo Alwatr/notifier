@@ -1,5 +1,5 @@
 /* eslint-disable import/order */
-import './command/just-private.js'; // must be first
+import './command/all-message.js'; // must be first
 import './command/admin.js'; // must be second
 import './command/start-referral.js'; // must before start-normal
 import './command/start-normal.js';
