@@ -288,6 +288,23 @@ export const messages = {
     },
   ] as MsgItem[],
 
+  new_referral_paid: [
+    {
+      // task8
+      type: 'text',
+      text: `
+خبر عالی! 🎉🎉
+
+ایشون، {name} پرداختش را نهایی کرد! 💵
+
+این یعنی هدیه شما هم قطعی شد! 🤑
+
+از دکمه 'مشاهده آمار دعوتی‌ها' برای دیدن آمار و پیگیری‌شون استفاده کن 😎
+`,
+      keyboard: mainMenu,
+    },
+  ] as MsgItem[],
+
   noAdminRight: 'ببخشید شما؟! 🤨',
   fun: [
     'اععع... سلام نن جونم 😍',
