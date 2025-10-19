@@ -9,9 +9,13 @@ async function migrate() {
 
   let effected = 0;
   for (const user of userCollection.items()) {
-    if (user.data.blocked === undefined) {
+    if (!user.data.courses) {
       effected++;
-      user.data.blocked = false;
+      user.data.courses = {
+        symphonyInterest: true,
+        symphonyGroup: false,
+        symphonyPaid: false,
+      };
       logger.logStep?.('Migrating', `User ${user.meta.id} migrated`);
     }
   }
