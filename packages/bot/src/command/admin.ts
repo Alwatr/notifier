@@ -7,6 +7,7 @@ import {logger} from '../lib/logger.js';
 import {mainMenu} from '../lib/menu.js';
 import {messages} from '../lib/message.js';
 import {replaceString} from '../lib/replacer.js';
+import {sendMessage} from '../lib/send-message.js';
 import {userCollection} from '../lib/users-collection.js';
 
 function checkAdminRight(ctx: CommandContext<Context>): boolean {
@@ -14,7 +15,8 @@ function checkAdminRight(ctx: CommandContext<Context>): boolean {
 
   logger.logMethodArgs?.('checkAdminRight', from?.username);
 
-  if (from?.username === 'ftme_sa') { // nan joon
+  if (from?.username === 'ftme_sa') {
+    // nan joon
     void ctx.reply(randPick(messages.fun), {
       reply_parameters: {
         message_id: message!.message_id,
@@ -224,4 +226,60 @@ bot.command('notify_all', async (ctx) => {
     .catch((error) => {
       logger.error('command_notify_*', 'reply_failed', error, {chat, stats});
     });
+});
+
+bot.command('pay', async (ctx) => {
+  const {chat, message} = ctx;
+
+  logger.logMethodArgs?.('command_pay', chat);
+
+  if (!checkAdminRight(ctx)) return;
+
+  const targetMessage = message?.reply_to_message;
+  const targetUser = targetMessage?.forward_origin?.type === 'user' ? targetMessage.forward_origin.sender_user : null;
+
+  if (!targetUser) {
+    void ctx.reply('برای کدوم کاربر می‌خوای پرداخت بزنی؟! 🤔\nلطفا پیام فوروارد شده از اون کاربر رو ریپلای کن.', {
+      reply_parameters: {
+        message_id: message!.message_id,
+      },
+    });
+    return;
+  }
+
+  if (!userCollection.hasItem(targetUser.id)) {
+    logger.accident('command_pay', 'user_not_in_database', {message});
+    void ctx.reply(
+      `این کاربر توی لیست ما نیست! 🤔
+
+${targetUser.first_name} ${targetUser.last_name} @${targetUser.username}`,
+      {
+        reply_parameters: {
+          message_id: message!.message_id,
+        },
+      },
+    );
+    return;
+  }
+
+  const targetUserData = userCollection.getItemData(targetUser.id);
+  targetUserData.courses.symphonyPaid = true;
+  userCollection.save(targetUser.id);
+
+  void ctx.reply(`پرداخت برای کاربر ثبت شد. 😎`, {
+    reply_parameters: {
+      message_id: message!.message_id,
+    },
+  });
+
+  if (targetUserData.invitedBy) {
+    const referralUser = userCollection.getItemData(targetUserData.invitedBy);
+    sendMessage({
+      chatId: referralUser.id,
+      messages: messages.new_referral_paid,
+      vars: {
+        name: `${referralUser.firstName} ${referralUser.lastName ?? ''} @${referralUser.username ?? '---'}`.trim(),
+      },
+    });
+  }
 });
