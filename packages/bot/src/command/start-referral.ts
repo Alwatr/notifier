@@ -2,7 +2,6 @@ import {toNumber} from 'alwatr/nanolib';
 
 import {bot} from '../lib/bot.js';
 import {logger} from '../lib/logger.js';
-import {mainMenu} from '../lib/menu.js';
 import {messages} from '../lib/message.js';
 import {sendMessage} from '../lib/send-message.js';
 import {userCollection} from '../lib/users-collection.js';

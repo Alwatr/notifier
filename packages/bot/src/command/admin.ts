@@ -86,7 +86,7 @@ bot.command('admin_stats', (ctx) => {
 
   ctx
     .reply(
-      `آماتار کاربران:
+      `آمار کاربران:
 
 کل کاربران: ${stats.total}
 پیوسته به‌صورت عادی: ${stats.joinedNormally}
@@ -135,7 +135,7 @@ bot.command('check_all_users', async (ctx) => {
     }
   }
 
-  void ctx.reply('بررسی تمام کاربران به پایان رسید. 😎', {
+  void ctx.reply('بررسی تمام کاربران به پایان رسید. 😎\n\n/admin_stats', {
     reply_parameters: {
       message_id: message!.message_id,
     },
@@ -239,7 +239,7 @@ bot.command('pay', async (ctx) => {
   const targetUser = targetMessage?.forward_origin?.type === 'user' ? targetMessage.forward_origin.sender_user : null;
 
   if (!targetUser) {
-    void ctx.reply('برای کدوم کاربر می‌خوای پرداخت بزنی؟! 🤔\nلطفا پیام فوروارد شده از اون کاربر رو ریپلای کن.', {
+    void ctx.reply('آبجی برای کدوم کاربر می‌خوای پرداخت بزنی خب؟! 🤔\nلطفا به پیام فوروارد شده از اون کاربر رو ریپلای کن.', {
       reply_parameters: {
         message_id: message!.message_id,
       },
@@ -250,7 +250,7 @@ bot.command('pay', async (ctx) => {
   if (!userCollection.hasItem(targetUser.id)) {
     logger.accident('command_pay', 'user_not_in_database', {message});
     void ctx.reply(
-      `این کاربر توی لیست ما نیست! 🤔
+      `آبجی این کاربر توی لیست ما نیست! 🤔
 
 ${targetUser.first_name} ${targetUser.last_name} @${targetUser.username}`,
       {
