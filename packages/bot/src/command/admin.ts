@@ -7,8 +7,6 @@ import {mainMenu} from '../lib/menu.js';
 import {replaceString} from '../lib/replacer.js';
 import {userCollection} from '../lib/users-collection.js';
 
-let currentAdminCommand = '';
-
 bot.command('admin_stats', (ctx) => {
   const {chat, from} = ctx;
 
@@ -67,32 +65,6 @@ bot.command('admin_stats', (ctx) => {
     });
 });
 
-bot.command('notify_all', async (ctx) => {
-  const {chat, from} = ctx;
-
-  logger.logMethodArgs?.('command_notify_all', chat);
-
-  if (from?.username !== config.adminUserName) {
-    return;
-  }
-
-  currentAdminCommand = 'notify_all';
-  ctx.reply('Send the message to notify all users');
-});
-
-bot.command('notify_noref', async (ctx) => {
-  const {chat, from} = ctx;
-
-  logger.logMethodArgs?.('command_notify_noref', chat);
-
-  if (from?.username !== config.adminUserName) {
-    return;
-  }
-
-  currentAdminCommand = 'notify_noref';
-  ctx.reply('Send the message to notify users without referrals');
-});
-
 bot.command('check_all_users', async (ctx) => {
   const {chat, from} = ctx;
 
@@ -123,18 +95,23 @@ bot.command('check_all_users', async (ctx) => {
   }
 });
 
-// message_notify_*
-bot.on('message', async (ctx, next) => {
+bot.command('notify_all', async (ctx) => {
   const {chat, from, message} = ctx;
 
-  if (from?.username !== config.adminUserName || !currentAdminCommand.startsWith('notify_')) {
-    return next();
+  logger.logMethodArgs?.('command_notify_all', chat);
+
+  if (from?.username !== config.adminUserName) {
+    return;
   }
-  // else
 
-  logger.logMethodArgs?.('message_notify_*', message);
+  const targetMessage = message?.reply_to_message;
 
-  currentAdminCommand = '';
+  if (!targetMessage) {
+    ctx.reply('Please reply to a message to forward it to all users.').catch((error) => {
+      logger.error('command_notify_all', 'reply_failed', error, {chat});
+    });
+    return;
+  }
 
   const stats = {
     total: 0,
@@ -143,9 +120,6 @@ bot.on('message', async (ctx, next) => {
   };
 
   for (const user of userCollection.items()) {
-    if (currentAdminCommand === 'notify_noref' && user.data.referralCount > 0) {
-      continue;
-    }
     try {
       stats.total++;
       const vars = {
@@ -153,19 +127,14 @@ bot.on('message', async (ctx, next) => {
         invite_link: `https://t.me/${config.telegramBot.username}?start=ref_${user.data.id}`,
         referral_count: user.data.referralCount.toString(),
       };
-      if (message.text) {
-        await bot.api.sendMessage(user.data.id, replaceString(message.text, vars), {
-          reply_markup: mainMenu,
-        });
-      }
-      else if (message.caption) {
-        await bot.api.copyMessage(user.data.id, chat.id, message.message_id, {
-          caption: replaceString(message.caption, vars),
+      if (targetMessage.caption) {
+        await bot.api.copyMessage(user.data.id, targetMessage.chat.id, targetMessage.message_id, {
+          caption: replaceString(targetMessage.caption, vars),
           reply_markup: mainMenu,
         });
       }
       else {
-        await bot.api.copyMessage(user.data.id, chat.id, message.message_id, {
+        await bot.api.copyMessage(user.data.id, targetMessage.chat.id, targetMessage.message_id, {
           reply_markup: mainMenu,
         });
       }
