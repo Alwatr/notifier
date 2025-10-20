@@ -49,7 +49,9 @@ bot.command('admin_stats', (ctx) => {
     withoutReferrals: 0,
     joinedNormally: 0,
     joinedViaReferral: 0,
+    joinedViaReferralNoWesun: 0,
     blocked: 0,
+    wesunMembers: 0,
     symphonyGroup: 0,
     symphonyPaid: 0,
   };
@@ -62,6 +64,9 @@ bot.command('admin_stats', (ctx) => {
     }
     else {
       stats.joinedViaReferral++;
+      if (!user.data.courses.wesunGroup) {
+        stats.joinedViaReferralNoWesun++;
+      }
     }
 
     if (!user.data.phone) {
@@ -74,6 +79,10 @@ bot.command('admin_stats', (ctx) => {
 
     if (user.data.referralCount === 0) {
       stats.withoutReferrals++;
+    }
+
+    if (user.data.courses.wesunGroup) {
+      stats.wesunMembers++;
     }
 
     if (user.data.courses.symphonyGroup) {
@@ -92,9 +101,11 @@ bot.command('admin_stats', (ctx) => {
 کل کاربران: ${stats.total}
 پیوسته به‌صورت عادی: ${stats.joinedNormally}
 پیوسته از طریق دعوت: ${stats.joinedViaReferral}
+پیوسته از طریق دعوت (غیر اهلی): ${stats.joinedViaReferralNoWesun}
 بدون شماره تلفن: ${stats.withoutPhone}
 بلاک کرده‌اند: ${stats.blocked}    
 هنوز دعوت نکرده‌اند: ${stats.withoutReferrals}
+اهلی: ${stats.wesunMembers}
 عضو گروه: ${stats.symphonyGroup}
 پرداخت شده: ${stats.symphonyPaid}
 `,
