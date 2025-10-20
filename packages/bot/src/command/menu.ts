@@ -49,6 +49,8 @@ bot.hears(menuItems.stats, async (ctx, next) => {
 
     for (const user of userCollection.items()) {
       if (user.data.invitedBy === from.id) {
+        text += `- ${user.data.firstName} ${user.data.lastName} @${user.data.username ?? '---'}`;
+
         const extraInfo = [];
 
         if (user.data.courses.symphonyPaid) {
@@ -65,7 +67,12 @@ bot.hears(menuItems.stats, async (ctx, next) => {
             extraInfo.push('عضو گروه نیست!');
           }
         }
-        text += `- ${user.data.firstName} ${user.data.lastName} @${user.data.username ?? '---'}${extraInfo}\n`;
+
+        if (extraInfo.length > 0) {
+          text += ` (${extraInfo.join(', ')})`;
+        }
+
+        text += '\n\n';
       }
     }
 
