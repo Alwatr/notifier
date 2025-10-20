@@ -8,7 +8,7 @@ import {userCollection} from '../lib/users-collection.js';
 
 for (const menuId in menuItems) {
   const menuText = menuItems[menuId as keyof typeof menuItems];
-  bot.hears(menuText, async (ctx) => {
+  bot.hears(menuText, async (ctx, next) => {
     try {
       const {chat, from} = ctx;
 
@@ -34,5 +34,47 @@ for (const menuId in menuItems) {
     catch (err) {
       logger.error('hears_' + menuId, 'unexpected_error', err);
     }
+
+    next();
   });
 }
+
+bot.hears(menuItems.stats, async (ctx, next) => {
+  const {from} = ctx;
+  logger.logMethodArgs?.('hears_stats2', from);
+  if (!from) return;
+
+  try {
+    let text = 'لیست تمامی کاربرانی که توسط لینک اختصاصی شما اولین قدم را برداشته اند:\n\n';
+
+    for (const user of userCollection.items()) {
+      if (user.data.invitedBy === from.id) {
+        const extraInfo = [];
+
+        if (user.data.courses.symphonyPaid) {
+          extraInfo.push('🎉 تکمیل ثبت نام!');
+        }
+        else {
+          if (user.data.blocked) {
+            extraInfo.push('بلاک کرده!');
+          }
+          if (user.data.courses.wesunGroup) {
+            extraInfo.push('اهالی قدیم ویسان!');
+          }
+          if (!user.data.courses.symphonyGroup) {
+            extraInfo.push('عضو گروه نیست!');
+          }
+        }
+        text += `- ${user.data.firstName} ${user.data.lastName} @${user.data.username ?? '---'}${extraInfo}\n`;
+      }
+    }
+
+    text += '\n\nدر صورت نهایی شدن ثبت‌نام این کاربران، مبلغ هدیه به حساب شما واریز خواهد شد.';
+
+    await ctx.reply(text);
+  }
+  catch (err) {
+    logger.error('hears_stats2', 'unexpected_error', err);
+  }
+  next();
+});
