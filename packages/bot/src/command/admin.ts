@@ -113,6 +113,9 @@ bot.command('admin_stats', (ctx) => {
         reply_parameters: {
           message_id: message!.message_id,
         },
+        reply_markup: {
+          remove_keyboard: true,
+        },
       },
     )
     .catch((error) => {
