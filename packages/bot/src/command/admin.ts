@@ -272,7 +272,7 @@ bot.command('notify_all', async (ctx) => {
     });
 });
 
-bot.command('pay', async (ctx) => {
+bot.command('pay', (ctx) => {
   const {chat, message} = ctx;
 
   logger.logMethodArgs?.('command_pay', chat);
@@ -280,10 +280,37 @@ bot.command('pay', async (ctx) => {
   if (!checkAdminRight(ctx)) return;
 
   const targetMessage = message?.reply_to_message;
-  const targetUser = targetMessage?.forward_origin?.type === 'user' ? targetMessage.forward_origin.sender_user : null;
 
-  if (!targetUser) {
-    void ctx.reply('آبجی برای کدوم کاربر می‌خوای پرداخت بزنی خب؟! 🤔\nلطفا به پیام فوروارد شده از اون کاربر رو ریپلای کن.', {
+  let targetUserId: number | undefined = undefined;
+
+  if (targetMessage?.forward_origin?.type === 'user') {
+    targetUserId = targetMessage.forward_origin.sender_user.id;
+  }
+  else if (targetMessage?.contact) {
+    targetUserId = targetMessage.contact.user_id;
+  }
+
+  if (!targetUserId) {
+    if (targetMessage?.forward_origin?.type === 'hidden_user') {
+      void ctx.reply('آبجی این کاربر مخفی هستش!\nمن به مشخصاتش دسترسی ندارم!\nبرام کانتکتش رو بفرست.', {
+        reply_parameters: {
+          message_id: message!.message_id,
+        },
+      });
+    }
+    else {
+      void ctx.reply('آبجی برای کدوم کاربر می‌خوای پرداخت بزنی خب؟! 🤔\nلطفا به پیام فوروارد شده از اون کاربر رو ریپلای کن.', {
+        reply_parameters: {
+          message_id: message!.message_id,
+        },
+      });
+    }
+    return;
+  }
+
+  if (!userCollection.hasItem(targetUserId)) {
+    logger.accident('command_pay', 'user_not_in_database', {message});
+    void ctx.reply('آبجی این کاربر توی لیست ما نیست! 🤔', {
       reply_parameters: {
         message_id: message!.message_id,
       },
@@ -291,24 +318,9 @@ bot.command('pay', async (ctx) => {
     return;
   }
 
-  if (!userCollection.hasItem(targetUser.id)) {
-    logger.accident('command_pay', 'user_not_in_database', {message});
-    void ctx.reply(
-      `آبجی این کاربر توی لیست ما نیست! 🤔
-
-${targetUser.first_name} ${targetUser.last_name ?? ''} @${targetUser.username ?? '---'}`.trim(),
-      {
-        reply_parameters: {
-          message_id: message!.message_id,
-        },
-      },
-    );
-    return;
-  }
-
-  const targetUserData = userCollection.getItemData(targetUser.id);
+  const targetUserData = userCollection.getItemData(targetUserId);
   targetUserData.courses.symphonyPaid = true;
-  userCollection.save(targetUser.id);
+  userCollection.save(targetUserId);
 
   void ctx.reply(`پرداخت برای کاربر ثبت شد. 😎`, {
     reply_parameters: {
