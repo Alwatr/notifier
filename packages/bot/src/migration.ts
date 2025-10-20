@@ -9,13 +9,9 @@ async function migrate() {
 
   let effected = 0;
   for (const user of userCollection.items()) {
-    if (!user.data.courses) {
+    if (user.data.courses.wesunGroup === undefined) {
       effected++;
-      user.data.courses = {
-        symphonyInterest: true,
-        symphonyGroup: false,
-        symphonyPaid: false,
-      };
+      user.data.courses.wesunGroup = false;
       logger.logStep?.('Migrating', `User ${user.meta.id} migrated`);
     }
   }
