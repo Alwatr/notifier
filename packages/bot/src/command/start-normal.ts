@@ -48,6 +48,7 @@ bot.command(
           referralCount: 0,
           blocked: false,
           courses: {
+            wesunGroup: false,
             symphonyInterest: true,
             symphonyGroup: false,
             symphonyPaid: false,
