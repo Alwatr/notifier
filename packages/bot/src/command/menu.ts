@@ -47,9 +47,10 @@ bot.hears(menuItems.stats, async (ctx, next) => {
   try {
     let text = 'لیست تمامی کاربرانی که توسط لینک اختصاصی شما اولین قدم را برداشته اند:\n\n';
 
+    let i = 1;
     for (const user of userCollection.items()) {
       if (user.data.invitedBy === from.id) {
-        text += `- ${user.data.firstName} ${user.data.lastName} @${user.data.username ?? '---'}`;
+        text += `${i}. ${user.data.firstName} ${user.data.lastName} @${user.data.username ?? '---'}`;
 
         const extraInfo = [];
 
@@ -73,12 +74,15 @@ bot.hears(menuItems.stats, async (ctx, next) => {
         }
 
         text += '\n\n';
+        i++;
       }
     }
 
-    text += '\n\nدر صورت نهایی شدن ثبت‌نام این کاربران، مبلغ هدیه به حساب شما واریز خواهد شد.';
+    text += 'در صورت نهایی شدن ثبت‌نام این کاربران، مبلغ هدیه به حساب شما واریز خواهد شد.';
 
-    await ctx.reply(text);
+    if (i > 1) {
+      await ctx.reply(text);
+    }
   }
   catch (err) {
     logger.error('hears_stats2', 'unexpected_error', err);
