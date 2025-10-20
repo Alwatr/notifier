@@ -118,17 +118,46 @@ bot.command('check_all_users', async (ctx) => {
 
   for (const user of userCollection.items()) {
     try {
-      const msg = await ctx.api.sendMessage(user.meta.id, '👋');
+      // check blocking status
+      const msg = await ctx.api.sendMessage(user.data.id, '👋');
       await bot.api.deleteMessage(msg.chat.id, msg.message_id);
       if (user.data.blocked) {
         user.data.blocked = false;
-        userCollection.save(user.meta.id);
+        userCollection.save(user.data.id);
+      }
+
+      // check symphony group membership
+      let chatMember = await bot.api.getChatMember(config.courses.symphony.telegramChatId, user.data.id);
+      if (
+        chatMember.status === 'creator' ||
+        chatMember.status === 'administrator' ||
+        chatMember.status === 'member' ||
+        chatMember.status === 'restricted'
+      ) {
+        if (!user.data.courses.symphonyGroup) {
+          user.data.courses.symphonyGroup = true;
+          userCollection.save(user.data.id);
+        }
+      }
+
+      // check wesun group membership
+      chatMember = await bot.api.getChatMember(config.courses.wesunMembersTelegramChatId, user.data.id);
+      if (
+        chatMember.status === 'creator' ||
+        chatMember.status === 'administrator' ||
+        chatMember.status === 'member' ||
+        chatMember.status === 'restricted'
+      ) {
+        if (!user.data.courses.wesunGroup) {
+          user.data.courses.wesunGroup = true;
+          userCollection.save(user.data.id);
+        }
       }
     }
     catch (error) {
       if (error instanceof GrammyError && error.error_code === 403) {
         user.data.blocked = true;
-        userCollection.save(user.meta.id);
+        userCollection.save(user.data.id);
       }
       else {
         logger.error('command_check_all_users', 'send_message_failed', error, user);
@@ -193,7 +222,7 @@ bot.command('notify_all', async (ctx) => {
       stats.sent++;
       if (user.data.blocked) {
         user.data.blocked = false;
-        userCollection.save(user.meta.id);
+        userCollection.save(user.data.id);
       }
     }
     catch (error) {
@@ -202,7 +231,7 @@ bot.command('notify_all', async (ctx) => {
       if (error instanceof GrammyError && error.error_code === 403) {
         logger.incident?.('message_notify_*', 'user_blocked_bot', {user, message});
         user.data.blocked = true;
-        userCollection.save(user.meta.id);
+        userCollection.save(user.data.id);
       }
       else {
         logger.error('message_notify_*', 'send_message_failed', error, {user, message});
@@ -253,7 +282,7 @@ bot.command('pay', async (ctx) => {
     void ctx.reply(
       `آبجی این کاربر توی لیست ما نیست! 🤔
 
-${targetUser.first_name} ${targetUser.last_name} @${targetUser.username}`,
+${targetUser.first_name} ${targetUser.last_name ?? ''} @${targetUser.username ?? '---'}`.trim(),
       {
         reply_parameters: {
           message_id: message!.message_id,
@@ -279,7 +308,7 @@ ${targetUser.first_name} ${targetUser.last_name} @${targetUser.username}`,
       chatId: referralUser.id,
       messages: messages.new_referral_paid,
       vars: {
-        name: `${referralUser.firstName} ${referralUser.lastName ?? ''} @${referralUser.username ?? '---'}`.trim(),
+        name: `${targetUserData.firstName} ${targetUserData.lastName ?? ''} @${targetUserData.username ?? '---'}`.trim(),
       },
     });
   }
