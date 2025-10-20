@@ -12,6 +12,13 @@ export const config = {
   initializeMode,
 
   adminUserNames: ['AliMD', 'wesun_sales'] as string[],
+
+  courses: {
+    wesunMembersTelegramChatId: -1002435858809,
+    symphony: {
+      telegramChatId: -1002985272932,
+    },
+  },
   referralRewardPerUser: 100_000,
 
   nitrobase: {
