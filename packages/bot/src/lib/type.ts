@@ -11,6 +11,7 @@ export type User = {
   referralCount: number;
   blocked: boolean;
   courses: {
+    wesunGroup: boolean;
     symphonyInterest: boolean;
     symphonyGroup: boolean;
     symphonyPaid: boolean;
