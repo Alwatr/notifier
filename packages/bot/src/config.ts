@@ -11,7 +11,7 @@ export const config = {
   banner: 'Telegram Referral Bot',
   initializeMode,
 
-  adminUserNames: ['AliMD', 'wesun_sales'] as string[],
+  adminUserNames: ['AliMD', 'wesun_sales', 'ftme_sa'] as string[],
 
   courses: {
     wesunMembersTelegramChatId: -1002435858809,

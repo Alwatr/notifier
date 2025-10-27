@@ -15,7 +15,7 @@ function checkAdminRight(ctx: CommandContext<Context>): boolean {
 
   logger.logMethodArgs?.('checkAdminRight', from?.username);
 
-  if (from?.username === 'ftme_sa') {
+  if (from?.username === 'zeinabahmadnejad') {
     // nan joon
     void ctx.reply(randPick(messages.fun), {
       reply_parameters: {
