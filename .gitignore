@@ -35,6 +35,7 @@ dist
 *.tgz
 
 # dotenv environment variables file
-.env
-
+*.env
+_data
+db
 .tmp
