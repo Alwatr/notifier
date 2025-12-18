@@ -68,11 +68,11 @@
     "grammy": "^1.36.3"
   },
   "devDependencies": {
-    "@alwatr/env": "^5.5.3",
-    "@alwatr/nano-build": "^5.5.3",
-    "@alwatr/prettier-config": "^5.0.0",
-    "@alwatr/tsconfig-base": "^5.0.0",
-    "@alwatr/type-helper": "^5.4.1",
+    "@alwatr/env": "^5.5.26",
+    "@alwatr/nano-build": "^6.3.11",
+    "@alwatr/prettier-config": "^6.0.1",
+    "@alwatr/tsconfig-base": "^6.0.4",
+    "@alwatr/type-helper": "^7.0.0",
     "@types/node": "^22.15.21",
     "alwatr": "^3.12.2",
     "typescript": "^5.8.3"

@@ -5,6 +5,15 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@alwatr/async-queue@npm:5.5.26":
+  version: 5.5.26
+  resolution: "@alwatr/async-queue@npm:5.5.26"
+  dependencies:
+    "@alwatr/flatomise": "npm:5.5.26"
+  checksum: 10c0/a4a2e8817bf045b79d8e0b2f3bd296e88b1671f693859608aa33e4d8977b55b588da0752daf23561e6326cdcdf1a050b446e2922c4a84aee80620362823bff54
+  languageName: node
+  linkType: hard
+
 "@alwatr/async-queue@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/async-queue@npm:5.5.3"
@@ -34,6 +43,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/cyrb53@npm:1.0.14":
+  version: 1.0.14
+  resolution: "@alwatr/cyrb53@npm:1.0.14"
+  checksum: 10c0/04a81806a5e92db688d7cd08445c5111b252a86deb7a97c4efe132b45ddb112ff69c697ee25c17ae5600e1605723e838aeff6dedcb414d5630c8c0bccb7231bd
+  languageName: node
+  linkType: hard
+
+"@alwatr/debounce@npm:1.1.17":
+  version: 1.1.17
+  resolution: "@alwatr/debounce@npm:1.1.17"
+  checksum: 10c0/9b8ac86efde78fb75c638a1d80f10d492c97d3b1fb796d472cbc3d2bc590d7c37130d17ac1f47b99fa1fa0b70295d43ad701e5116757da657eb40a51ba441bd9
+  languageName: node
+  linkType: hard
+
 "@alwatr/dedupe@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/dedupe@npm:5.5.3"
@@ -45,12 +68,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/deep-clone@npm:5.5.26":
+  version: 5.5.26
+  resolution: "@alwatr/deep-clone@npm:5.5.26"
+  checksum: 10c0/9a956b70411f732b8a6bef9bd6102b6b387f2a0b40d5eaac6944ffbaf2b46c02325c7e392f7cbc045da42955d1bf8d4ac8b81fce327f71be1630c58dd38e5cd8
+  languageName: node
+  linkType: hard
+
 "@alwatr/deep-clone@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/deep-clone@npm:5.5.3"
   dependencies:
     "@alwatr/package-tracer": "npm:^5.5.3"
   checksum: 10c0/df8b799620a1de7bed335959d57a895b37872429ae18acf17f916eca393592e3aaf9d8875dc146340c7854574b906f02a11b12944eefbb26340c4cf6eb475807
+  languageName: node
+  linkType: hard
+
+"@alwatr/delay@npm:6.0.18":
+  version: 6.0.18
+  resolution: "@alwatr/delay@npm:6.0.18"
+  dependencies:
+    "@alwatr/global-this": "npm:5.6.7"
+    "@alwatr/parse-duration": "npm:5.5.27"
+  checksum: 10c0/c14ab1bb3d74e688c01060e3746920cf26a3be7537309f093fd806c74695296d93b4056202f8f3fddfd3c27c3c8a63ff3bc54f369e6ce4712f84f3163e973193
   languageName: node
   linkType: hard
 
@@ -65,6 +105,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/djb2-hash@npm:1.1.14":
+  version: 1.1.14
+  resolution: "@alwatr/djb2-hash@npm:1.1.14"
+  checksum: 10c0/237d551cdee86da0b813bb901b93416abd6da320426e5896dd603eb957ba1bbc2e123452a69770bd5474501f4a238290affafd5deb712bf31500060a34c64a20
+  languageName: node
+  linkType: hard
+
+"@alwatr/env@npm:5.5.26, @alwatr/env@npm:^5.5.26":
+  version: 5.5.26
+  resolution: "@alwatr/env@npm:5.5.26"
+  dependencies:
+    "@alwatr/platform-info": "npm:5.5.26"
+  checksum: 10c0/59cc961a976f99ba1fb692517f73e7223ee9cc22ef5d8504316d1483fe7d90ec13533a04df117ae5920be5bcaa9470b0db476b63664ba954f73fb492479dda7c
+  languageName: node
+  linkType: hard
+
 "@alwatr/env@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/env@npm:5.5.3"
@@ -75,17 +131,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alwatr/eslint-config@npm:^5.5.4":
-  version: 5.5.4
-  resolution: "@alwatr/eslint-config@npm:5.5.4"
+"@alwatr/eslint-config@npm:5.6.6, @alwatr/eslint-config@npm:^5.6.6":
+  version: 5.6.6
+  resolution: "@alwatr/eslint-config@npm:5.6.6"
   peerDependencies:
-    "@typescript-eslint/eslint-plugin": ">7.0.0 <8.0.0"
-    "@typescript-eslint/parser": ">7.0.0 <8.0.0"
-    eslint: ">8.0.0 <9.0.0"
-    eslint-import-resolver-typescript: ">3.0.0"
-    eslint-plugin-import: ">2.0.0"
-    eslint-plugin-require-extensions: ">0.1.0"
-  checksum: 10c0/8d764e7f462a4d8f2cfade5165b97478c8c207dbda80655fbe520c925500707c4a03993034345ff9e4a7da85b1f1c79f130109ff12487ea2f643600630e3df8e
+    "@typescript-eslint/eslint-plugin": ^7.18.0
+    "@typescript-eslint/parser": ^7.18.0
+    eslint: ^8.57.1
+    eslint-import-resolver-typescript: ^4.4.4
+    eslint-plugin-import: ^2.32.0
+    eslint-plugin-require-extensions: ^0.1.3
+  checksum: 10c0/6cd1340df67d624ce73e42ce1ea46f2fbbe2c4380c50a490422ac9da005822c4e475de7078390c8af98f67df2140134e2533c7b9a100160baff8e01835f8c4c0
+  languageName: node
+  linkType: hard
+
+"@alwatr/exit-hook@npm:5.5.26":
+  version: 5.5.26
+  resolution: "@alwatr/exit-hook@npm:5.5.26"
+  checksum: 10c0/dbac7115217be02b83bcdb52c7600f464f7d94f656307db1fc0cc346001760ef1e9d4bafc7f64f4993886cade2eff842dfde6e3f7e33ae51e1712432b90a2688
   languageName: node
   linkType: hard
 
@@ -108,6 +171,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/fetch@npm:7.1.2":
+  version: 7.1.2
+  resolution: "@alwatr/fetch@npm:7.1.2"
+  dependencies:
+    "@alwatr/delay": "npm:6.0.18"
+    "@alwatr/global-this": "npm:5.6.7"
+    "@alwatr/has-own": "npm:5.6.5"
+    "@alwatr/http-primer": "npm:6.0.18"
+    "@alwatr/logger": "npm:6.0.15"
+    "@alwatr/parse-duration": "npm:5.5.27"
+  checksum: 10c0/c391ee3b9f38f4e627f97b8121c5c7da0156eabd31a61bdf553f56e967f161a75c3d1b3193986c3fbecc0e928db899da0c249469f40c404abc6ce8311d0007b0
+  languageName: node
+  linkType: hard
+
 "@alwatr/fetch@npm:^5.6.2":
   version: 5.6.2
   resolution: "@alwatr/fetch@npm:5.6.2"
@@ -122,12 +199,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/flat-string@npm:5.5.26":
+  version: 5.5.26
+  resolution: "@alwatr/flat-string@npm:5.5.26"
+  checksum: 10c0/dc6b947f97fe1e4ccc825e932d750e4dbb2c8045821a5a2f18f9c10adc5d6661ef1dc7640d80678f623ac66bcd86e3ac8bad6678503dae97f2a7517c6bdc82c3
+  languageName: node
+  linkType: hard
+
 "@alwatr/flat-string@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/flat-string@npm:5.5.3"
   dependencies:
     "@alwatr/package-tracer": "npm:^5.5.3"
   checksum: 10c0/a4cf44ab6c859ac427591b06d89d56ccfc3392bbc610bb6b70a01bc47a18a3938f8b1490827aa74e7d4a8d18cb8be79b24100144c3ea03159166634dd57a5441
+  languageName: node
+  linkType: hard
+
+"@alwatr/flatomise@npm:5.5.26":
+  version: 5.5.26
+  resolution: "@alwatr/flatomise@npm:5.5.26"
+  checksum: 10c0/431d3c90c79cefdedb018f7c20410fb02b7b3de3f63ff9d9a8723a86ed78eb9f11366b98ef7cf92501bfa5c8be0fe5698feeadb5e728d71a102a796afba679fc
   languageName: node
   linkType: hard
 
@@ -164,12 +255,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/global-this@npm:5.6.7":
+  version: 5.6.7
+  resolution: "@alwatr/global-this@npm:5.6.7"
+  checksum: 10c0/0508b07d9656024b9320183e92dea14026545c1d2163c26f439ed47d8422d5cb77e2f98296a266a6eefe9d4ec91b0414c989967dfbf1d4134e51f8bfc5fd5698
+  languageName: node
+  linkType: hard
+
 "@alwatr/global-this@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/global-this@npm:5.5.3"
   dependencies:
     "@alwatr/package-tracer": "npm:^5.5.3"
   checksum: 10c0/d256f3a2861a73662e26b5b512cacbce8e0ddf0b9e1f5109aa7f377d05e73efafc42c60a4f264c392096e24cbd8228f076d6a343a84c44bc74126f698a5c01f3
+  languageName: node
+  linkType: hard
+
+"@alwatr/has-own@npm:5.6.5":
+  version: 5.6.5
+  resolution: "@alwatr/has-own@npm:5.6.5"
+  checksum: 10c0/876bad5cbbb72577843acc71606a8ffbfd8680cf1c556fb97e848844941c8744199b212ced230ea70d4274f5d7ac53f8194cb7724a7bd270d4cb0ff3cf78502d
+  languageName: node
+  linkType: hard
+
+"@alwatr/hash-string@npm:5.2.26":
+  version: 5.2.26
+  resolution: "@alwatr/hash-string@npm:5.2.26"
+  checksum: 10c0/81a976cb8c5407f14e120119c4d0e05582e71b87bfe49d20c9305e40c4198e7f0572d619743e60ee05f7d8e7adea914a5d88519b44c93a01947149ff469ec91e
   languageName: node
   linkType: hard
 
@@ -182,12 +294,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/http-primer@npm:6.0.18":
+  version: 6.0.18
+  resolution: "@alwatr/http-primer@npm:6.0.18"
+  checksum: 10c0/9d546e8401c6855410f006e27569ca2cd5059f7d6dbccfe1654aaa34be9fbbc0b29f8f54beeb00f2f068eabfc3c85cc0bfb5d40c544e1febacefa3052290ca74
+  languageName: node
+  linkType: hard
+
 "@alwatr/http-primer@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/http-primer@npm:5.5.3"
   dependencies:
     "@alwatr/package-tracer": "npm:^5.5.3"
   checksum: 10c0/f1773c72259f4addd171cce0df40322ff690ddc628c3ef1e5918a43269648a2d9acea83be44f9d17109fb1d3b80f992c29c6fa5d12a2de7b58be38540c73290e
+  languageName: node
+  linkType: hard
+
+"@alwatr/iranian-national-code-validator@npm:1.0.18":
+  version: 1.0.18
+  resolution: "@alwatr/iranian-national-code-validator@npm:1.0.18"
+  checksum: 10c0/91975bbee0937e21b9b533bafb5f0e2b256b360325bbb5dbb8612b5f805973f7695b0a55da6d86ff35c7eb999f87118b4861c40d01041184971afdb59c29bf5f
+  languageName: node
+  linkType: hard
+
+"@alwatr/is-number@npm:5.7.23":
+  version: 5.7.23
+  resolution: "@alwatr/is-number@npm:5.7.23"
+  checksum: 10c0/e98a4b376250dde7be02ec1668e11514954e6cfc11b087a2ffe9dd3cf8ec75c19b59b73c1ca55a0d677d7be018f4d22f9af6ea0e34094a894aafd49ce38885f9
   languageName: node
   linkType: hard
 
@@ -200,12 +333,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/json2csv@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@alwatr/json2csv@npm:1.0.2"
+  checksum: 10c0/14975814f45ea4ad9128cc362fedaa5d63897802da8a8f97db6ea0a42593198637e3561c80a22f3447aabf7c2710e7e964e6dacb70b30f756b4975a6062c2afb
+  languageName: node
+  linkType: hard
+
+"@alwatr/local-storage@npm:7.0.6":
+  version: 7.0.6
+  resolution: "@alwatr/local-storage@npm:7.0.6"
+  dependencies:
+    "@alwatr/logger": "npm:6.0.15"
+  checksum: 10c0/68198d6dd5c4ade48a5a9533e634ef30e6911a983a41646d5bfb4adb0c1a22f53b1d5547df57494f5c543d03942da4b0ae1978ad4786c9de2bf1d5b4caefa659
+  languageName: node
+  linkType: hard
+
 "@alwatr/local-storage@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/local-storage@npm:5.5.3"
   dependencies:
     "@alwatr/package-tracer": "npm:^5.5.3"
   checksum: 10c0/241e876e690b1a66e971234a8ced3ffcf6c43739fc31371db9509ae534d69f114c865703c463a132472a2530938edb7a5638384f65e0677b7fde20249badb57c
+  languageName: node
+  linkType: hard
+
+"@alwatr/logger@npm:6.0.15":
+  version: 6.0.15
+  resolution: "@alwatr/logger@npm:6.0.15"
+  dependencies:
+    "@alwatr/global-this": "npm:5.6.7"
+    "@alwatr/platform-info": "npm:5.5.26"
+  checksum: 10c0/5beba03687eff6b869cf13a0bafe19dcbbe71f849c3072cb0ebd7ae4464824168a1af688ea7f2c2f1b188e07ed8f3faea7dfcbd5bd6ef879a29e9c5b4a9dbd02
   languageName: node
   linkType: hard
 
@@ -219,14 +378,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alwatr/nano-build@npm:^5.5.3":
-  version: 5.5.3
-  resolution: "@alwatr/nano-build@npm:5.5.3"
+"@alwatr/nano-build@npm:6.3.11, @alwatr/nano-build@npm:^6.3.11":
+  version: 6.3.11
+  resolution: "@alwatr/nano-build@npm:6.3.11"
   dependencies:
-    esbuild: "npm:^0.25.2"
+    esbuild: "npm:^0.27.1"
+    picocolors: "npm:^1.1.1"
   bin:
-    nano-build: ./nano-build.cjs
-  checksum: 10c0/3673ec9737a6bb0e1771b56697341e5648e02e52291ecab5d65983303e746da013c2c40858925d3b938a5c3800c12bd3b51497e8d1161566d2d8c6e3dd327e15
+    nano-build: cli.cjs
+  checksum: 10c0/fc717750f6e3fa02de6eef133ee8b89acba779ae27988e9e8a9dc068422d67568fb57fc6c76ec92410cd26f6366840ad1ecb96c8519b9ea79dbb3b29150ef7a6
   languageName: node
   linkType: hard
 
@@ -258,6 +418,50 @@ __metadata:
     "@alwatr/resolve-url": "npm:^5.5.5"
     "@alwatr/unicode-digits": "npm:^5.5.3"
   checksum: 10c0/783227eadfcf49dbdbc7399220b787125d7e3acd488f2c671896e99a12a4223feb0381297457741f7fc5aaefe2658505aeed6fd02876669e80efd692435c1186
+  languageName: node
+  linkType: hard
+
+"@alwatr/nanolib@npm:^7.3.4":
+  version: 7.3.4
+  resolution: "@alwatr/nanolib@npm:7.3.4"
+  dependencies:
+    "@alwatr/async-queue": "npm:5.5.26"
+    "@alwatr/cyrb53": "npm:1.0.14"
+    "@alwatr/debounce": "npm:1.1.17"
+    "@alwatr/deep-clone": "npm:5.5.26"
+    "@alwatr/delay": "npm:6.0.18"
+    "@alwatr/djb2-hash": "npm:1.1.14"
+    "@alwatr/env": "npm:5.5.26"
+    "@alwatr/eslint-config": "npm:5.6.6"
+    "@alwatr/exit-hook": "npm:5.5.26"
+    "@alwatr/fetch": "npm:7.1.2"
+    "@alwatr/flat-string": "npm:5.5.26"
+    "@alwatr/flatomise": "npm:5.5.26"
+    "@alwatr/global-this": "npm:5.6.7"
+    "@alwatr/has-own": "npm:5.6.5"
+    "@alwatr/hash-string": "npm:5.2.26"
+    "@alwatr/http-primer": "npm:6.0.18"
+    "@alwatr/iranian-national-code-validator": "npm:1.0.18"
+    "@alwatr/is-number": "npm:5.7.23"
+    "@alwatr/json2csv": "npm:1.0.2"
+    "@alwatr/local-storage": "npm:7.0.6"
+    "@alwatr/logger": "npm:6.0.15"
+    "@alwatr/nano-build": "npm:6.3.11"
+    "@alwatr/node-fs": "npm:5.5.29"
+    "@alwatr/parse-duration": "npm:5.5.27"
+    "@alwatr/platform-info": "npm:5.5.26"
+    "@alwatr/prettier-config": "npm:6.0.1"
+    "@alwatr/random": "npm:5.1.27"
+    "@alwatr/render-state": "npm:5.5.29"
+    "@alwatr/resolve-url": "npm:5.5.29"
+    "@alwatr/synapse": "npm:1.3.4"
+    "@alwatr/type-helper": "npm:7.0.0"
+    "@alwatr/unicode-digits": "npm:5.5.26"
+    "@alwatr/yarn-upgrade": "npm:1.0.21"
+  bin:
+    nano-build: nano-build.cjs
+    upd: yarn-upgrade.cjs
+  checksum: 10c0/ace3460686b4290c36f973841a968e84fa87ed272763f5f8a51d76d19edd8a197dc196cc42234a4b1ed69e84cc91929dd4c4037a4cdcb6f43711b8e36d04cf18
   languageName: node
   linkType: hard
 
@@ -350,6 +554,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/node-fs@npm:5.5.29":
+  version: 5.5.29
+  resolution: "@alwatr/node-fs@npm:5.5.29"
+  dependencies:
+    "@alwatr/async-queue": "npm:5.5.26"
+    "@alwatr/flat-string": "npm:5.5.26"
+    "@alwatr/logger": "npm:6.0.15"
+  checksum: 10c0/62ff25f770f8671deaea07f4b49575940fdd794176d55aa0efc3448b86aa8ae541589c5f135dd55bb0547c51bd6c803b4dfeef0483d4a1c155924f144506427f
+  languageName: node
+  linkType: hard
+
 "@alwatr/node-fs@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/node-fs@npm:5.5.3"
@@ -366,11 +581,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@alwatr/notifier@workspace:packages/notifier"
   dependencies:
-    "@alwatr/nano-build": "npm:^5.5.3"
-    "@alwatr/nanolib": "npm:^5.6.5"
-    "@alwatr/prettier-config": "npm:^5.0.0"
-    "@alwatr/tsconfig-base": "npm:^5.0.0"
-    "@alwatr/type-helper": "npm:^5.4.1"
+    "@alwatr/nano-build": "npm:^6.3.11"
+    "@alwatr/nanolib": "npm:^7.3.4"
+    "@alwatr/prettier-config": "npm:^6.0.1"
+    "@alwatr/tsconfig-base": "npm:^6.0.4"
+    "@alwatr/type-helper": "npm:^7.0.0"
     "@types/node": "npm:^22.15.21"
     jest: "npm:^29.7.0"
     typescript: "npm:^5.8.3"
@@ -393,6 +608,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/parse-duration@npm:5.5.27":
+  version: 5.5.27
+  resolution: "@alwatr/parse-duration@npm:5.5.27"
+  dependencies:
+    "@alwatr/is-number": "npm:5.7.23"
+  checksum: 10c0/aac54175c0b1a1ea6b5ffdf99f883856814380a0e05d44bf096fe03380b903190f783565f6361bc05ac304235918147a5971159845462355e25ffa3c2bdbd0e6
+  languageName: node
+  linkType: hard
+
 "@alwatr/parse-duration@npm:^5.5.4":
   version: 5.5.4
   resolution: "@alwatr/parse-duration@npm:5.5.4"
@@ -400,6 +624,13 @@ __metadata:
     "@alwatr/is-number": "npm:^5.7.0"
     "@alwatr/package-tracer": "npm:^5.5.3"
   checksum: 10c0/787f4e5a81fb8423e8f969f7e073bcdbfbb592b01d4d33e7e4a672097c343b133e0f06997f594bd4de1ca6ccfc8acc8d7e600ab17f2b68eab614825ec8c4ce5c
+  languageName: node
+  linkType: hard
+
+"@alwatr/platform-info@npm:5.5.26":
+  version: 5.5.26
+  resolution: "@alwatr/platform-info@npm:5.5.26"
+  checksum: 10c0/4e80ff10b51f0265fbef520766b5fa69c8b01e92f35147d55958d3e2b0bbcff8c7bdfffdefac2e3f324ed2a8eed67ee30ec24a713efbf63ffaa40ea0c3c9d99d
   languageName: node
   linkType: hard
 
@@ -431,10 +662,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alwatr/prettier-config@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "@alwatr/prettier-config@npm:5.0.0"
-  checksum: 10c0/b3553eaf24317570de845f5f0430836d651ce6f64d7dc6809a3b2b969b084370d358447ef55e669d970d8e8e569a3a1819d0c69e12b53fc4728999d94214b63b
+"@alwatr/prettier-config@npm:6.0.1, @alwatr/prettier-config@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@alwatr/prettier-config@npm:6.0.1"
+  peerDependencies:
+    prettier: ">=3.0.0"
+  checksum: 10c0/7e7b97553027e29b3dc6b85c15c5060902f651fa727e52cef376f3b875a6979cd21737dcd55e5233c2f73f377715000944a17604b1a17e1b40ed2f2a3eece624
+  languageName: node
+  linkType: hard
+
+"@alwatr/random@npm:5.1.27":
+  version: 5.1.27
+  resolution: "@alwatr/random@npm:5.1.27"
+  dependencies:
+    "@alwatr/global-this": "npm:5.6.7"
+  checksum: 10c0/5890784fe66ab35dab1ee628c0588fcd88a618ca53f7716d843fbd424fa752ed18413e5ff141502e402c81383802805de9409b2c4ad538179791e1168fad6fe5
   languageName: node
   linkType: hard
 
@@ -458,6 +700,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alwatr/render-state@npm:5.5.29":
+  version: 5.5.29
+  resolution: "@alwatr/render-state@npm:5.5.29"
+  dependencies:
+    "@alwatr/logger": "npm:6.0.15"
+  checksum: 10c0/d1a9567dee6904cd8bc520cef439000f24cf56c069b2a57d040e2e034dfc37c16a68f5795420ae07beaba8b10aff195429f809a8ff06382f2e0bd85928e78449
+  languageName: node
+  linkType: hard
+
 "@alwatr/render-state@npm:^5.5.3":
   version: 5.5.3
   resolution: "@alwatr/render-state@npm:5.5.3"
@@ -465,6 +716,13 @@ __metadata:
     "@alwatr/logger": "npm:^5.5.3"
     "@alwatr/package-tracer": "npm:^5.5.3"
   checksum: 10c0/6a08e9c9c05fdba66432b0ff9990a072d3eea57d1ad981ae8ee7562c3b52c6d485d1585c03261cca9261b22ea70196b3a030a51b22d92aa59043d008311d4f1a
+  languageName: node
+  linkType: hard
+
+"@alwatr/resolve-url@npm:5.5.29":
+  version: 5.5.29
+  resolution: "@alwatr/resolve-url@npm:5.5.29"
+  checksum: 10c0/6ab1506dcf36c420d28299c00780af81bf32fa4a97a50a3d78c18ed22e1b1169e8519dfd00cc179b117aa75159e8e677a4ad5a6944a3791e3861b2f5b61d040a
   languageName: node
   linkType: hard
 
@@ -487,17 +745,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alwatr/tsconfig-base@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "@alwatr/tsconfig-base@npm:5.0.0"
-  checksum: 10c0/96087378b3908b4a695efc87290fa6d04ed0b398cb00a50fdae7ba3b011cae326a614b498518268a568a48c8b10cb237d75038ca0606a46c04127b372f1613ed
+"@alwatr/synapse@npm:1.3.4":
+  version: 1.3.4
+  resolution: "@alwatr/synapse@npm:1.3.4"
+  dependencies:
+    "@alwatr/delay": "npm:6.0.18"
+    "@alwatr/logger": "npm:6.0.15"
+  checksum: 10c0/58973076e457433ef1fa1787fbebfa6aab06afa1c0e4e074d4c5381167e361b6032ff7cd7db2e61912bbedb2ed7d266d9f89463fbd141feca8fc79bebeed54a2
   languageName: node
   linkType: hard
 
-"@alwatr/type-helper@npm:^5.4.1":
-  version: 5.4.1
-  resolution: "@alwatr/type-helper@npm:5.4.1"
-  checksum: 10c0/6ce9fef83fd22c1372c8eda18a7f34de78b9e7c88fc5208894724165d0e0e9ab2aac5e3f45e47b922bccfcbafc7ed180b6f3f7a59d2f6fbbbfe6eb35c66b73f5
+"@alwatr/tsconfig-base@npm:^6.0.4":
+  version: 6.0.4
+  resolution: "@alwatr/tsconfig-base@npm:6.0.4"
+  checksum: 10c0/9bb95a09b0ac63d416bd4edaf575820a203f1b3916e5143af2c04d783869c6c639bf8a940b2b9e89378e611e7f1d26a624a203010c0b2f8e547f899abb4ce38c
+  languageName: node
+  linkType: hard
+
+"@alwatr/type-helper@npm:7.0.0, @alwatr/type-helper@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@alwatr/type-helper@npm:7.0.0"
+  checksum: 10c0/69b92d4d238d6c3e8b764ae220c75c77839a4e480cc3a2f4848d4d8acb85e6b73f8bb3c9fffc6e7e756e0f3263e1cd96dc0914a647184e58a1453b165679bd75
+  languageName: node
+  linkType: hard
+
+"@alwatr/unicode-digits@npm:5.5.26":
+  version: 5.5.26
+  resolution: "@alwatr/unicode-digits@npm:5.5.26"
+  checksum: 10c0/a94940fd50fa2cad2a99f183b8f386ce57bc45bcfbd3777721ef409d7c5ddc4d133f9e0d1f049f14dacd243182a030c50c46a58e91871a1fdb3c5cc46ae9f9ba
   languageName: node
   linkType: hard
 
@@ -507,6 +782,15 @@ __metadata:
   dependencies:
     "@alwatr/package-tracer": "npm:^5.5.3"
   checksum: 10c0/e4680c7af190a4a0057a2eea82d7c362a7c23a9dc57e509fdd931c12ac444015ae93b12c39f3b603e95864461e36a8b0eee56e66de11191e225126f3f666c35e
+  languageName: node
+  linkType: hard
+
+"@alwatr/yarn-upgrade@npm:1.0.21":
+  version: 1.0.21
+  resolution: "@alwatr/yarn-upgrade@npm:1.0.21"
+  bin:
+    upd: dist/main.cjs
+  checksum: 10c0/56342233909d9568f2a9d470e6ca32e46d11ebb7cbff1b61558a100875022ed19d2e012781b7ca9915fd70f5882aea4e66fb3f4500e4d99559367a28ad256927
   languageName: node
   linkType: hard
 
@@ -934,177 +1218,184 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/aix-ppc64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/aix-ppc64@npm:0.25.4"
+"@esbuild/aix-ppc64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/aix-ppc64@npm:0.27.2"
   conditions: os=aix & cpu=ppc64
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/android-arm64@npm:0.25.4"
+"@esbuild/android-arm64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/android-arm64@npm:0.27.2"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/android-arm@npm:0.25.4"
+"@esbuild/android-arm@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/android-arm@npm:0.27.2"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@esbuild/android-x64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/android-x64@npm:0.25.4"
+"@esbuild/android-x64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/android-x64@npm:0.27.2"
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-arm64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/darwin-arm64@npm:0.25.4"
+"@esbuild/darwin-arm64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/darwin-arm64@npm:0.27.2"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-x64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/darwin-x64@npm:0.25.4"
+"@esbuild/darwin-x64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/darwin-x64@npm:0.27.2"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-arm64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/freebsd-arm64@npm:0.25.4"
+"@esbuild/freebsd-arm64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/freebsd-arm64@npm:0.27.2"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-x64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/freebsd-x64@npm:0.25.4"
+"@esbuild/freebsd-x64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/freebsd-x64@npm:0.27.2"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/linux-arm64@npm:0.25.4"
+"@esbuild/linux-arm64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/linux-arm64@npm:0.27.2"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/linux-arm@npm:0.25.4"
+"@esbuild/linux-arm@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/linux-arm@npm:0.27.2"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ia32@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/linux-ia32@npm:0.25.4"
+"@esbuild/linux-ia32@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/linux-ia32@npm:0.27.2"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"@esbuild/linux-loong64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/linux-loong64@npm:0.25.4"
+"@esbuild/linux-loong64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/linux-loong64@npm:0.27.2"
   conditions: os=linux & cpu=loong64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-mips64el@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/linux-mips64el@npm:0.25.4"
+"@esbuild/linux-mips64el@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/linux-mips64el@npm:0.27.2"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ppc64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/linux-ppc64@npm:0.25.4"
+"@esbuild/linux-ppc64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/linux-ppc64@npm:0.27.2"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-riscv64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/linux-riscv64@npm:0.25.4"
+"@esbuild/linux-riscv64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/linux-riscv64@npm:0.27.2"
   conditions: os=linux & cpu=riscv64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-s390x@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/linux-s390x@npm:0.25.4"
+"@esbuild/linux-s390x@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/linux-s390x@npm:0.27.2"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
 
-"@esbuild/linux-x64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/linux-x64@npm:0.25.4"
+"@esbuild/linux-x64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/linux-x64@npm:0.27.2"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-arm64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/netbsd-arm64@npm:0.25.4"
+"@esbuild/netbsd-arm64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/netbsd-arm64@npm:0.27.2"
   conditions: os=netbsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-x64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/netbsd-x64@npm:0.25.4"
+"@esbuild/netbsd-x64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/netbsd-x64@npm:0.27.2"
   conditions: os=netbsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/openbsd-arm64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/openbsd-arm64@npm:0.25.4"
+"@esbuild/openbsd-arm64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/openbsd-arm64@npm:0.27.2"
   conditions: os=openbsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/openbsd-x64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/openbsd-x64@npm:0.25.4"
+"@esbuild/openbsd-x64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/openbsd-x64@npm:0.27.2"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/sunos-x64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/sunos-x64@npm:0.25.4"
+"@esbuild/openharmony-arm64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/openharmony-arm64@npm:0.27.2"
+  conditions: os=openharmony & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@esbuild/sunos-x64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/sunos-x64@npm:0.27.2"
   conditions: os=sunos & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/win32-arm64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/win32-arm64@npm:0.25.4"
+"@esbuild/win32-arm64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/win32-arm64@npm:0.27.2"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/win32-ia32@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/win32-ia32@npm:0.25.4"
+"@esbuild/win32-ia32@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/win32-ia32@npm:0.27.2"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@esbuild/win32-x64@npm:0.25.4":
-  version: 0.25.4
-  resolution: "@esbuild/win32-x64@npm:0.25.4"
+"@esbuild/win32-x64@npm:0.27.2":
+  version: 0.27.2
+  resolution: "@esbuild/win32-x64@npm:0.27.2"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2801,8 +3092,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alwatr-notifier@workspace:."
   dependencies:
-    "@alwatr/eslint-config": "npm:^5.5.4"
-    "@alwatr/prettier-config": "npm:^5.0.0"
+    "@alwatr/eslint-config": "npm:^5.6.6"
+    "@alwatr/prettier-config": "npm:^6.0.1"
     "@lerna-lite/changed": "npm:^4.2.0"
     "@lerna-lite/cli": "npm:^4.2.0"
     "@lerna-lite/diff": "npm:^4.2.0"
@@ -2896,11 +3187,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:packages/api"
   dependencies:
-    "@alwatr/env": "npm:^5.5.3"
-    "@alwatr/nano-build": "npm:^5.5.3"
-    "@alwatr/prettier-config": "npm:^5.0.0"
-    "@alwatr/tsconfig-base": "npm:^5.0.0"
-    "@alwatr/type-helper": "npm:^5.4.1"
+    "@alwatr/env": "npm:^5.5.26"
+    "@alwatr/nano-build": "npm:^6.3.11"
+    "@alwatr/prettier-config": "npm:^6.0.1"
+    "@alwatr/tsconfig-base": "npm:^6.0.4"
+    "@alwatr/type-helper": "npm:^7.0.0"
     "@types/node": "npm:^22.15.21"
     alwatr: "npm:^3.12.2"
     grammy: "npm:^1.36.3"
@@ -4033,35 +4324,36 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.25.2":
-  version: 0.25.4
-  resolution: "esbuild@npm:0.25.4"
+"esbuild@npm:^0.27.1":
+  version: 0.27.2
+  resolution: "esbuild@npm:0.27.2"
   dependencies:
-    "@esbuild/aix-ppc64": "npm:0.25.4"
-    "@esbuild/android-arm": "npm:0.25.4"
-    "@esbuild/android-arm64": "npm:0.25.4"
-    "@esbuild/android-x64": "npm:0.25.4"
-    "@esbuild/darwin-arm64": "npm:0.25.4"
-    "@esbuild/darwin-x64": "npm:0.25.4"
-    "@esbuild/freebsd-arm64": "npm:0.25.4"
-    "@esbuild/freebsd-x64": "npm:0.25.4"
-    "@esbuild/linux-arm": "npm:0.25.4"
-    "@esbuild/linux-arm64": "npm:0.25.4"
-    "@esbuild/linux-ia32": "npm:0.25.4"
-    "@esbuild/linux-loong64": "npm:0.25.4"
-    "@esbuild/linux-mips64el": "npm:0.25.4"
-    "@esbuild/linux-ppc64": "npm:0.25.4"
-    "@esbuild/linux-riscv64": "npm:0.25.4"
-    "@esbuild/linux-s390x": "npm:0.25.4"
-    "@esbuild/linux-x64": "npm:0.25.4"
-    "@esbuild/netbsd-arm64": "npm:0.25.4"
-    "@esbuild/netbsd-x64": "npm:0.25.4"
-    "@esbuild/openbsd-arm64": "npm:0.25.4"
-    "@esbuild/openbsd-x64": "npm:0.25.4"
-    "@esbuild/sunos-x64": "npm:0.25.4"
-    "@esbuild/win32-arm64": "npm:0.25.4"
-    "@esbuild/win32-ia32": "npm:0.25.4"
-    "@esbuild/win32-x64": "npm:0.25.4"
+    "@esbuild/aix-ppc64": "npm:0.27.2"
+    "@esbuild/android-arm": "npm:0.27.2"
+    "@esbuild/android-arm64": "npm:0.27.2"
+    "@esbuild/android-x64": "npm:0.27.2"
+    "@esbuild/darwin-arm64": "npm:0.27.2"
+    "@esbuild/darwin-x64": "npm:0.27.2"
+    "@esbuild/freebsd-arm64": "npm:0.27.2"
+    "@esbuild/freebsd-x64": "npm:0.27.2"
+    "@esbuild/linux-arm": "npm:0.27.2"
+    "@esbuild/linux-arm64": "npm:0.27.2"
+    "@esbuild/linux-ia32": "npm:0.27.2"
+    "@esbuild/linux-loong64": "npm:0.27.2"
+    "@esbuild/linux-mips64el": "npm:0.27.2"
+    "@esbuild/linux-ppc64": "npm:0.27.2"
+    "@esbuild/linux-riscv64": "npm:0.27.2"
+    "@esbuild/linux-s390x": "npm:0.27.2"
+    "@esbuild/linux-x64": "npm:0.27.2"
+    "@esbuild/netbsd-arm64": "npm:0.27.2"
+    "@esbuild/netbsd-x64": "npm:0.27.2"
+    "@esbuild/openbsd-arm64": "npm:0.27.2"
+    "@esbuild/openbsd-x64": "npm:0.27.2"
+    "@esbuild/openharmony-arm64": "npm:0.27.2"
+    "@esbuild/sunos-x64": "npm:0.27.2"
+    "@esbuild/win32-arm64": "npm:0.27.2"
+    "@esbuild/win32-ia32": "npm:0.27.2"
+    "@esbuild/win32-x64": "npm:0.27.2"
   dependenciesMeta:
     "@esbuild/aix-ppc64":
       optional: true
@@ -4105,6 +4397,8 @@ __metadata:
       optional: true
     "@esbuild/openbsd-x64":
       optional: true
+    "@esbuild/openharmony-arm64":
+      optional: true
     "@esbuild/sunos-x64":
       optional: true
     "@esbuild/win32-arm64":
@@ -4115,7 +4409,7 @@ __metadata:
       optional: true
   bin:
     esbuild: bin/esbuild
-  checksum: 10c0/db9f51248f0560bc46ab219461d338047617f6caf373c95f643b204760bdfa10c95b48cfde948949f7e509599ae4ab61c3f112092a3534936c6abfb800c565b0
+  checksum: 10c0/cf83f626f55500f521d5fe7f4bc5871bec240d3deb2a01fbd379edc43b3664d1167428738a5aad8794b35d1cca985c44c375b1cd38a2ca613c77ced2c83aafcd
   languageName: node
   linkType: hard
 
